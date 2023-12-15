@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idniveau
  * @property int|null $idutilisateur_1
  * @property Carbon|null $datevalidation
- * @property string $email
  * @property string $motdepasse
  * 
  * @property Utilisateur $utilisateur
@@ -47,7 +46,6 @@ class Etudiant extends Model
 		'idniveau',
 		'idutilisateur_1',
 		'datevalidation',
-		'email',
 		'motdepasse'
 	];
 

@@ -18,11 +18,11 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property StatutService $statut_service
  * @property Loisir $loisir
- * @property EvenementSportif $evenement_sportif
+ * @property Cinema $cinema
  * @property EchangeCompetence $echange_competence
  * @property Collection|Annonce[] $annonces
+ * @property EvenementSportif $evenement_sportif
  * @property Covoiturage $covoiturage
- * @property Cinema $cinema
  *
  * @package App\Models
  */
@@ -53,9 +53,9 @@ class Service extends Model
 		return $this->hasOne(Loisir::class, 'idservice');
 	}
 
-	public function evenement_sportif()
+	public function cinema()
 	{
-		return $this->hasOne(EvenementSportif::class, 'idservice');
+		return $this->hasOne(Cinema::class, 'idservice');
 	}
 
 	public function echange_competence()
@@ -68,13 +68,13 @@ class Service extends Model
 		return $this->hasMany(Annonce::class, 'idservice');
 	}
 
+	public function evenement_sportif()
+	{
+		return $this->hasOne(EvenementSportif::class, 'idservice');
+	}
+
 	public function covoiturage()
 	{
 		return $this->hasOne(Covoiturage::class, 'idservice');
-	}
-
-	public function cinema()
-	{
-		return $this->hasOne(Cinema::class, 'idservice');
 	}
 }

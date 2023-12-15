@@ -15,8 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idspecialite
  * @property string $libellespecialite
  * 
- * @property Collection|Rel2[] $rel2s
  * @property Collection|Cour[] $cours
+ * @property Collection|Rel2[] $rel2s
  *
  * @package App\Models
  */
@@ -35,13 +35,13 @@ class Classe extends Model
 		'libellespecialite'
 	];
 
-	public function rel2s()
-	{
-		return $this->hasMany(Rel2::class, 'idspecialite');
-	}
-
 	public function cours()
 	{
 		return $this->hasMany(Cour::class, 'idspecialite');
+	}
+
+	public function rel2s()
+	{
+		return $this->hasMany(Rel2::class, 'idspecialite');
 	}
 }
