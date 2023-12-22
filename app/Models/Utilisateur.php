@@ -8,6 +8,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
 
 /**
  * Class UTILISATEUR
@@ -27,8 +32,10 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class UTILISATEUR extends Model
+class UTILISATEUR extends Authenticatable
 {
+	use HasFactory, Notifiable;
+
 	protected $table = 'UTILISATEUR';
 	protected $primaryKey = 'IDUTILISATEUR';
 	public $timestamps = false;
@@ -69,4 +76,28 @@ class UTILISATEUR extends Model
 	{
 		return $this->hasMany(PROFESSEUR::class, 'IDUTILISATEUR');
 	}
+
+	    /**
+     * Retourne le mot de passe de l'utilisateur
+     */
+    public function getAuthPassword()
+    {
+        return $this->MOTDEPASSE;
+    }
+
+    /**
+     * Retourne l'identifiant de l'utilisateur
+     */
+    public function getAuthIdentifier()
+    {
+        return $this->EMAILUTILISATEUR;
+    }
+
+    /**
+     * Retourne le nom de l'identifiant de l'utilisateur
+     */
+    public function getAuthIdentifierName()
+    {
+        return 'EMAILUTILISATEUR';
+    }
 }
