@@ -11,71 +11,73 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Etudiant
+ * Class ETUDIANT
  * 
- * @property int $idutilisateur
- * @property int $idniveau
- * @property int|null $idutilisateur_1
- * @property Carbon|null $datevalidation
- * @property string $motdepasse
+ * @property int $IDUTILISATEUR
+ * @property int $IDNIVEAU
+ * @property int|null $IDUTILISATEUR_1
+ * @property Carbon|null $DATEVALIDATION
+ * @property string $EMAIL
+ * @property string $MOTDEPASSE
  * 
- * @property Utilisateur $utilisateur
- * @property Niveau $niveau
- * @property Moderateur|null $moderateur
- * @property Collection|Annonce[] $annonces
- * @property Collection|Rel2[] $rel2s
- * @property Collection|PossÉderbadge[] $posséderbadges
+ * @property MODERATEUR|null $m_o_d_e_r_a_t_e_u_r
+ * @property NIVEAU $n_i_v_e_a_u
+ * @property UTILISATEUR $u_t_i_l_i_s_a_t_e_u_r
+ * @property Collection|ANNONCE[] $a_n_n_o_n_c_e_s
+ * @property Collection|POSSÉDERBADGE[] $p_o_s_sé_d_e_r_b_a_d_g_e_s
+ * @property Collection|REL2[] $r_e_l2_s
  *
  * @package App\Models
  */
-class Etudiant extends Model
+class ETUDIANT extends Model
 {
-	protected $table = 'etudiant';
-	protected $primaryKey = 'idutilisateur';
+	protected $table = 'ETUDIANT';
+	protected $primaryKey = 'IDUTILISATEUR';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idutilisateur' => 'int',
-		'idniveau' => 'int',
-		'idutilisateur_1' => 'int',
-		'datevalidation' => 'datetime'
+		'IDUTILISATEUR' => 'int',
+		'IDNIVEAU' => 'int',
+		'IDUTILISATEUR_1' => 'int',
+		'DATEVALIDATION' => 'datetime'
 	];
 
 	protected $fillable = [
-		'idniveau',
-		'idutilisateur_1',
-		'datevalidation',
-		'motdepasse'
+		'IDNIVEAU',
+		'IDUTILISATEUR_1',
+		'DATEVALIDATION',
+		'EMAIL',
+		'MOTDEPASSE'
 	];
 
-	public function utilisateur()
+	public function m_o_d_e_r_a_t_e_u_r()
 	{
-		return $this->belongsTo(Utilisateur::class, 'idutilisateur');
+		return $this->belongsTo(MODERATEUR::class, 'IDUTILISATEUR_1');
 	}
 
-	public function niveau()
+	public function n_i_v_e_a_u()
 	{
-		return $this->belongsTo(Niveau::class, 'idniveau');
+		return $this->belongsTo(NIVEAU::class, 'IDNIVEAU');
 	}
 
-	public function moderateur()
+	public function u_t_i_l_i_s_a_t_e_u_r()
 	{
-		return $this->belongsTo(Moderateur::class, 'idutilisateur_1');
+		return $this->belongsTo(UTILISATEUR::class, 'IDUTILISATEUR');
 	}
 
-	public function annonces()
+	public function a_n_n_o_n_c_e_s()
 	{
-		return $this->hasMany(Annonce::class, 'idutilisateur_1');
+		return $this->hasMany(ANNONCE::class, 'IDUTILISATEUR_1');
 	}
 
-	public function rel2s()
+	public function p_o_s_sé_d_e_r_b_a_d_g_e_s()
 	{
-		return $this->hasMany(Rel2::class, 'idutilisateur');
+		return $this->hasMany(POSSÉDERBADGE::class, 'IDUTILISATEUR');
 	}
 
-	public function posséderbadges()
+	public function r_e_l2_s()
 	{
-		return $this->hasMany(PossÉderbadge::class, 'idutilisateur');
+		return $this->hasMany(REL2::class, 'IDUTILISATEUR');
 	}
 }

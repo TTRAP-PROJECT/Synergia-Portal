@@ -8,94 +8,65 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 /**
- * Class Utilisateur
+ * Class UTILISATEUR
  * 
- * @property int $idutilisateur
- * @property string $nomutilisateur
- * @property string $prenomutilisateur
- * @property string $motdepasse
- * @property int|null $solde
- * @property string $emailutilisateur
+ * @property int $IDUTILISATEUR
+ * @property string $NOMUTILISATEUR
+ * @property string $PRENOMUTILISATEUR
+ * @property string $EMAILUTILISATEUR
+ * @property string $MOTDEPASSE
+ * @property int|null $SOLDE
  * 
- * @property Collection|Professeur[] $professeurs
- * @property Etudiant $etudiant
- * @property Administration $administration
- * @property Moderateur $moderateur
- * @property Collection|Autoriser[] $autorisers
+ * @property ADMINISTRATION $a_d_m_i_n_i_s_t_r_a_t_i_o_n
+ * @property Collection|AUTORISER[] $a_u_t_o_r_i_s_e_r_s
+ * @property ETUDIANT $e_t_u_d_i_a_n_t
+ * @property MODERATEUR $m_o_d_e_r_a_t_e_u_r
+ * @property Collection|PROFESSEUR[] $p_r_o_f_e_s_s_e_u_r_s
  *
  * @package App\Models
  */
-class Utilisateur extends Authenticatable
+class UTILISATEUR extends Model
 {
-    use HasFactory, Notifiable;
-	protected $table = 'utilisateur';
-	protected $primaryKey = 'idutilisateur';
+	protected $table = 'UTILISATEUR';
+	protected $primaryKey = 'IDUTILISATEUR';
 	public $timestamps = false;
 
 	protected $casts = [
-		'solde' => 'int'
+		'SOLDE' => 'int'
 	];
 
 	protected $fillable = [
-		'nomutilisateur',
-		'prenomutilisateur',
-		'motdepasse',
-		'solde',
-		'emailutilisateur'
+		'NOMUTILISATEUR',
+		'PRENOMUTILISATEUR',
+		'EMAILUTILISATEUR',
+		'MOTDEPASSE',
+		'SOLDE'
 	];
 
-	public function professeurs()
+	public function a_d_m_i_n_i_s_t_r_a_t_i_o_n()
 	{
-		return $this->hasMany(Professeur::class, 'idutilisateur');
+		return $this->hasOne(ADMINISTRATION::class, 'IDUTILISATEUR');
 	}
 
-	public function etudiant()
+	public function a_u_t_o_r_i_s_e_r_s()
 	{
-		return $this->hasOne(Etudiant::class, 'idutilisateur');
+		return $this->hasMany(AUTORISER::class, 'IDUTILISATEUR');
 	}
 
-	public function administration()
+	public function e_t_u_d_i_a_n_t()
 	{
-		return $this->hasOne(Administration::class, 'idutilisateur');
+		return $this->hasOne(ETUDIANT::class, 'IDUTILISATEUR');
 	}
 
-	public function moderateur()
+	public function m_o_d_e_r_a_t_e_u_r()
 	{
-		return $this->hasOne(Moderateur::class, 'idutilisateur');
+		return $this->hasOne(MODERATEUR::class, 'IDUTILISATEUR');
 	}
 
-	public function autorisers()
+	public function p_r_o_f_e_s_s_e_u_r_s()
 	{
-		return $this->hasMany(Autoriser::class, 'idutilisateur');
+		return $this->hasMany(PROFESSEUR::class, 'IDUTILISATEUR');
 	}
-
-	    /**
-     * Retourne le mot de passe de l'utilisateur
-     */
-    public function getAuthPassword()
-    {
-        return $this->motdepasse;
-    }
-
-    /**
-     * Retourne l'identifiant de l'utilisateur
-     */
-    public function getAuthIdentifier()
-    {
-        return $this->emailutilisateur;
-    }
-
-    /**
-     * Retourne le nom de l'identifiant de l'utilisateur
-     */
-    public function getAuthIdentifierName()
-    {
-        return 'emailutilisateur';
-    }
 }

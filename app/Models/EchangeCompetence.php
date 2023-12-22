@@ -9,48 +9,48 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class EchangeCompetence
+ * Class ECHANGECOMPETENCE
  * 
- * @property int $idservice
- * @property int $idmatiere
- * @property int $idniveau
+ * @property int $IDSERVICE
+ * @property int $IDMATIERE
+ * @property int $IDNIVEAU
  * 
- * @property Service $service
- * @property Cour $cour
- * @property Niveau $niveau
+ * @property COUR $c_o_u_r
+ * @property NIVEAU $n_i_v_e_a_u
+ * @property SERVICE $s_e_r_v_i_c_e
  *
  * @package App\Models
  */
-class EchangeCompetence extends Model
+class ECHANGECOMPETENCE extends Model
 {
-	protected $table = 'echange_competence';
-	protected $primaryKey = 'idservice';
+	protected $table = 'ECHANGE_COMPETENCE';
+	protected $primaryKey = 'IDSERVICE';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idservice' => 'int',
-		'idmatiere' => 'int',
-		'idniveau' => 'int'
+		'IDSERVICE' => 'int',
+		'IDMATIERE' => 'int',
+		'IDNIVEAU' => 'int'
 	];
 
 	protected $fillable = [
-		'idmatiere',
-		'idniveau'
+		'IDMATIERE',
+		'IDNIVEAU'
 	];
 
-	public function service()
+	public function c_o_u_r()
 	{
-		return $this->belongsTo(Service::class, 'idservice');
+		return $this->belongsTo(COUR::class, 'IDMATIERE');
 	}
 
-	public function cour()
+	public function n_i_v_e_a_u()
 	{
-		return $this->belongsTo(Cour::class, 'idmatiere');
+		return $this->belongsTo(NIVEAU::class, 'IDNIVEAU');
 	}
 
-	public function niveau()
+	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(Niveau::class, 'idniveau');
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
 	}
 }

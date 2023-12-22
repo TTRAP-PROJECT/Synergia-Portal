@@ -10,37 +10,37 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Cinema
+ * Class CINEMA
  * 
- * @property int $idservice
- * @property string $lieufilm
- * @property string $nomfilm
- * @property Carbon $dateheurefilm
+ * @property int $IDSERVICE
+ * @property string $LIEUFILM
+ * @property string $NOMFILM
+ * @property Carbon $DATEHEUREFILM
  * 
- * @property Service $service
+ * @property SERVICE $s_e_r_v_i_c_e
  *
  * @package App\Models
  */
-class Cinema extends Model
+class CINEMA extends Model
 {
-	protected $table = 'cinema';
-	protected $primaryKey = 'idservice';
+	protected $table = 'CINEMA';
+	protected $primaryKey = 'IDSERVICE';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idservice' => 'int',
-		'dateheurefilm' => 'datetime'
+		'IDSERVICE' => 'int',
+		'DATEHEUREFILM' => 'datetime'
 	];
 
 	protected $fillable = [
-		'lieufilm',
-		'nomfilm',
-		'dateheurefilm'
+		'LIEUFILM',
+		'NOMFILM',
+		'DATEHEUREFILM'
 	];
 
-	public function service()
+	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(Service::class, 'idservice');
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
 	}
 }

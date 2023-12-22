@@ -9,34 +9,34 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class PossÉderbadge
+ * Class POSSÉDERBADGE
  * 
- * @property int $idbadge
- * @property int $idutilisateur
+ * @property int $IDBADGE
+ * @property int $IDUTILISATEUR
  * 
- * @property Badge $badge
- * @property Etudiant $etudiant
+ * @property BADGE $b_a_d_g_e
+ * @property ETUDIANT $e_t_u_d_i_a_n_t
  *
  * @package App\Models
  */
-class PossÉderbadge extends Model
+class POSSÉDERBADGE extends Model
 {
-	protected $table = 'possÉderbadge';
+	protected $table = 'POSSÉDERBADGE';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idbadge' => 'int',
-		'idutilisateur' => 'int'
+		'IDBADGE' => 'int',
+		'IDUTILISATEUR' => 'int'
 	];
 
-	public function badge()
+	public function b_a_d_g_e()
 	{
-		return $this->belongsTo(Badge::class, 'idbadge');
+		return $this->belongsTo(BADGE::class, 'IDBADGE');
 	}
 
-	public function etudiant()
+	public function e_t_u_d_i_a_n_t()
 	{
-		return $this->belongsTo(Etudiant::class, 'idutilisateur');
+		return $this->belongsTo(ETUDIANT::class, 'IDUTILISATEUR');
 	}
 }

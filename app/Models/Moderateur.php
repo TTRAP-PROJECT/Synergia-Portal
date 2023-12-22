@@ -10,45 +10,45 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Moderateur
+ * Class MODERATEUR
  * 
- * @property int $idutilisateur
- * @property int $rÉputation
+ * @property int $IDUTILISATEUR
+ * @property int $RÉPUTATION
  * 
- * @property Utilisateur $utilisateur
- * @property Collection|Etudiant[] $etudiants
- * @property Collection|Annonce[] $annonces
+ * @property UTILISATEUR $u_t_i_l_i_s_a_t_e_u_r
+ * @property Collection|ANNONCE[] $a_n_n_o_n_c_e_s
+ * @property Collection|ETUDIANT[] $e_t_u_d_i_a_n_t_s
  *
  * @package App\Models
  */
-class Moderateur extends Model
+class MODERATEUR extends Model
 {
-	protected $table = 'moderateur';
-	protected $primaryKey = 'idutilisateur';
+	protected $table = 'MODERATEUR';
+	protected $primaryKey = 'IDUTILISATEUR';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idutilisateur' => 'int',
-		'rÉputation' => 'int'
+		'IDUTILISATEUR' => 'int',
+		'RÉPUTATION' => 'int'
 	];
 
 	protected $fillable = [
-		'rÉputation'
+		'RÉPUTATION'
 	];
 
-	public function utilisateur()
+	public function u_t_i_l_i_s_a_t_e_u_r()
 	{
-		return $this->belongsTo(Utilisateur::class, 'idutilisateur');
+		return $this->belongsTo(UTILISATEUR::class, 'IDUTILISATEUR');
 	}
 
-	public function etudiants()
+	public function a_n_n_o_n_c_e_s()
 	{
-		return $this->hasMany(Etudiant::class, 'idutilisateur_1');
+		return $this->hasMany(ANNONCE::class, 'IDUTILISATEUR_2');
 	}
 
-	public function annonces()
+	public function e_t_u_d_i_a_n_t_s()
 	{
-		return $this->hasMany(Annonce::class, 'idutilisateur_2');
+		return $this->hasMany(ETUDIANT::class, 'IDUTILISATEUR_1');
 	}
 }

@@ -9,27 +9,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Administration
+ * Class ADMINISTRATION
  * 
- * @property int $idutilisateur
+ * @property int $IDUTILISATEUR
  * 
- * @property Utilisateur $utilisateur
+ * @property UTILISATEUR $u_t_i_l_i_s_a_t_e_u_r
  *
  * @package App\Models
  */
-class Administration extends Model
+class ADMINISTRATION extends Model
 {
-	protected $table = 'administration';
-	protected $primaryKey = 'idutilisateur';
+	protected $table = 'ADMINISTRATION';
+	protected $primaryKey = 'IDUTILISATEUR';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idutilisateur' => 'int'
+		'IDUTILISATEUR' => 'int'
 	];
 
-	public function utilisateur()
+	public function u_t_i_l_i_s_a_t_e_u_r()
 	{
-		return $this->belongsTo(Utilisateur::class, 'idutilisateur');
+		return $this->belongsTo(UTILISATEUR::class, 'IDUTILISATEUR');
 	}
 }

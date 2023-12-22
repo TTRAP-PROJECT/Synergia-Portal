@@ -9,44 +9,44 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Professeur
+ * Class PROFESSEUR
  * 
- * @property int $idprof
- * @property int $idmatiere
- * @property int $idutilisateur
- * @property string $nomprof
- * @property string $prenomprof
+ * @property int $IDPROF
+ * @property int $IDMATIERE
+ * @property int $IDUTILISATEUR
+ * @property string $NOMPROF
+ * @property string $PRENOMPROF
  * 
- * @property Cour $cour
- * @property Utilisateur $utilisateur
+ * @property COUR $c_o_u_r
+ * @property UTILISATEUR $u_t_i_l_i_s_a_t_e_u_r
  *
  * @package App\Models
  */
-class Professeur extends Model
+class PROFESSEUR extends Model
 {
-	protected $table = 'professeur';
-	protected $primaryKey = 'idprof';
+	protected $table = 'PROFESSEUR';
+	protected $primaryKey = 'IDPROF';
 	public $timestamps = false;
 
 	protected $casts = [
-		'idmatiere' => 'int',
-		'idutilisateur' => 'int'
+		'IDMATIERE' => 'int',
+		'IDUTILISATEUR' => 'int'
 	];
 
 	protected $fillable = [
-		'idmatiere',
-		'idutilisateur',
-		'nomprof',
-		'prenomprof'
+		'IDMATIERE',
+		'IDUTILISATEUR',
+		'NOMPROF',
+		'PRENOMPROF'
 	];
 
-	public function cour()
+	public function c_o_u_r()
 	{
-		return $this->belongsTo(Cour::class, 'idmatiere');
+		return $this->belongsTo(COUR::class, 'IDMATIERE');
 	}
 
-	public function utilisateur()
+	public function u_t_i_l_i_s_a_t_e_u_r()
 	{
-		return $this->belongsTo(Utilisateur::class, 'idutilisateur');
+		return $this->belongsTo(UTILISATEUR::class, 'IDUTILISATEUR');
 	}
 }
