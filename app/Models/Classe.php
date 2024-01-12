@@ -10,38 +10,33 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Classe
+ * Class CLASSE
  * 
- * @property int $idspecialite
- * @property string $libellespecialite
+ * @property int $IDSPECIALITE
+ * @property string $LIBELLESPECIALITE
  * 
- * @property Collection|Cour[] $cours
- * @property Collection|Rel2[] $rel2s
+ * @property Collection|COUR[] $c_o_u_r_s
+ * @property Collection|REL2[] $r_e_l2_s
  *
  * @package App\Models
  */
-class Classe extends Model
+class CLASSE extends Model
 {
-	protected $table = 'classe';
-	protected $primaryKey = 'idspecialite';
-	public $incrementing = false;
+	protected $table = 'CLASSE';
+	protected $primaryKey = 'IDSPECIALITE';
 	public $timestamps = false;
 
-	protected $casts = [
-		'idspecialite' => 'int'
-	];
-
 	protected $fillable = [
-		'libellespecialite'
+		'LIBELLESPECIALITE'
 	];
 
-	public function cours()
+	public function c_o_u_r_s()
 	{
-		return $this->hasMany(Cour::class, 'idspecialite');
+		return $this->hasMany(COUR::class, 'IDSPECIALITE');
 	}
 
-	public function rel2s()
+	public function r_e_l2_s()
 	{
-		return $this->hasMany(Rel2::class, 'idspecialite');
+		return $this->hasMany(REL2::class, 'IDSPECIALITE');
 	}
 }

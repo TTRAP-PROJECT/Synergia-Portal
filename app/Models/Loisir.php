@@ -9,39 +9,39 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Loisir
+ * Class LOISIR
  * 
- * @property int $idservice
- * @property int $idloisir
+ * @property int $IDSERVICE
+ * @property int $IDLOISIR
  * 
- * @property Service $service
- * @property TypeLoisir $type_loisir
+ * @property SERVICE $s_e_r_v_i_c_e
+ * @property TYPELOISIR $t_y_p_e_l_o_i_s_i_r
  *
  * @package App\Models
  */
-class Loisir extends Model
+class LOISIR extends Model
 {
-	protected $table = 'loisir';
-	protected $primaryKey = 'idservice';
+	protected $table = 'LOISIR';
+	protected $primaryKey = 'IDSERVICE';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idservice' => 'int',
-		'idloisir' => 'int'
+		'IDSERVICE' => 'int',
+		'IDLOISIR' => 'int'
 	];
 
 	protected $fillable = [
-		'idloisir'
+		'IDLOISIR'
 	];
 
-	public function service()
+	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(Service::class, 'idservice');
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
 	}
 
-	public function type_loisir()
+	public function t_y_p_e_l_o_i_s_i_r()
 	{
-		return $this->belongsTo(TypeLoisir::class, 'idloisir');
+		return $this->belongsTo(TYPELOISIR::class, 'IDLOISIR');
 	}
 }

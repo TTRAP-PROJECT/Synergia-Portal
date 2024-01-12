@@ -10,69 +10,67 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Annonce
+ * Class ANNONCE
  * 
- * @property int $idannonce
- * @property int $idservice
- * @property int $idutilisateur
- * @property int $idutilisateur_1
- * @property int $idutilisateur_2
- * @property string $titreannonce
- * @property string|null $descriptionannonce
- * @property string $coutannonce
- * @property Carbon $datepublicationannonce
- * @property Carbon $datetransaction
- * @property Carbon $dateprevue
+ * @property int $IDANNONCE
+ * @property int $IDSERVICE
+ * @property int $IDUTILISATEUR
+ * @property int $IDUTILISATEUR_1
+ * @property int $IDUTILISATEUR_2
+ * @property string $TITREANNONCE
+ * @property string|null $DESCRIPTIONANNONCE
+ * @property string $COUTANNONCE
+ * @property Carbon $DATEPUBLICATIONANNONCE
+ * @property Carbon $DATETRANSACTION
+ * @property Carbon $DATEPREVUE
  * 
- * @property Service $service
- * @property Etudiant $etudiant
- * @property Moderateur $moderateur
+ * @property ETUDIANT $e_t_u_d_i_a_n_t
+ * @property MODERATEUR $m_o_d_e_r_a_t_e_u_r
+ * @property SERVICE $s_e_r_v_i_c_e
  *
  * @package App\Models
  */
-class Annonce extends Model
+class ANNONCE extends Model
 {
-	protected $table = 'annonce';
-	protected $primaryKey = 'idannonce';
-	public $incrementing = false;
+	protected $table = 'ANNONCE';
+	protected $primaryKey = 'IDANNONCE';
 	public $timestamps = false;
 
 	protected $casts = [
-		'idannonce' => 'int',
-		'idservice' => 'int',
-		'idutilisateur' => 'int',
-		'idutilisateur_1' => 'int',
-		'idutilisateur_2' => 'int',
-		'datepublicationannonce' => 'datetime',
-		'datetransaction' => 'datetime',
-		'dateprevue' => 'datetime'
+		'IDSERVICE' => 'int',
+		'IDUTILISATEUR' => 'int',
+		'IDUTILISATEUR_1' => 'int',
+		'IDUTILISATEUR_2' => 'int',
+		'DATEPUBLICATIONANNONCE' => 'datetime',
+		'DATETRANSACTION' => 'datetime',
+		'DATEPREVUE' => 'datetime'
 	];
 
 	protected $fillable = [
-		'idservice',
-		'idutilisateur',
-		'idutilisateur_1',
-		'idutilisateur_2',
-		'titreannonce',
-		'descriptionannonce',
-		'coutannonce',
-		'datepublicationannonce',
-		'datetransaction',
-		'dateprevue'
+		'IDSERVICE',
+		'IDUTILISATEUR',
+		'IDUTILISATEUR_1',
+		'IDUTILISATEUR_2',
+		'TITREANNONCE',
+		'DESCRIPTIONANNONCE',
+		'COUTANNONCE',
+		'DATEPUBLICATIONANNONCE',
+		'DATETRANSACTION',
+		'DATEPREVUE'
 	];
 
-	public function service()
+	public function e_t_u_d_i_a_n_t()
 	{
-		return $this->belongsTo(Service::class, 'idservice');
+		return $this->belongsTo(ETUDIANT::class, 'IDUTILISATEUR_1');
 	}
 
-	public function etudiant()
+	public function m_o_d_e_r_a_t_e_u_r()
 	{
-		return $this->belongsTo(Etudiant::class, 'idutilisateur_1');
+		return $this->belongsTo(MODERATEUR::class, 'IDUTILISATEUR_2');
 	}
 
-	public function moderateur()
+	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(Moderateur::class, 'idutilisateur_2');
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
 	}
 }

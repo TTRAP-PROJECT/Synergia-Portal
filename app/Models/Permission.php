@@ -10,33 +10,33 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Permission
+ * Class PERMISSION
  * 
- * @property int $idpermission
- * @property string $libellepermission
- * @property int $niveaupermission
+ * @property int $IDPERMISSION
+ * @property string $LIBELLEPERMISSION
+ * @property int $NIVEAUPERMISSION
  * 
- * @property Collection|Autoriser[] $autorisers
+ * @property Collection|AUTORISER[] $a_u_t_o_r_i_s_e_r_s
  *
  * @package App\Models
  */
-class Permission extends Model
+class PERMISSION extends Model
 {
-	protected $table = 'permissions';
-	protected $primaryKey = 'idpermission';
+	protected $table = 'PERMISSIONS';
+	protected $primaryKey = 'IDPERMISSION';
 	public $timestamps = false;
 
 	protected $casts = [
-		'niveaupermission' => 'int'
+		'NIVEAUPERMISSION' => 'int'
 	];
 
 	protected $fillable = [
-		'libellepermission',
-		'niveaupermission'
+		'LIBELLEPERMISSION',
+		'NIVEAUPERMISSION'
 	];
 
-	public function autorisers()
+	public function a_u_t_o_r_i_s_e_r_s()
 	{
-		return $this->hasMany(Autoriser::class, 'idpermission');
+		return $this->hasMany(AUTORISER::class, 'IDPERMISSION');
 	}
 }

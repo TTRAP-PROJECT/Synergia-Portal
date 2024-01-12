@@ -10,34 +10,29 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Badge
+ * Class BADGE
  * 
- * @property int $idbadge
- * @property string $titrebadge
- * @property string|null $photobadge
+ * @property int $IDBADGE
+ * @property string $TITREBADGE
+ * @property string|null $PHOTOBADGE
  * 
- * @property Collection|PossÉderbadge[] $posséderbadges
+ * @property Collection|POSSÉDERBADGE[] $p_o_s_sé_d_e_r_b_a_d_g_e_s
  *
  * @package App\Models
  */
-class Badge extends Model
+class BADGE extends Model
 {
-	protected $table = 'badge';
-	protected $primaryKey = 'idbadge';
-	public $incrementing = false;
+	protected $table = 'BADGE';
+	protected $primaryKey = 'IDBADGE';
 	public $timestamps = false;
 
-	protected $casts = [
-		'idbadge' => 'int'
-	];
-
 	protected $fillable = [
-		'titrebadge',
-		'photobadge'
+		'TITREBADGE',
+		'PHOTOBADGE'
 	];
 
-	public function posséderbadges()
+	public function p_o_s_sé_d_e_r_b_a_d_g_e_s()
 	{
-		return $this->hasMany(PossÉderbadge::class, 'idbadge');
+		return $this->hasMany(POSSÉDERBADGE::class, 'IDBADGE');
 	}
 }

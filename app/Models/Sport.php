@@ -10,32 +10,27 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Sport
+ * Class SPORT
  * 
- * @property int $idsport
- * @property string $libellesport
+ * @property int $IDSPORT
+ * @property string $LIBELLESPORT
  * 
- * @property Collection|EvenementSportif[] $evenement_sportifs
+ * @property Collection|EVENEMENTSPORTIF[] $e_v_e_n_e_m_e_n_t_s_p_o_r_t_i_f_s
  *
  * @package App\Models
  */
-class Sport extends Model
+class SPORT extends Model
 {
-	protected $table = 'sport';
-	protected $primaryKey = 'idsport';
-	public $incrementing = false;
+	protected $table = 'SPORT';
+	protected $primaryKey = 'IDSPORT';
 	public $timestamps = false;
 
-	protected $casts = [
-		'idsport' => 'int'
-	];
-
 	protected $fillable = [
-		'libellesport'
+		'LIBELLESPORT'
 	];
 
-	public function evenement_sportifs()
+	public function e_v_e_n_e_m_e_n_t_s_p_o_r_t_i_f_s()
 	{
-		return $this->hasMany(EvenementSportif::class, 'idsport');
+		return $this->hasMany(EVENEMENTSPORTIF::class, 'IDSPORT');
 	}
 }

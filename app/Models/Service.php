@@ -10,71 +10,69 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Service
+ * Class SERVICE
  * 
- * @property int $idservice
- * @property int $idstatut
- * @property string $libelleservice
+ * @property int $IDSERVICE
+ * @property int $IDSTATUT
+ * @property string $LIBELLESERVICE
  * 
- * @property StatutService $statut_service
- * @property Loisir $loisir
- * @property Cinema $cinema
- * @property EchangeCompetence $echange_competence
- * @property Collection|Annonce[] $annonces
- * @property EvenementSportif $evenement_sportif
- * @property Covoiturage $covoiturage
+ * @property STATUTSERVICE $s_t_a_t_u_t_s_e_r_v_i_c_e
+ * @property Collection|ANNONCE[] $a_n_n_o_n_c_e_s
+ * @property CINEMA $c_i_n_e_m_a
+ * @property COVOITURAGE $c_o_v_o_i_t_u_r_a_g_e
+ * @property ECHANGECOMPETENCE $e_c_h_a_n_g_e_c_o_m_p_e_t_e_n_c_e
+ * @property EVENEMENTSPORTIF $e_v_e_n_e_m_e_n_t_s_p_o_r_t_i_f
+ * @property LOISIR $l_o_i_s_i_r
  *
  * @package App\Models
  */
-class Service extends Model
+class SERVICE extends Model
 {
-	protected $table = 'services';
-	protected $primaryKey = 'idservice';
-	public $incrementing = false;
+	protected $table = 'SERVICES';
+	protected $primaryKey = 'IDSERVICE';
 	public $timestamps = false;
 
 	protected $casts = [
-		'idservice' => 'int',
-		'idstatut' => 'int'
+		'IDSTATUT' => 'int'
 	];
 
 	protected $fillable = [
-		'idstatut',
-		'libelleservice'
+		'IDSTATUT',
+		'LIBELLESERVICE'
 	];
 
-	public function statut_service()
+	public function s_t_a_t_u_t_s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(StatutService::class, 'idstatut');
+		return $this->belongsTo(STATUTSERVICE::class, 'IDSTATUT');
 	}
 
-	public function loisir()
+	public function a_n_n_o_n_c_e_s()
 	{
-		return $this->hasOne(Loisir::class, 'idservice');
+		return $this->hasMany(ANNONCE::class, 'IDSERVICE');
 	}
 
-	public function cinema()
+	public function c_i_n_e_m_a()
 	{
-		return $this->hasOne(Cinema::class, 'idservice');
+		return $this->hasOne(CINEMA::class, 'IDSERVICE');
 	}
 
-	public function echange_competence()
+	public function c_o_v_o_i_t_u_r_a_g_e()
 	{
-		return $this->hasOne(EchangeCompetence::class, 'idservice');
+		return $this->hasOne(COVOITURAGE::class, 'IDSERVICE');
 	}
 
-	public function annonces()
+	public function e_c_h_a_n_g_e_c_o_m_p_e_t_e_n_c_e()
 	{
-		return $this->hasMany(Annonce::class, 'idservice');
+		return $this->hasOne(ECHANGECOMPETENCE::class, 'IDSERVICE');
 	}
 
-	public function evenement_sportif()
+	public function e_v_e_n_e_m_e_n_t_s_p_o_r_t_i_f()
 	{
-		return $this->hasOne(EvenementSportif::class, 'idservice');
+		return $this->hasOne(EVENEMENTSPORTIF::class, 'IDSERVICE');
 	}
 
-	public function covoiturage()
+	public function l_o_i_s_i_r()
 	{
-		return $this->hasOne(Covoiturage::class, 'idservice');
+		return $this->hasOne(LOISIR::class, 'IDSERVICE');
 	}
 }

@@ -10,42 +10,42 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class EvenementSportif
+ * Class EVENEMENTSPORTIF
  * 
- * @property int $idservice
- * @property int $idsport
- * @property Carbon $dateevent
+ * @property int $IDSERVICE
+ * @property int $IDSPORT
+ * @property Carbon $DATEEVENT
  * 
- * @property Service $service
- * @property Sport $sport
+ * @property SERVICE $s_e_r_v_i_c_e
+ * @property SPORT $s_p_o_r_t
  *
  * @package App\Models
  */
-class EvenementSportif extends Model
+class EVENEMENTSPORTIF extends Model
 {
-	protected $table = 'evenement_sportif';
-	protected $primaryKey = 'idservice';
+	protected $table = 'EVENEMENT_SPORTIF';
+	protected $primaryKey = 'IDSERVICE';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idservice' => 'int',
-		'idsport' => 'int',
-		'dateevent' => 'datetime'
+		'IDSERVICE' => 'int',
+		'IDSPORT' => 'int',
+		'DATEEVENT' => 'datetime'
 	];
 
 	protected $fillable = [
-		'idsport',
-		'dateevent'
+		'IDSPORT',
+		'DATEEVENT'
 	];
 
-	public function service()
+	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(Service::class, 'idservice');
+		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
 	}
 
-	public function sport()
+	public function s_p_o_r_t()
 	{
-		return $this->belongsTo(Sport::class, 'idsport');
+		return $this->belongsTo(SPORT::class, 'IDSPORT');
 	}
 }

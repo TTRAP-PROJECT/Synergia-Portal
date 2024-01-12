@@ -10,32 +10,27 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class TypeLoisir
+ * Class TYPELOISIR
  * 
- * @property int $idloisir
- * @property string $libelleloisir
+ * @property int $IDLOISIR
+ * @property string $LIBELLELOISIR
  * 
- * @property Collection|Loisir[] $loisirs
+ * @property Collection|LOISIR[] $l_o_i_s_i_r_s
  *
  * @package App\Models
  */
-class TypeLoisir extends Model
+class TYPELOISIR extends Model
 {
-	protected $table = 'type_loisir';
-	protected $primaryKey = 'idloisir';
-	public $incrementing = false;
+	protected $table = 'TYPE_LOISIR';
+	protected $primaryKey = 'IDLOISIR';
 	public $timestamps = false;
 
-	protected $casts = [
-		'idloisir' => 'int'
-	];
-
 	protected $fillable = [
-		'libelleloisir'
+		'LIBELLELOISIR'
 	];
 
-	public function loisirs()
+	public function l_o_i_s_i_r_s()
 	{
-		return $this->hasMany(Loisir::class, 'idloisir');
+		return $this->hasMany(LOISIR::class, 'IDLOISIR');
 	}
 }
