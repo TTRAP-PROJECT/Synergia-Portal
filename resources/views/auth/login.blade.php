@@ -1,55 +1,59 @@
 <x-guest-layout class="relative">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+                <!-- Email Address -->
+                <div class="relative z-0"> <!-- Utilisez la classe relative et z-0 pour la grande div -->
+                    <x-input-label for="email" :value="__('Email')" />
+                    <x-text-input-login id="email" class="block mt-1 w-full" type="email" name="emailutilisateur" :value="old('emailutilisateur')" required autofocus autocomplete="username" />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div>
 
-    <div class="absolute top-0 right-0 mt-4 bg-amber-950 p-2 rounded z-10">
-        <label for="remember_me" class="inline-flex items-center">
-            <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800 opacity-60" name="remember">
-            <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-        </label>
-    </div>
+                <!-- Password -->
+                <div class="mt-4 relative z-0"> <!-- Utilisez la classe relative et z-0 pour la grande div -->
+                    <x-input-label for="password" :value="__('Password')" />
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+                    <x-text-input-login id="password" class="block mt-1 w-full"
+                                  type="password"
+                                  name="password"
+                                  required autocomplete="current-password" />
 
-        <!-- Email Address -->
-        <div class="relative z-0"> <!-- Utilisez la classe relative et z-0 pour la grande div -->
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="emailutilisateur" :value="old('emailutilisateur')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+                    <x-input-error :messages="$errors->get('password')" class="mt-2 " />
+                </div>
 
-        <!-- Password -->
-        <div class="mt-4 relative z-0"> <!-- Utilisez la classe relative et z-0 pour la grande div -->
-            <x-input-label for="password" :value="__('Password')" />
+                <!-- Remember Me -->
+                <div class="block mt-4 relative z-0"> <!-- Utilisez la classe relative et z-0 pour la grande div -->
+                    <label for="remember_me" class="inline-flex items-center">
+                        <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800 opacity-60" name="remember">
+                        <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+                    </label>
+                </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                          type="password"
-                          name="password"
-                          required autocomplete="current-password" />
+                <div class="flex items-center justify-end mt-4 relative z-0"> <!-- Utilisez la classe relative et z-0 pour la grande div -->
+                    @if (Route::has('password.request'))
+                        <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a>
+                    @endif
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2 " />
-        </div>
+                    <x-login-register-button class="ms-3">
+                        {{ __('Connexion') }}
+                    </x-login-register-button>
+                </div>
+        </form>
 
-        <!-- Remember Me -->
-        <div class="block mt-4 relative z-0"> <!-- Utilisez la classe relative et z-0 pour la grande div -->
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800 opacity-60" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4 relative z-0"> <!-- Utilisez la classe relative et z-0 pour la grande div -->
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-login-register-button class="ms-3">
-                {{ __('Connexion') }}
-            </x-login-register-button>
-        </div>
-    </form>
 </x-guest-layout>
+
+
+
+
+
+
+
+
+
+
+
+
 
