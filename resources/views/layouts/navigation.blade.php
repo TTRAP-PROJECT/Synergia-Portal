@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-white-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="bg-white dark:bg-white-800 border-b border-gray-100 dark:border-gray-700 h-20 py-2">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
@@ -16,17 +16,20 @@
                 </div>
             </div>
 
-            <!-- User Logo and Search Bar -->
-            <div class="flex flex-col items-center">
+            <!-- User Logo and Search Bar (déplacé à droite avec une marge de 10px) -->
+            <div class="flex flex-col items-end mr-10 position: fixed right-10">
                 <!-- User Logo -->
                 <div class="mr-4">
                     <!-- Ajoutez votre logo d'utilisateur ici -->
-                    <img src="url_vers_votre_logo" alt="User Logo" class="h-8 w-8 rounded-full" />
+                    <a href="{{ route('profile.edit') }}">
+                        <img src="{{ auth()->user()->gravatar() }}" alt="Photo de profil" class="h-8 w-8 rounded-full">
+                    </a>
                 </div>
 
                 <div>
                     <!-- BARRE DE RECHERCHE -->
-                    <input type="text" placeholder="Rechercher" class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-md text-gray-800 dark:text-gray-300" />
+                    <input type="text" placeholder="ne fonctionne pas encore"
+                        class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-md text-gray-800 dark:text-gray-300" />
                 </div>
             </div>
 
