@@ -100,4 +100,14 @@ class UTILISATEUR extends Authenticatable
     {
         return 'EMAILUTILISATEUR';
     }
+
+	public function gravatar($size = 80)
+    {
+        $email = $this->EMAILUTILISATEUR;
+        $url = 'https://www.gravatar.com/avatar/';
+        $url .= md5(strtolower(trim($email)));
+        $url .= "?s=$size";
+
+        return $url;
+    }
 }
