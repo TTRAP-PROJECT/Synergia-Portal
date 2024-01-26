@@ -57,4 +57,18 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    /**
+     * Déconnecte l'utilisateur.
+     *
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return Redirect::to('/')->with('success', 'Vous avez été déconnecté avec succès.');
+    }
 }

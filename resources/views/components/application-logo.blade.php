@@ -1,1 +1,1 @@
-LE LOGO
+LOGO
