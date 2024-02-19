@@ -27,7 +27,6 @@ class ACCUEIL extends Model
         $url = "http://{$adresseIP}/api/annonces";
         $url2="http://{$adresseIP}/api/sondages";
 
-
         $ch = curl_init($url);
         $ch2=curl_init($url2);
 

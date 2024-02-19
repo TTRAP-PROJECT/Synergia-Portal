@@ -24,6 +24,7 @@
                     <a href="{{ route('profile.edit') }}">
                         <img src="{{ auth()->user()->gravatar() }}" alt="Photo de profil" class="h-8 w-8 rounded-full">
                     </a>
+
                 </div>
 
                 <div class="flex flex-row bg-gray-100 dark:bg-gray-700 px-2 mt-2 py-1 rounded-md text-gray-800 dark:text-gray-300">

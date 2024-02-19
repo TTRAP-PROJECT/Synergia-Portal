@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CourController;
 use App\Http\Controllers\ProfileController;
 use App\Models\ACCUEIL;
+use App\Models\COUR;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile',[ProfileController::class, 'logout'])->name('profile.logout');
 
-    Route::get('/cours', [ProfileController::class, 'cours'])->name('cours');
+    Route::get('/cours', [COUR::class, 'cours'])->name('cours');
     Route::get('/covoiturage', [ProfileController::class, 'covoiturage'])->name('covoiturage');
     Route::get('/evenements', [ProfileController::class, 'evenements'])->name('evenements');
     Route::get('/espace_pro', [ProfileController::class, 'espace_pro'])->name('espace_pro');

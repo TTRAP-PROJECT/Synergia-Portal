@@ -49,22 +49,29 @@
                                 @endforeach
                             </div>
 
-
-
-
-
-
                             <div class="border p-4 mt-4">
-                                <h2 class="text-xl font-bold mb-4">Annonces</h2>
+                                <div class="flex flex-row items-center justify-between mb-4">
+                                    <h2 class="text-xl font-bold">Annonces</h2>
+                                    <div class="flex items-center">
+                                        <div class="rounded border border-gray-400 px-3 py-1 flex items-center">
+                                            <span class="text-xl font-bold mr-2">{{ auth()->user()->SOLDE }}</span>
+                                            <span class="text-sm">💰</span>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 {{-- Affiche les annonces --}}
                                 @foreach ($donnees as $annonce)
                                     <div class="flex flex-row items-center border-b py-2">
                                         <div class="flex-grow text-sm font-bold">{{ $annonce['TITREANNONCE'] }}</div>
-                                        <div class="text-sm font-bold">{{ $annonce['COUTANNONCE'] }} 💎</div>
+                                        <div class="text-sm font-bold">{{ $annonce['COUTANNONCE'] }} 💰</div>
                                     </div>
                                 @endforeach
                             </div>
+
+
+
+
                         </div>
 
                         <div class="w-5/12 border">
