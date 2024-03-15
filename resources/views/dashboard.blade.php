@@ -68,10 +68,6 @@
                                     </div>
                                 @endforeach
                             </div>
-
-
-
-
                         </div>
 
                         <div class="w-5/12 border">

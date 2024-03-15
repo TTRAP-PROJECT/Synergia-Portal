@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CourController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Models\ACCUEIL;
 use App\Models\COUR;
@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/cours', [COUR::class, 'cours'])->name('cours');
     Route::get('/covoiturage', [ProfileController::class, 'covoiturage'])->name('covoiturage');
-    Route::get('/evenements', [ProfileController::class, 'evenements'])->name('evenements');
+    Route::get('/evenements', [EventController::class, 'get_evenement'])->name('evenements');
     Route::get('/espace_pro', [ProfileController::class, 'espace_pro'])->name('espace_pro');
 });
 
