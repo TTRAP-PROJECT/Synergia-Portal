@@ -7,15 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class AvoteSondage extends Model
 {
-    use HasFactory;
-    public $timestamps = false;
     protected $table = 'A_VOTE_SONDAGE';
     protected $primaryKey = 'NUMEROVOTE';
-    public $incrementing = true; // Vous avez spécifié que la colonne est auto-incrémentée
+    public $timestamps = false; // Comme il n'y a pas de colonnes created_at et updated_at dans votre table
 
     protected $fillable = [
-        'IDSONDAGE',
-        'IDUTILISATEUR',
+        'IDSONDAGE', 'IDUTILISATEUR', 'AVIS'
     ];
 
     // Définir la relation avec le modèle Sondage

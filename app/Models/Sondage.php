@@ -13,15 +13,7 @@ class Sondage extends Model
     protected $primaryKey = 'IDSONDAGE';
     public $timestamps = false;
 
-    protected $fillable = [
-        'NOMSONDAGE',
-        'DATEDEBUT',
-        'DATEFIN',
-        'POUR',
-        'CONTRE'
-    ];
-
-    protected $dates = ['DATEDEBUT', 'DATEFIN'];
+    // Supprimer les propriétés $fillable et $dates liées aux colonnes "POUR" et "CONTRE"
 
     // Définir la relation avec le modèle AvoteSondage
     public function votes()
