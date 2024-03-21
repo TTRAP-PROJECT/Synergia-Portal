@@ -39,6 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/covoiturage', [ProfileController::class, 'covoiturage'])->name('covoiturage');
     Route::get('/evenements', [EventController::class, 'get_evenement'])->name('evenements');
     Route::get('/espace_pro', [ProfileController::class, 'espace_pro'])->name('espace_pro');
+
+    Route::post('/vote/pour/{idSondage}', [AccueilController::class, 'votePour'])->name('vote.pour');
+    Route::post('/vote/contre/{idSondage}', [AccueilController::class, 'voteContre'])->name('vote.contre');
 });
 
 require __DIR__.'/auth.php';
