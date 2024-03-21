@@ -7,37 +7,45 @@
             <a href="{{ route('espace_pro') }}" class="text-blue-900 font-bold">Espace Pro</a>
         </div>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{-- Fusionner les événements --}}
                     @php
-                        $events = $evenementsSportif->merge($evenementCinema)->sortByDesc('DATEEVENT');
+                        $events = $evenementsSportif->merge($evenementCinema)->sortByDesc(function ($event) {
+                            return $event instanceof \App\Models\CINEMA ? $event->DATEHEUREFILM : $event->DATEEVENT;
+                        });
                     @endphp
 
                     {{-- Afficher les événements --}}
-                    <div class="grid grid-cols-4 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         @foreach ($events as $event)
-                            <div class="mb-4 border p-4 rounded-md bg-gray-100 col-span-1">
+                            <div class="mb-4 border p-4 rounded-md">
                                 {{-- Vérifier si l'événement est cinéma --}}
                                 @if ($event instanceof \App\Models\CINEMA)
                                     {{-- Afficher les détails du cinéma --}}
-                                    <h3 class="text-lg font-bold mb-2">{{ $event->NOMFILM }}</h3>
-                                    <p class="text-sm mb-2">Lieu du film: {{ $event->LIEUFILM }}</p>
-                                    <p class="text-sm mb-2">Date et heure du film: {{ $event->DATEHEUREFILM }}</p>
+
+                                    <div class="event-box cinema-box bg-blue-200 dark:bg-blue-600 rounded-md p-4 mb-2" style="background-image: url('{{ asset('images/cinema.png') }}'); background-size: 75% auto; background-position: center; background-repeat: no-repeat;">
+                                        <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
+                                            <h3 class="text-lg font-bold text-white-900 dark:text-white mb-2">{{ $event->NOMFILM }}</h3>
+                                            <p class="text-sm mb-2">{{ $event->LIEUFILM }}</p>
+                                            <p class="text-sm mb-2">{{ $event->DATEHEUREFILM }}</p>
+                                        </div>
+                                    </div>
 
                                 @else
-                                    {{-- Afficher les détails du sport --}}
-                                    <h3 class="text-lg font-bold mb-2">{{ $event->sport->LIBELLESPORT }}</h3>
-                                    <p class="text-sm mb-2">ID Service: {{ $event->IDSERVICE }}</p>
-                                    <p class="text-sm mb-2">Date de l'événement: {{ $event->DATEEVENT }}</p>
+                                    {{-- Afficher les détails du sport avec l'image en arrière-plan --}}
+                                    <div class="event-box sport-box bg-green-200 dark:bg-green-600 rounded-md p-4 mb-2 relative" style="background-image: url('{{ asset('images/des-sports.png') }}'); background-size: 75% auto; background-position: center; background-repeat: no-repeat;">
+                                        <div class="absolute inset-0 bg-black opacity-50 rounded-md"></div> <!-- Overlay pour améliorer la lisibilité du texte -->
+                                        <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
+                                            <h3 class="text-lg font-bold mb-2">{{ $event->sport->LIBELLESPORT }}</h3>
+                                            <p class="text-sm mb-2">{{ $event->LIEUEVENT }}</p>
+                                            <p class="text-sm mb-2">Le {{ $event->DATEEVENT }}</p>
+                                        </div>
+                                    </div>
                                 @endif
-                                <!-- Ajouter ici des boutons ou des liens pour effectuer des actions sur l'événement -->
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
-                                    Action
-                                </button>
+
                             </div>
                         @endforeach
                     </div>
@@ -45,4 +53,24 @@
             </div>
         </div>
     </div>
+    <style>
+        .event-box {
+            height: 250px;
+            width: 250px; /* Pour assurer que toutes les cases ont la même largeur */
+        }
+
+        .sport-box, .cinema-box {
+            background-size: 75% auto;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 1.5rem; /* Ajout de rembourrage pour améliorer la lisibilité */
+            position: relative;
+            color: white; /* Couleur du texte */
+        }
+
+        .cinema-box {
+            background-image: url('{{ asset('images/cinema.png') }}'); /* Changer l'image pour celle du cinéma */
+            background-color: #4757c4; /* Nouvelle couleur de fond */
+        }
+    </style>
 </x-app-layout>

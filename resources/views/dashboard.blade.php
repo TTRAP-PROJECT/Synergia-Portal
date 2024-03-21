@@ -61,7 +61,7 @@
                                 </div>
 
                                 {{-- Affiche les annonces --}}
-                                @foreach ($donnees as $annonce)
+                                @foreach ($annonces as $annonce)
                                     <div class="flex flex-row items-center border-b py-2">
                                         <div class="flex-grow text-sm font-bold">{{ $annonce['TITREANNONCE'] }}</div>
                                         <div class="text-sm font-bold">{{ $annonce['COUTANNONCE'] }} 💰</div>

@@ -9,13 +9,13 @@
     </x-slot>
 
     <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach($donnees as $donne)
+        @foreach($cours as $cour)
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
                 <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">{{$donne['LIBELLEMATIERE']}}</div>
+                    <div class="font-bold text-xl mb-2">{{$cour['LIBELLEMATIERE']}}</div>
                     <p class="text-gray-700 text-base">
-                        ID Matière: {{$donne['IDMATIERE']}}<br>
-                        ID Spécialité: {{$donne['IDSPECIALITE']}}
+                        ID Matière: {{$cour['IDMATIERE']}}<br>
+                        ID Spécialité: {{$cour['IDSPECIALITE']}}
                     </p>
                 </div>
                 <div class="px-6 py-4">
