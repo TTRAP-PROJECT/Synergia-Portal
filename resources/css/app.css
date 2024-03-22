@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-background-cinema {
+    background-image: url('../../public/images/cinema.png');
+    background-size: 75% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.custom-background-sport {
+    background-image: url('../../public/images/des-sports.png');
+    background-size: 75% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.event-box {
+    height: 250px;
+    width: 250px; /* Pour assurer que toutes les cases ont la même largeur */
+}
+
+.sport-box, .cinema-box {
+    background-size: 75% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 1.5rem; /* Ajout de rembourrage pour améliorer la lisibilité */
+    position: relative;
+    color: white; /* Couleur du texte */
+}
+
+.cinema-box {
+    background-image: url('../../public/images/cinema.png'); /* Changer l'image pour celle du cinéma */
+    background-color: #4757c4; /* Nouvelle couleur de fond */
+}
+

@@ -26,7 +26,7 @@
                                 @if ($event instanceof \App\Models\CINEMA)
                                     {{-- Afficher les détails du cinéma --}}
 
-                                    <div class="event-box cinema-box bg-blue-200 dark:bg-blue-600 rounded-md p-4 mb-2" style="background-image: url('{{ asset('images/cinema.png') }}'); background-size: 75% auto; background-position: center; background-repeat: no-repeat;">
+                                    <div class="event-box cinema-box bg-blue-200 dark:bg-blue-600 rounded-md p-4 mb-2 custom-background-cinema">
                                         <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
                                             <h3 class="text-lg font-bold text-white-900 dark:text-white mb-2">{{ $event->NOMFILM }}</h3>
                                             <p class="text-sm mb-2">{{ $event->LIEUFILM }}</p>
@@ -36,7 +36,7 @@
 
                                 @else
                                     {{-- Afficher les détails du sport avec l'image en arrière-plan --}}
-                                    <div class="event-box sport-box bg-green-200 dark:bg-green-600 rounded-md p-4 mb-2 relative" style="background-image: url('{{ asset('images/des-sports.png') }}'); background-size: 75% auto; background-position: center; background-repeat: no-repeat;">
+                                    <div class="event-box sport-box bg-green-200 dark:bg-green-600 rounded-md p-4 mb-2 relative custom-background-sport">
                                         <div class="absolute inset-0 bg-black opacity-50 rounded-md"></div> <!-- Overlay pour améliorer la lisibilité du texte -->
                                         <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
                                             <h3 class="text-lg font-bold mb-2">{{ $event->sport->LIBELLESPORT }}</h3>
@@ -53,24 +53,5 @@
             </div>
         </div>
     </div>
-    <style>
-        .event-box {
-            height: 250px;
-            width: 250px; /* Pour assurer que toutes les cases ont la même largeur */
-        }
 
-        .sport-box, .cinema-box {
-            background-size: 75% auto;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 1.5rem; /* Ajout de rembourrage pour améliorer la lisibilité */
-            position: relative;
-            color: white; /* Couleur du texte */
-        }
-
-        .cinema-box {
-            background-image: url('{{ asset('images/cinema.png') }}'); /* Changer l'image pour celle du cinéma */
-            background-color: #4757c4; /* Nouvelle couleur de fond */
-        }
-    </style>
 </x-app-layout>
