@@ -16,12 +16,19 @@
     background-repeat: no-repeat;
 }
 
+.custom-background-covoiturage {
+    background-image: url('../../public/images/partage.png');
+    background-size: 75% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .event-box {
     height: 250px;
     width: 250px; /* Pour assurer que toutes les cases ont la même largeur */
 }
 
-.sport-box, .cinema-box {
+.sport-box, .cinema-box,.covoit-box {
     background-size: 75% auto;
     background-position: center;
     background-repeat: no-repeat;
@@ -35,3 +42,31 @@
     background-color: #4757c4; /* Nouvelle couleur de fond */
 }
 
+.covoit-box
+{
+    background-image: url('../../public/images/volant.png'); /* Changer l'image pour celle du cinéma */
+    background-color: #c92867; /* Nouvelle couleur de fond */
+}
+
+
+.custom-sport
+{
+    background-image: url('../../public/images/des-sports.png');
+    background-size: 75% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 1.5rem; /* Ajout de rembourrage pour améliorer la lisibilité */
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.custom-cinema
+{
+    background-image: url('../../public/images/cinema.png');
+    background-size: 75% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 1.5rem; /* Ajout de rembourrage pour améliorer la lisibilité */
+    position: relative;
+}
