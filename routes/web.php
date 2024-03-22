@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\CoursController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Models\ACCUEIL;
@@ -24,7 +26,7 @@ Route::get('/', function () {
 /* Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard'); */
-Route::get('/dashboard', [ACCUEIL::class, 'get_api_donnees_accueil'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [AccueilController::class, 'get_donnees_accueil'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -33,10 +35,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile',[ProfileController::class, 'logout'])->name('profile.logout');
 
-    Route::get('/cours', [COUR::class, 'cours'])->name('cours');
+    Route::get('/cours', [CoursController::class, 'get_data_cours'])->name('cours');
     Route::get('/covoiturage', [ProfileController::class, 'covoiturage'])->name('covoiturage');
     Route::get('/evenements', [EventController::class, 'get_evenement'])->name('evenements');
     Route::get('/espace_pro', [ProfileController::class, 'espace_pro'])->name('espace_pro');
+
+    Route::post('/vote/pour/{idSondage}', [AccueilController::class, 'votePour'])->name('vote.pour');
+    Route::post('/vote/contre/{idSondage}', [AccueilController::class, 'voteContre'])->name('vote.contre');
 });
 
 require __DIR__.'/auth.php';
