@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ANNONCE;
 use App\Models\AvoteSondage;
+use App\Models\CINEMA;
+use App\Models\EVENEMENTSPORTIF;
 use App\Models\Sondage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,8 +29,17 @@ class AccueilController extends Controller
             $sondage->CONTRE = $nombreContre;
         }
 
+        $sports = EVENEMENTSPORTIF::all();
+        $cinemas = CINEMA::all();
+
+        $events = $sports->merge($cinemas)->sortByDesc(function ($event) {
+            return $event instanceof \App\Models\CINEMA ? $event->DATEHEUREFILM : $event->DATEEVENT;
+        });
+
+        $events = $events->take(4);
+
         // Retourner la vue avec les annonces et les sondages mis à jour
-        return view('dashboard', compact('annonces', 'sondages'));
+        return view('dashboard', compact('annonces', 'sondages','events'));
     }
 
 

@@ -90,8 +90,25 @@
                         </div>
 
                         <div class="w-5/12 border">
-                            Event
+                            <h2 class="text-xl font-bold mb-4">Evenements</h2>
+
+
+                            @foreach ($events as $event)
+                                @if ($event instanceof \App\Models\CINEMA)
+
+                                    <h3 class="text-lg font-bold text-white-900 dark:text-white mb-2">{{ $event->NOMFILM }}</h3>
+                                    <p class="text-sm mb-2">{{ $event->LIEUFILM }}</p>
+                                    <p class="text-sm mb-2">{{ $event->DATEHEUREFILM }}</p>
+
+                                @else
+                                    <h3 class="text-lg font-bold mb-2">{{ $event->sport->LIBELLESPORT }}</h3>
+                                    <p class="text-sm mb-2">{{ $event->LIEUEVENT }}</p>
+                                    <p class="text-sm mb-2">Le {{ $event->DATEEVENT }}</p>
+                                @endif
+                            @endforeach
                         </div>
+
+
                     </div>
                 </div>
             </div>
