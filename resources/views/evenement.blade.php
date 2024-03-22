@@ -18,7 +18,7 @@
                                 {{-- Vérifier si l'événement est cinéma --}}
                                 @if ($event instanceof \App\Models\CINEMA)
                                     {{-- Afficher les détails du cinéma --}}
-                                    
+
                                     <div class="event-box cinema-box bg-blue-200 dark:bg-blue-600 rounded-md p-4 mb-2 custom-background-cinema">
                                         <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
                                             <h3 class="text-lg font-bold text-white-900 dark:text-white mb-2">{{ $event->NOMFILM }}</h3>
