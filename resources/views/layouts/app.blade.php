@@ -23,9 +23,8 @@
         <!-- Page Heading -->
         <header class="bg-white dark:bg-white-800 shadow">
             <div class="flex justify-around">
-                <a href="{{ route('cours') }}" class="text-blue-900 font-bold">Cours</a>
-                <a href="{{ route('covoiturage') }}" class="text-blue-900 font-bold">Covoiturage</a>
-                <a href="{{ route('evenements') }}" class="text-blue-900 font-bold">Evenements</a>
+                <a href="" class="text-blue-900 font-bold">Annonces</a>
+                <a href="{{ route('services') }}" class="text-blue-900 font-bold">Services</a>
                 <a href="{{ route('espace_pro') }}" class="text-blue-900 font-bold">Espace Pro</a>
             </div>
         </header>
