@@ -46,13 +46,19 @@ class ACCUEIL extends Model
         if ($response) {
             $sondages = json_decode($response2, true);
             $donnees = json_decode($response, true);
-
+            if($donnees==null){
+                $donnees=[];
+            }
+            if($sondages==null){
+                $sondages=[];
+            }
 
             // Maintenant, vous pouvez utiliser $donnees pour afficher les données dans votre écran Laravel
             // Exemple : return view('nom_vue', compact('donnees'));
         } else {
             // Gérer les erreurs si la requête échoue
             // Exemple : return view('erreur_vue');
+            return view('error', array('message' => 'Erreur lors de la récupération des données'));
         }
 
         return view('dashboard', compact('donnees','sondages'));

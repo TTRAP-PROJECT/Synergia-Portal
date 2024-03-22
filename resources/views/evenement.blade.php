@@ -1,12 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-around">
-            <a href="{{ route('cours') }}" class="text-blue-900 font-bold">Cours</a>
-            <a href="{{ route('covoiturage') }}" class="text-blue-900 font-bold">Covoiturage</a>
-            <a href="{{ route('evenements') }}" class="text-blue-900 font-bold">Evenements</a>
-            <a href="{{ route('espace_pro') }}" class="text-blue-900 font-bold">Espace Pro</a>
-        </div>
-    </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -25,7 +18,7 @@
                                 {{-- Vérifier si l'événement est cinéma --}}
                                 @if ($event instanceof \App\Models\CINEMA)
                                     {{-- Afficher les détails du cinéma --}}
-
+                                    
                                     <div class="event-box cinema-box bg-blue-200 dark:bg-blue-600 rounded-md p-4 mb-2 custom-background-cinema">
                                         <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
                                             <h3 class="text-lg font-bold text-white-900 dark:text-white mb-2">{{ $event->NOMFILM }}</h3>
@@ -33,7 +26,6 @@
                                             <p class="text-sm mb-2">{{ $event->DATEHEUREFILM }}</p>
                                         </div>
                                     </div>
-
                                 @else
                                     {{-- Afficher les détails du sport avec l'image en arrière-plan --}}
                                     <div class="event-box sport-box bg-green-200 dark:bg-green-600 rounded-md p-4 mb-2 relative custom-background-sport">

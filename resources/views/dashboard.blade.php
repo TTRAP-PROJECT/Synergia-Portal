@@ -1,23 +1,10 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-around	">
-            <a href="{{ route('cours') }}" class="text-blue-900 font-bold">Cours</a>
-            <a href="{{ route('covoiturage') }}" class="text-blue-900 font-bold">Covoiturage</a>
-            <a href="{{ route('evenements') }}" class="text-blue-900 font-bold">Evenements</a>
-            <a href="{{ route('espace_pro') }}" class="text-blue-900 font-bold">Espace Pro</a>
-        </div>
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="flex flex-row">
                         <div class="flex flex-col w-5/12">
-
-
-
-
                             <div class="border p-4">
                                 <h2 class="text-xl font-bold mb-4">Sondages</h2>
 
@@ -27,27 +14,37 @@
                                         <h3 class="text-lg font-bold mb-2">{{ $sondage['NOMSONDAGE'] }}</h3>
                                         {{-- Dates de début et de fin --}}
                                         <div class="text-sm mb-2">
-                                            <span class="font-bold">Début:</span> {{ date('d-m-Y', strtotime($sondage['DATEDEBUT'])) }}
+                                            <span class="font-bold">Début:</span>
+                                            {{ date('d-m-Y', strtotime($sondage['DATEDEBUT'])) }}
                                         </div>
                                         <div class="text-sm mb-2">
-                                            <span class="font-bold">Fin:</span> {{ date('d-m-Y', strtotime($sondage['DATEFIN'])) }}
+                                            <span class="font-bold">Fin:</span>
+                                            {{ date('d-m-Y', strtotime($sondage['DATEFIN'])) }}
                                         </div>
                                         {{-- Barre de progression pour les votes "pour" et "contre" combinés --}}
+
                                         <div class="flex items-center justify-between mb-2 bg-gray-200 rounded p-2 shadow-md">
                                             <form action="{{ route('vote.pour', ['idSondage' => $sondage['IDSONDAGE']]) }}" method="POST">
                                                 @csrf
                                                 <button type="submit" class="text-sm font-bold text-green-600">Pour 🟢 {{ $sondage['POUR'] }}</button>
                                             </form>
+
                                             <div class="w-1/2 mx-2">
                                                 <div class="bg-gray-500 h-4 rounded-full flex">
-                                                    <div class="bg-green-600 h-full flex-grow" style="width: {{ ($sondage['POUR'] / ($sondage['POUR'] + $sondage['CONTRE'])) * 100 }}%;"></div>
-                                                    <div class="bg-red-600 h-full flex-grow" style="width: {{ ($sondage['CONTRE'] / ($sondage['POUR'] + $sondage['CONTRE'])) * 100 }}%;"></div>
+                                                    <div class="bg-green-600 h-full flex-grow"
+                                                        style="width: {{ ($sondage['POUR'] / ($sondage['POUR'] + $sondage['CONTRE'])) * 100 }}%;">
+                                                    </div>
+                                                    <div class="bg-red-600 h-full flex-grow"
+                                                        style="width: {{ ($sondage['CONTRE'] / ($sondage['POUR'] + $sondage['CONTRE'])) * 100 }}%;">
+                                                    </div>
                                                 </div>
                                             </div>
+
                                             <form action="{{ route('vote.contre', ['idSondage' => $sondage['IDSONDAGE']]) }}" method="POST">
                                                 @csrf
                                                 <button type="submit" class="text-sm font-bold text-red-600">Contre 🔴 {{ $sondage['CONTRE'] }}</button>
                                             </form>
+
                                         </div>
                                         {{-- Afficher les messages de réussite spécifiques à ce sondage --}}
                                         @if(Session::has('success') && Session::get('idSondage') == $sondage['IDSONDAGE'])
