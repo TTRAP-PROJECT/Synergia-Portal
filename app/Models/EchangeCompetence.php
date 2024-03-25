@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class ECHANGECOMPETENCE
- * 
+ *
  * @property int $IDSERVICE
  * @property int $IDMATIERE
  * @property int $IDNIVEAU
- * 
+ *
  * @property COUR $c_o_u_r
  * @property NIVEAU $n_i_v_e_a_u
  * @property SERVICE $s_e_r_v_i_c_e
@@ -53,4 +53,14 @@ class ECHANGECOMPETENCE extends Model
 	{
 		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
 	}
+//    public function matiere()
+//    {
+//        return $this->belongsTo(::class, 'IDMATIERE');
+//    }
+
+//    public function niveau()
+//    {
+//        return $this->belongsTo(Niveau::class, 'IDNIVEAU');
+//    }
+
 }

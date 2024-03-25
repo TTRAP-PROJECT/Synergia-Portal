@@ -50,6 +50,22 @@
                                         </div>
 
                                 @endforeach
+
+{{--                                    @foreach ($competences as $competence)--}}
+{{--                                        <div class="bg-green-400 rounded-lg shadow-md p-4 flex flex-col">--}}
+{{--                                            <div class="mt-4">--}}
+{{--                                                <h2 class="text-lg font-bold text-white">Echange de compétence</h2>--}}
+{{--                                                <p class="text-gray-200">Matière: {{ $competence->matiere->nom }}</p>--}}
+{{--                                                <p class="text-gray-200">Niveau: {{ $competence->niveau->nom }}</p>--}}
+{{--                                                <!-- Ajoutez d'autres propriétés de compétence ici si nécessaire -->--}}
+{{--                                            </div>--}}
+{{--                                            <div class="flex items-center justify-end">--}}
+{{--                                                <img src="/images/volant.png" class="w-[70px] h-[70px] rounded-full bg-green-300 p-1">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    @endforeach--}}
+
+
                             </div>
                         </div>
                     </div>
