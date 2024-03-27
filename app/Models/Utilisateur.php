@@ -16,14 +16,14 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * Class UTILISATEUR
- * 
+ *
  * @property int $IDUTILISATEUR
  * @property string $NOMUTILISATEUR
  * @property string $PRENOMUTILISATEUR
  * @property string $EMAILUTILISATEUR
  * @property string $MOTDEPASSE
  * @property int|null $SOLDE
- * 
+ *
  * @property ADMINISTRATION $a_d_m_i_n_i_s_t_r_a_t_i_o_n
  * @property Collection|AUTORISER[] $a_u_t_o_r_i_s_e_r_s
  * @property ETUDIANT $e_t_u_d_i_a_n_t
@@ -49,7 +49,8 @@ class UTILISATEUR extends Authenticatable
 		'PRENOMUTILISATEUR',
 		'EMAILUTILISATEUR',
 		'MOTDEPASSE',
-		'SOLDE'
+		'SOLDE',
+        'NBCOOKIES'
 	];
 
 	public function a_d_m_i_n_i_s_t_r_a_t_i_o_n()
