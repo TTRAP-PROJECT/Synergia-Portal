@@ -41,23 +41,23 @@ class ECHANGECOMPETENCE extends Model
 
 	public function c_o_u_r()
 	{
-		return $this->belongsTo(COUR::class, 'IDMATIERE');
+		return $this->belongsTo(Cour::class, 'IDMATIERE');
 	}
 
 	public function n_i_v_e_a_u()
 	{
-		return $this->belongsTo(NIVEAU::class, 'IDNIVEAU');
+		return $this->belongsTo(Niveau::class, 'IDNIVEAU');
 	}
 
 	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
+		return $this->belongsTo(Service::class, 'IDSERVICE');
 	}
 //    public function matiere()
 //    {
-//        return $this->belongsTo(::class, 'IDMATIERE');
+//        return $this->belongsTo(COUR::class, 'IDMATIERE');
 //    }
-
+//
 //    public function niveau()
 //    {
 //        return $this->belongsTo(Niveau::class, 'IDNIVEAU');

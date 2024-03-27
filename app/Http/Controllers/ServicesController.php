@@ -14,17 +14,17 @@ class ServicesController extends Controller
     public function services()
     {
         $services = SERVICE::all();
-        $evenementsSportif = EVENEMENTSPORTIF::with('sport')->get();
+        $evenementsSportif = EvenementSportif::with('sport')->get();
         $evenementCinema = CINEMA::all();
         $covoiturages=Covoiturage::all();
-//        $echange_compets= ECHANGECOMPETENCE::with('c_o_u_r', 'n_i_v_e_a_u')->get();
+        $echange_compets= EchangeCompetence::with('c_o_u_r', 'n_i_v_e_a_u')->get();
 
         return view('services',
             array('services' => $services,
                 'evenementsSportif'=>$evenementsSportif,
                 'evenementCinema'=>$evenementCinema,
                 'covoiturages'=>$covoiturages,
-//                'competences'=>$echange_compets
+                'competences'=>$echange_compets
             ));
     }
 }
