@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/cookie', [CookieController::class,'index'])->name('pageCookie');
     Route::post('/cookie/click', [CookieController::class,'click'])->name('addCookie');
+    Route::post('/cookie/trade', [CookieController::class,'echangeCookieMonnaie'])->name('tradeCookie');
+
 });
 
 require __DIR__.'/auth.php';

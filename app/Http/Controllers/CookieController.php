@@ -11,16 +11,40 @@ class CookieController extends Controller
     public function index()
     {
         $user = Auth::user(); // Récupérez l'utilisateur connecté
+//        $money=$user->SOLDE;
         $cookieCount = $user->NBCOOKIES ?? 0; // Utilisez NBCOOKIES pour obtenir le nombre de cookies
-        return view('pageCookie', compact('cookieCount'));
+        return view('pageCookie', compact('cookieCount',));
     }
 
     public function click(Request $request)
     {
         $user = Auth::user(); // Récupérez l'utilisateur connecté
         $accumulatedCookies = $request->input('count', 0); // Récupérez le nombre de cookies accumulés depuis la requête
-        $user->increment('NBCOOKIES', $accumulatedCookies); // Incrémentez le nombre de cookies
+        $user->increment('NBCOOKIES', $accumulatedCookies);
         return response()->json(['success' => true]);
+    }
+
+    public function echangeCookieMonnaie(Request $request)
+    {
+        $user = Auth::user();
+        $message = ""; // Initialiser la variable message
+
+        $transactionAmount = $request->input('transaction_amount', 0); // Récupérez le montant de la transaction depuis la requête
+
+        if ($transactionAmount == 1000) {
+            // Si la transaction est de 1000 cookies
+            $user->increment('SOLDE', 1);
+            $user->decrement('NBCOOKIES', 1000);
+            $message = "Transaction de 1000 cookies effectuée avec succès.";
+        } elseif ($transactionAmount == 10000) {
+            // Si la transaction est de 10000 cookies
+            $user->increment('SOLDE', 10);
+            $user->decrement('NBCOOKIES', 10000);
+            $message = "Transaction de 10000 cookies effectuée avec succès.";
+        }
+
+
+        return redirect()->route('pageCookie')->with('success', $message);
     }
 
 }
