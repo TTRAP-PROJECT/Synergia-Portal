@@ -22,12 +22,13 @@
 
         <!-- Page Heading -->
         <header class="bg-white dark:bg-white-800 shadow">
-            <div class="flex justify-around">
-                <a href="" class="text-blue-900 font-bold">Annonces</a>
-                <a href="{{ route('services') }}" class="text-blue-900 font-bold">Services</a>
-                <a href="{{ route('espace_pro') }}" class="text-blue-900 font-bold">Espace Pro</a>
+            <div class="flex justify-around py-6"> <!-- Ajout de l'espace en haut et en bas -->
+                <a href="" class="text-blue-900 font-bold text-xl">Annonces</a>
+                <a href="{{ route('services') }}" class="text-blue-900 font-bold text-xl">Services</a>
+                <a href="{{ route('espace_pro') }}" class="text-blue-900 font-bold text-xl">Espace Pro</a>
             </div>
         </header>
+
 
         <!-- Page Content -->
         <main>
