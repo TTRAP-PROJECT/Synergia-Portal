@@ -19,8 +19,6 @@ class AccueilController extends Controller
         $sondages = Sondage::all();
 
         // Récupérer toutes les annonces
-        $annonces = ANNONCE::all();
-
         // Compter le nombre de votes "pour" et "contre" pour chaque sondage
         foreach ($sondages as $sondage) {
             $nombrePour = AvoteSondage::where('IDSONDAGE', $sondage->IDSONDAGE)->where('AVIS', 'POUR')->count();
@@ -39,7 +37,7 @@ class AccueilController extends Controller
         $events = $events->take(4);
 
         // Retourner la vue avec les annonces et les sondages mis à jour
-        return view('dashboard', compact('annonces', 'sondages','events'));
+        return view('dashboard', compact('sondages','events'));
     }
 
 

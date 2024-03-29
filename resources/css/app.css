@@ -70,3 +70,18 @@
     padding: 1.5rem; /* Ajout de rembourrage pour améliorer la lisibilité */
     position: relative;
 }
+
+.formInput {
+    background-color: rgb(43, 57, 77);   
+    border: 3px solid rgb(40, 53, 72);
+    border-radius: 10px;
+    margin: 5px;
+
+}
+
+.formSubmitButton:hover {
+    background-color: rgb(69, 85, 109);
+    /* transition couleur */
+    transition: background-color 0.5s;
+    color: white;
+}

@@ -27,4 +27,48 @@ class ServicesController extends Controller
                 'competences'=>$echange_compets
             ));
     }
+
+    public function dataList()
+    {
+        return view('suite_formulaire_service');
+    }
+
+    public function new(Request $request)
+    {
+        switch ($request->input('services')) {
+            case 'Cinéma':
+                $typeService = 1;
+
+
+                break;
+            case 'Covoiturage':
+                $typeService = 2;
+                break;
+            case 'Loisir':
+                $typeService = 3;
+                break;
+            case 'Evènement sportif':
+                $typeService = 4;
+                break;
+            case 'Autre':
+                $typeService = 5;
+                break;
+            default:
+                $typeService = 0;
+                break;
+        }
+
+        $service = new SERVICE();
+        $service->IDSTATUT = 1;
+        $service->LIBELLESERVICE = $request->input('services');
+        $service->typeService = $request->input('typeService');
+        $service->prix = $request->input('prix');
+        $service->description = $request->input('description');
+
+        $service->save();
+
+
+
+        return redirect()->route('services');
+    }
 }
