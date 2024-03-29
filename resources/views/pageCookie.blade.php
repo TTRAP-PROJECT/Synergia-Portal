@@ -30,9 +30,16 @@
                             </button><br>
                             <br>
 
+
                             @if (session('success'))
                                 <div class="alert alert-success bg-green-400 rounded font-bold">
                                     {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if (session('fail'))
+                                <div class="alert alert-success bg-red-400 rounded font-bold">
+                                    {{ session('fail') }}
                                 </div>
                             @endif
                         </form>

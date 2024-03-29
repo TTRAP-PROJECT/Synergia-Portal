@@ -31,16 +31,36 @@ class CookieController extends Controller
 
         $transactionAmount = $request->input('transaction_amount', 0); // Récupérez le montant de la transaction depuis la requête
 
+        $soldeCookie=$user->NBCOOKIES;
+
         if ($transactionAmount == 1000) {
-            // Si la transaction est de 1000 cookies
-            $user->increment('SOLDE', 1);
-            $user->decrement('NBCOOKIES', 1000);
-            $message = "Transaction de 1000 cookies effectuée avec succès.";
+            if($soldeCookie<1000)
+            {
+                $message = "Vous n'avez pas assez de cookie :(";
+                return redirect()->route('pageCookie')->with('fail', $message);
+            }
+            else
+            {
+                // Si la transaction est de 10000 cookies
+                $user->increment('SOLDE', 10);
+                $user->decrement('NBCOOKIES', 1000);
+                $message = "Transaction de 1000 cookies effectuée avec succès.";
+            }
         } elseif ($transactionAmount == 10000) {
-            // Si la transaction est de 10000 cookies
-            $user->increment('SOLDE', 10);
-            $user->decrement('NBCOOKIES', 10000);
-            $message = "Transaction de 10000 cookies effectuée avec succès.";
+            if($soldeCookie<10000)
+            {
+                $message = "Vous n'avez pas assez de cookie :(";
+                return redirect()->route('pageCookie')->with('fail', $message);
+            }
+            else
+            {
+                // Si la transaction est de 10000 cookies
+                $user->increment('SOLDE', 10);
+                $user->decrement('NBCOOKIES', 10000);
+                $message = "Transaction de 10000 cookies effectuée avec succès.";
+            }
+
+
         }
 
 

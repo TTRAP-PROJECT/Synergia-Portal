@@ -26,6 +26,7 @@
                 <a href="" class="text-blue-900 font-bold text-xl">Annonces</a>
                 <a href="{{ route('services') }}" class="text-blue-900 font-bold text-xl">Services</a>
                 <a href="{{ route('espace_pro') }}" class="text-blue-900 font-bold text-xl">Espace Pro</a>
+                <a href="{{ route('pageCookie') }}" class="text-blue-900 font-bold text-xl">Espace Cookie</a>
             </div>
         </header>
 
