@@ -13,17 +13,21 @@ var description = document.getElementById('inputDescription');
 var prix = document.getElementById('inputPrix');
 var lieu = document.getElementById('inputLieu');
 var lieu = document.getElementById('inputLieu');
+var $date = document.getElementById('inputDate');
 var heure = document.getElementById('inputHeure');
 var lieuDepart = document.getElementById('inputLieuDepart');
 var lieuArrivee = document.getElementById('inputLieuArrivee');
 var bouton = document.getElementById('submitButton');
+var nbPersonne = document.getElementById('inputNbPersonne');
 
 // On ajoute un écouteur d'événement sur chaque champ
-niveau.addEventListener('input', verificationFormulaire);
+if (service.value == "Échange de compétence") {niveau.addEventListener('input', verificationFormulaire);}
 nom.addEventListener('input', verificationFormulaire);
 description.addEventListener('input', verificationFormulaire);
+$date.addEventListener('input', verificationFormulaire);
 prix.addEventListener('input', verificationFormulaire);
 heure.addEventListener('input', verificationFormulaire);
+nbPersonne.addEventListener('input', verificationFormulaire);
 if (lieu != null) {
     lieu.addEventListener('input', verificationFormulaire);
 } else {
@@ -48,7 +52,7 @@ function verifLieu() {
 function verificationFormulaire() {
     if (service.value == "Échange de compétence") {
         // On vérifie que chaque champ est rempli
-        if (nom.value != '' && description.value != '' && prix.value != '' && verifLieu()) {
+        if (nom.value != '' && niveau.value !=''&& description.value != '' && prix.value != '' && nbPersonne.value !='' && verifLieu()) {
             // Si c'est le cas, on supprime l'attribut disabled du bouton de validation
             bouton.removeAttribute('disabled');
         } else {
@@ -57,7 +61,7 @@ function verificationFormulaire() {
     }
     else {
         // On vérifie que chaque champ est rempli
-        if (nom.value != '' && niveau.value !='' && description.value != '' && prix.value != '' && heure.value != '' && verifLieu()) {
+        if (nom.value != '' && description.value != '' && prix.value != '' && $date.value !='' && heure.value != '' && nbPersonne.value !='' && verifLieu()) {
             // Si c'est le cas, on supprime l'attribut disabled du bouton de validation
             bouton.removeAttribute('disabled');
         } else {

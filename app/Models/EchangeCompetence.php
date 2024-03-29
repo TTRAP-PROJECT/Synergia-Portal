@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class ECHANGECOMPETENCE
  *
  * @property int $IDSERVICE
- * @property int $IDMATIERE
+ * @property string $MATIERE
  * @property int $IDNIVEAU
  *
  * @property COUR $c_o_u_r
@@ -30,18 +30,18 @@ class ECHANGECOMPETENCE extends Model
 
 	protected $casts = [
 		'IDSERVICE' => 'int',
-		'IDMATIERE' => 'int',
+		'MATIERE' => 'string',
 		'IDNIVEAU' => 'int'
 	];
 
 	protected $fillable = [
-		'IDMATIERE',
+		'MATIERE',
 		'IDNIVEAU'
 	];
 
 	public function c_o_u_r()
 	{
-		return $this->belongsTo(Cour::class, 'IDMATIERE');
+		return $this->belongsTo(Cour::class, 'MATIERE');
 	}
 
 	public function n_i_v_e_a_u()

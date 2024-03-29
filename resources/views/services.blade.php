@@ -7,16 +7,15 @@
                 <h1 class="text-center text-xl font-bold pb-5">Publier un nouveau service</h1>
                 <div class="selectBox flex flex-col">
                     <label for="services">Choisissez le type de service :</label>
-                    <input class="formInput w-60" list="services" id="service" name="services"
-                        onchange="loadAdditionalFields()">
-                    <datalist id="services">
-                        <option value="Cinéma">
-                        <option value="Covoiturage">
-                        <option value="Échange de compétence">
-                        <option value="Évènement sportif">
-                        <option value="Loisir">
-                        <option value="Autre">
-                    </datalist>
+                    <Select class="formInput w-60 text-white" list="services" id="service" name="services" onchange="loadAdditionalFields()">
+                        <option value="" selected disabled>Choisissez un service</option>
+                        <option value="1">Cinéma</option>
+                        <option value="2">Covoiturage</option>
+                        <option value="3">Échange de compétence</option>
+                        <option value="4">Évènement sportif</option>
+                        <option value="5">Loisir</option>
+                        <option value="6">Autre</option>
+                    </Select>
                 </div>
             </div>
             <div id="additionalFields">
@@ -72,7 +71,7 @@
                             <div class="bg-blue-400 rounded-lg shadow-md p-4 flex flex-col relative h-[210px]">
                                 <div class="mt-4">
                                     <h2 class="text-lg font-bold text-white">
-                                        {{ $evenementsSportifData->sport->LIBELLESPORT }}</h2>
+                                        {{ $evenementsSportifData->LIBELLESPORT }}</h2>
                                     <p class="text-gray-200">{{ $evenementsSportifData->LIEUEVENT }}</p>
                                     <p class="text-gray-200">Le {{ $evenementsSportifData->DATEEVENT }}</p>
                                 </div>
@@ -102,7 +101,7 @@
                             <div class="bg-orange-400 rounded-lg shadow-md p-4 flex flex-col relative h-[210px]">
                                 <div class="mt-4">
                                     <h2 class="text-lg font-bold text-white">Echange de compétence</h2>
-                                    <p class="text-gray-200">Matière: {{ $competence->c_o_u_r->LIBELLEMATIERE }}</p>
+                                    <p class="text-gray-200">Matière: {{ $competence->MATIERE }}</p>
                                     <p class="text-gray-200">Niveau: {{ $competence->n_i_v_e_a_u->LIBELLENIVEAU }}</p>
                                     <!-- Ajoutez d'autres propriétés de compétence ici si nécessaire -->
                                 </div>

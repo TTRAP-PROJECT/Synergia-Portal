@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $LIBELLESERVICE
  * @property int $typeService
  * @property int $prix
- * @property varchar $description
+ * @property string $description
  *
  * @property STATUTSERVICE $s_t_a_t_u_t_s_e_r_v_i_c_e
  * @property Collection|ANNONCE[] $a_n_n_o_n_c_e_s
@@ -40,7 +40,7 @@ class SERVICE extends Model
 		'IDSTATUT' => 'int',
         'typeService' => 'int',
         'prix' => 'int',
-        'description' => 'varchar'
+        'description' => 'string'
 	];
 
     // fillable : remplissable
