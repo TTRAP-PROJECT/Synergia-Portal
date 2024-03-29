@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/cookie/trade', [CookieController::class,'echangeCookieMonnaie'])->name('tradeCookie');
 
 
-    Route::post('/evenementCinema/reserver', [ServicesController::class,'reserverCinema'])->name('reserverCinema');
+    Route::post('/evenementCinema/reserver', [ServicesController::class,'registerService'])->name('reserverCinema');
     Route::post('/evenementSport/reserver', [ServicesController::class,'reserverSport'])->name('reserverSport');
     Route::post('/echangeCompet/reserver', [ServicesController::class,'reserverEchangeCompet'])->name('reserverEchangeCompet');
     Route::post('/evenementConvoit/reserver', [ServicesController::class,'reserverConvoit'])->name('reserverConvoit');

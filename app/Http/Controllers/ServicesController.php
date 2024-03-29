@@ -6,6 +6,7 @@ use App\Models\CINEMA;
 use App\Models\COVOITURAGE;
 use App\Models\ECHANGECOMPETENCE;
 use App\Models\EVENEMENTSPORTIF;
+use App\Models\Reservation;
 use App\Models\SERVICE;
 use DateTime;
 use Illuminate\Http\Request;
@@ -100,11 +101,34 @@ class ServicesController extends Controller
 
         // Service : IDSERVICE, IDSTATUT, LIBELLESERVICE, typeService, description, lieu_service, prix, idVendeur, idModerateur, datePublication, datePrevue, nbPersonneMax
 
-
-
-
-
-
         return redirect()->route('services');
     }
+
+    public function registerService(Request $request)
+    {
+        $service = $request->input('idService');
+
+        $nbMaxPersService = Service::find($service)->NBPERSONNESMAX;
+        $nbActuelPersService = Reservation::where('IDSERVICE', $service)->count();
+
+        $message = "";
+        $success = false;
+
+        if ($nbActuelPersService < $nbMaxPersService) {
+            $idUser = Auth::user()->IDUTILISATEUR;
+
+            $reserver = new Reservation;
+            $reserver->IDACHETEUR = $idUser;
+            $reserver->IDSERVICE = $service;
+            $reserver->save();
+            $success = true;
+            $message = "Vous avez réservé " . Service::find($service)->LIBELLESERVICE;
+        } else {
+            $message = "Ce service a déjà atteint le nombre maximum de participants";
+        }
+
+        return redirect()->route('services')->with(compact('success', 'message'));
+    }
+
+
 }
