@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -7,7 +8,9 @@
                         <div class="flex flex-col w-5/12">
                             <div class="border p-4">
                                 <h2 class="text-xl font-bold mb-4">Sondages</h2>
-
+@php
+if (count($sondages)==0){ echo "Aucun sondage en cours";}
+                                @endphp
                                 {{-- Affiche les sondages --}}
                                 @foreach ($sondages as $sondage)
                                     <div class="mb-4 border p-4 rounded-md bg-gray-100">
@@ -28,17 +31,21 @@
                                                 @csrf
                                                 <button type="submit" class="text-sm font-bold text-green-600">Pour 🟢 {{ $sondage['POUR'] }}</button>
                                             </form>
-
                                             <div class="w-1/2 mx-2">
                                                 <div class="bg-gray-500 h-4 rounded-full flex">
-                                                    <div class="bg-green-600 h-full flex-grow"
-                                                        style="width: {{ ($sondage['POUR'] / ($sondage['POUR'] + $sondage['CONTRE'])) * 100 }}%;">
+                                                    @php
+                                                        $totalVotes = $sondage['POUR'] + $sondage['CONTRE'];
+                                                        $pourcentagePour = $totalVotes > 0 ? ($sondage['POUR'] / $totalVotes) * 100 : 0;
+                                                        $pourcentageContre = $totalVotes > 0 ? ($sondage['CONTRE'] / $totalVotes) * 100 : 0;
+                                                    @endphp
+
+                                                    <div class="bg-green-600 h-full flex-grow" style="width: {{ $pourcentagePour }}%;">
                                                     </div>
-                                                    <div class="bg-red-600 h-full flex-grow"
-                                                        style="width: {{ ($sondage['CONTRE'] / ($sondage['POUR'] + $sondage['CONTRE'])) * 100 }}%;">
+                                                    <div class="bg-red-600 h-full flex-grow" style="width: {{ $pourcentageContre }}%;">
                                                     </div>
                                                 </div>
                                             </div>
+
 
                                             <form action="{{ route('vote.contre', ['idSondage' => $sondage['IDSONDAGE']]) }}" method="POST">
                                                 @csrf
@@ -71,40 +78,39 @@
                             <div class="border p-4 mt-4">
                                 <div class="flex flex-row items-center justify-between mb-4">
                                     <h2 class="text-xl font-bold">Annonces</h2>
-                                    <div class="flex items-center">
-                                        <div class="rounded border border-gray-400 px-3 py-1 flex items-center">
-                                            <span class="text-xl font-bold mr-2">{{ auth()->user()->SOLDE }}</span>
-                                            <span class="text-sm">💰</span>
-                                        </div>
-                                    </div>
                                 </div>
 
-                                {{-- Affiche les annonces --}}
-{{--                                @foreach ($annonces as $annonce)--}}
-{{--                                    <div class="flex flex-row items-center border-b py-2">--}}
-{{--                                        <div class="flex-grow text-sm font-bold">{{ $annonce['TITREANNONCE'] }}</div>--}}
-{{--                                        <div class="text-sm font-bold">{{ $annonce['COUTANNONCE'] }} 💰</div>--}}
-{{--                                    </div>--}}
-{{--                                @endforeach--}}
+                                @foreach ($annonces as $annonce)
+                                    <div class="flex flex-row items-center border-b py-2">
+                                        <div class="flex-grow text-l font-bold">
+                                            <a href="#" class="annonce-titre" data-description-id="{{ 'description_' . $annonce->ID_ANNONCE }}">⇥ {{ $annonce->TITRE_ANNONCE }}</a>
+                                        </div>
+                                        <div class="text-sm font-bold">Le {{ $annonce->DATE_PUBLICATION }}</div>
+                                    </div>
+                                    <div id="{{ 'description_' . $annonce->ID_ANNONCE }}" class="annonce-description hidden">
+                                        {{ $annonce->DESCRIPTION_ANNONCE }}
+                                    </div>
+                                @endforeach
+
+
                             </div>
                         </div>
 
-                        <div class="w-5/12 border">
+                        <div class="w-5/12 border p-4">
                             <h2 class="text-xl font-bold mb-4">Evenements</h2>
 
-
                             @foreach ($events as $event)
-                                @if ($event instanceof \App\Models\CINEMA)
-
-                                    <h3 class="text-lg font-bold text-white-900 dark:text-white mb-2">{{ $event->NOMFILM }}</h3>
-                                    <p class="text-sm mb-2">{{ $event->LIEUFILM }}</p>
-                                    <p class="text-sm mb-2">{{ $event->DATEHEUREFILM }}</p>
-
-                                @else
-                                    <h3 class="text-lg font-bold mb-2">{{ $event->sport->LIBELLESPORT }}</h3>
-                                    <p class="text-sm mb-2">{{ $event->LIEUEVENT }}</p>
-                                    <p class="text-sm mb-2">Le {{ $event->DATEEVENT }}</p>
-                                @endif
+                                <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                                    @if ($event instanceof \App\Models\CINEMA)
+                                        <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-2">{{ $event->NOMFILM }}</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">{{ $event->LIEUFILM }}</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">{{ $event->DATEHEUREFILM }}</p>
+                                    @else
+                                        <h3 class="text-lg font-bold mb-2">{{ $event->LIBELLESPORT }}</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">{{ $event->LIEUEVENT }}</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Le {{ $event->DATEEVENT }}</p>
+                                    @endif
+                                </div>
                             @endforeach
                         </div>
 

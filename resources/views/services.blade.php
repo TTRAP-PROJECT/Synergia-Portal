@@ -56,16 +56,18 @@
                     {{-- Afficher les événements --}}
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         @foreach ($evenementCinema as $evenementCinemaData)
-                            <div class="bg-red-500 rounded-lg shadow-md p-4 flex flex-col relative h-[210px]">
-                                <div class="mt-4">
-                                    <h2 class="text-lg font-bold text-white">{{ $evenementCinemaData->NOMFILM }}</h2>
-                                    <p class="text-gray-200">{{ $evenementCinemaData->LIEUFILM }}</p>
-                                    <p class="text-gray-200">Le {{ $evenementCinemaData->DATEHEUREFILM }}</p>
+                            <form action="/evenementCinema/reserver" method="POST">
+                                <div class="bg-red-500 rounded-lg shadow-md p-4 flex flex-col relative h-[210px]">
+                                    <div class="mt-4">
+                                        <h2 class="text-lg font-bold text-white">{{ $evenementCinemaData->NOMFILM }}</h2>
+                                        <p class="text-gray-200">{{ $evenementCinemaData->LIEUFILM }}</p>
+                                        <p class="text-gray-200">Le {{ $evenementCinemaData->DATEHEUREFILM }}</p>
+                                    </div>
+                                    <div class="absolute bottom-1 right-1">
+                                        <img src="/images/cinema.png" class="w-[70px] h-[70px] rounded-full bg-red-400 p-1">
+                                    </div>
                                 </div>
-                                <div class="absolute bottom-1 right-1">
-                                    <img src="/images/cinema.png" class="w-[70px] h-[70px] rounded-full bg-red-400 p-1">
-                                </div>
-                            </div>
+                            </form>
                         @endforeach
                         @foreach ($evenementsSportif as $evenementsSportifData)
                             <div class="bg-blue-400 rounded-lg shadow-md p-4 flex flex-col relative h-[210px]">

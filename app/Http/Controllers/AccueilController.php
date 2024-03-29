@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ANNONCE;
+use App\Models\Annonce;
 use App\Models\AvoteSondage;
 use App\Models\CINEMA;
 use App\Models\EVENEMENTSPORTIF;
@@ -15,13 +15,9 @@ class AccueilController extends Controller
 
     public function get_donnees_accueil(Request $request)
     {
-        // Récupérer tous les sondages
-        $sondages = Sondage::all();
 
-        // Récupérer toutes les annonces
-//        $annonces = ANNONCE::all();
+        $sondages = Sondage::actif()->get();
 
-        // Compter le nombre de votes "pour" et "contre" pour chaque sondage
         foreach ($sondages as $sondage) {
             $nombrePour = AvoteSondage::where('IDSONDAGE', $sondage->IDSONDAGE)->where('AVIS', 'POUR')->count();
             $nombreContre = AvoteSondage::where('IDSONDAGE', $sondage->IDSONDAGE)->where('AVIS', 'CONTRE')->count();
@@ -29,6 +25,8 @@ class AccueilController extends Controller
             $sondage->CONTRE = $nombreContre;
         }
 
+
+        $annonces=Annonce::all();
         $sports = EVENEMENTSPORTIF::all();
         $cinemas = CINEMA::all();
 
@@ -39,7 +37,7 @@ class AccueilController extends Controller
         $events = $events->take(4);
 
         // Retourner la vue avec les annonces et les sondages mis à jour
-        return view('dashboard', compact( 'sondages','events'));
+        return view('dashboard', compact( 'sondages','events','annonces'));
     }
 
 
