@@ -122,7 +122,7 @@ class ServicesController extends Controller
             $reserver->IDSERVICE = $service;
             $reserver->save();
             $success = true;
-            $message = "Vous avez réservé " . Service::find($service)->LIBELLESERVICE;
+            $message = "Vous avez réservé votre place pour :" . Service::find($service)->LIBELLESERVICE;
         } else {
             $message = "Ce service a déjà atteint le nombre maximum de participants";
         }

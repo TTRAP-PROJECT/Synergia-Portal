@@ -53,14 +53,19 @@ class ECHANGECOMPETENCE extends Model
 	{
 		return $this->belongsTo(Service::class, 'IDSERVICE');
 	}
-//    public function matiere()
-//    {
-//        return $this->belongsTo(COUR::class, 'IDMATIERE');
-//    }
-//
-//    public function niveau()
-//    {
-//        return $this->belongsTo(Niveau::class, 'IDNIVEAU');
-//    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'IDSERVICE');
+    }
+
+    public function getNumberOfReservationsAttribute()
+    {
+        return $this->reservations()->count();
+    }
+    public function hasReservations($userID)
+    {
+        return $this->reservations()->where('IDACHETEUR', $userID)->exists();
+    }
 
 }

@@ -53,4 +53,18 @@ class EVENEMENTSPORTIF extends Model
     {
         return $this->belongsTo(SPORT::class, 'LIBELLESPORT', 'LIBELLESPORT');
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'IDSERVICE');
+    }
+
+    public function getNumberOfReservationsAttribute()
+    {
+        return $this->reservations()->count();
+    }
+    public function hasReservations($userID)
+    {
+        return $this->reservations()->where('IDACHETEUR', $userID)->exists();
+    }
 }
