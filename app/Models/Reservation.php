@@ -11,6 +11,7 @@ class Reservation extends Model
     protected $table = 'Reservation';
     protected $primaryKey = 'IDRESERVATION';
     public $timestamps = false;
-
-
+    public function service() {
+        return $this->belongsTo(Service::class, 'IDSERVICE', 'IDSERVICE');
+    }
 }

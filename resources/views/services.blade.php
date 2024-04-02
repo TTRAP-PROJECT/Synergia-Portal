@@ -11,7 +11,7 @@
         @endif
     @endif
     <div
-        class="form p-6 py-12 w-1/3 max-w-7xl my-5 mx-auto sm:px-6 lg:px-8 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg text-gray-900 dark:text-gray-100">
+        class="form p-6 py-12 w-1/3 max-w-7xl my-5 mx-auto sm:px-6 lg:px-8 bg-gray-400 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg text-gray-900 dark:text-gray-100">
 
         <form action="{{ route('services.new') }}" method="POST">
             @csrf
@@ -33,7 +33,7 @@
             <div id="additionalFields">
                 <!-- Cette div se remplie par les données chargées dynamiquement; Voir loadAdditionalField() -->
             </div>
-            <div class="formInput formSubmitButton w-16 text-center">
+            <div class="formInput formSubmitButton w-16 text-center ">
                 <button type="submit" id="submitButton" disabled>Publier</button>
             </div>
         </form>
@@ -80,7 +80,7 @@
                                         </div>
                                         <div class="absolute bottom-1 right-1">
                                             <p class="text-gray-200 right-0">{{$evenementCinemaData->getNumberOfReservationsAttribute()}}/{{ $evenementCinemaData->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤</p>
-                                            <img src="/images/cinema.png" class="w-[70px] h-[70px] rounded-full bg-red-400 p-1">
+                                            <img src="/images/cinema.png" class="w-[70px] h-[70px] rounded bg-red-400 p-1">
                                         </div>
                                         @if($evenementCinemaData->hasReservations(Auth::user()->IDUTILISATEUR))
                                             <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Vous avez déja réservé ce service" >🔒</button>
@@ -105,11 +105,11 @@
                                             <p class="text-gray-200">Le {{ $evenementsSportifData->DATEEVENT }}</p>
 
                                         </div>
-                                        <div class="absolute bottom-0 right-0">
+                                        <div class="absolute bottom-1 right-1">
                                             <p class="text-gray-200 right-0">{{$evenementsSportifData->getNumberOfReservationsAttribute()}}/{{ $evenementsSportifData->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤 </p>
 
-                                            <img src="/images/des-sports.png"
-                                                class="w-[70px] h-[70px] rounded-full bg-blue-300 p-1">
+                                            <img src="/images/des-sports.png" class="w-[70px] h-[70px] rounded bg-blue-300 p-1">
+
                                         </div>
                                         @if($evenementsSportifData->hasReservations(Auth::user()->IDUTILISATEUR))
                                             <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Vous avez déja réservé ce service" >🔒</button>
@@ -133,11 +133,11 @@
                                                 {{ $covoituragesData->LIEUDEPART }}-{{ $covoituragesData->LIEUARRIVEE }}</p>
                                             <p class="text-gray-200">Le {{ $covoituragesData->DATECOVOIT }}</p>
                                             </div>
-                                        <div class="absolute bottom-0 right-0">
+                                        <div class="absolute bottom-1 right-1">
                                             <p class="text-gray-200 right-0">{{$covoituragesData->getNumberOfReservationsAttribute()}}/{{ $covoituragesData->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤 </p>
 
                                             <img src="/images/volant.png"
-                                                class="w-[70px] h-[70px] rounded-full bg-green-400 p-1">
+                                                class="w-[70px] h-[70px] rounded bg-green-400 p-1">
                                         </div>
                                         @if($covoituragesData->hasReservations(Auth::user()->IDUTILISATEUR))
                                             <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Vous avez déja réservé ce service" >🔒</button>
@@ -161,12 +161,12 @@
                                             <p class="text-gray-200">Niveau: {{ $competence->n_i_v_e_a_u->LIBELLENIVEAU }}</p>
                                              <!-- Ajoutez d'autres propriétés de compétence ici si nécessaire -->
                                         </div>
-                                        <div class="absolute bottom-0 right-0">
+                                        <div class="absolute bottom-1 right-1">
 
                                             <p class="text-gray-200 right-0">{{$competence->getNumberOfReservationsAttribute()}}/{{ $competence->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤</p>
 
                                             <img src="/images/competence.png"
-                                                class="w-[70px] h-[70px] rounded-full bg-orange-300 p-1">
+                                                class="w-[70px] h-[70px] rounded bg-orange-300 p-1">
                                         </div>
                                         @if($competence->hasReservations(Auth::user()->IDUTILISATEUR))
                                             <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Vous avez déja réservé ce service" >🔒</button>
@@ -183,18 +183,18 @@
                                 <form action="{{route('reserverLoisir')}}" method="POST">
                                     @csrf
                                     <input type="hidden" value="{{ $loisir->IDSERVICE }}" name="idService"/>
-                                    <div class="bg-orange-400 rounded-lg shadow-md p-4 flex flex-col relative h-[250px]">
+                                    <div class="bg-violet-400 rounded-lg shadow-md p-4 flex flex-col relative h-[250px]">
                                         <div class="mt-4">
                                             <h2 class="text-lg font-bold text-white">Loisir</h2>
                                             <p class="text-gray-200">{{ $loisir->LIBELLELOISIR }}</p>
                                             <!-- Ajoutez d'autres propriétés de compétence ici si nécessaire -->
                                         </div>
-                                        <div class="absolute bottom-0 right-0">
+                                        <div class="absolute bottom-1 right-1">
 
                                             <p class="text-gray-200 right-0">{{$loisir->getNumberOfReservationsAttribute()}}/{{ $loisir->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤</p>
 
                                             <img src="/images/competence.png"
-                                                 class="w-[70px] h-[70px] rounded-full bg-orange-300 p-1">
+                                                 class="w-[70px] h-[70px] rounded bg-violet-300 p-1">
                                         </div>
                                         @if($loisir->hasReservations(Auth::user()->IDUTILISATEUR))
                                             <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Vous avez déja réservé ce service" >🔒</button>

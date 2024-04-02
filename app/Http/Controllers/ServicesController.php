@@ -24,6 +24,8 @@ class ServicesController extends Controller
         $echange_compets= EchangeCompetence::with('n_i_v_e_a_u')->get();
         $loisirs = LOISIR::all();
 
+
+
         return view('services',
             array('services' => $services,
                 'evenementsSportif'=>$evenementsSportif,

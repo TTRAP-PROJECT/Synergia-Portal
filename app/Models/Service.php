@@ -86,4 +86,12 @@ class SERVICE extends Model
 	{
 		return $this->hasOne(LOISIR::class, 'IDSERVICE');
 	}
+
+    public function vendeur()
+    {
+        return $this->belongsTo(Utilisateur::class, 'IDVENDEUR');
+    }
+
+
+
 }

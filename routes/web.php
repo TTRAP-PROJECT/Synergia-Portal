@@ -5,6 +5,7 @@ use App\Http\Controllers\CookieController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\ServicesController;
 use App\Models\ACCUEIL;
 use App\Models\COUR;
@@ -54,10 +55,12 @@ Route::middleware('auth')->group(function () {
 
 
     Route::post('/evenementCinema/reserver', [ServicesController::class,'registerService'])->name('reserverCinema');
-    Route::post('/evenementSport/reserver', [ServicesController::class,'reserverSport'])->name('reserverSport');
-    Route::post('/echangeCompet/reserver', [ServicesController::class,'reserverEchangeCompet'])->name('reserverEchangeCompet');
-    Route::post('/evenementConvoit/reserver', [ServicesController::class,'reserverConvoit'])->name('reserverConvoit');
+    Route::post('/evenementSport/reserver', [ServicesController::class,'registerService'])->name('reserverSport');
+    Route::post('/echangeCompet/reserver', [ServicesController::class,'registerService'])->name('reserverEchangeCompet');
+    Route::post('/evenementConvoit/reserver', [ServicesController::class,'registerService'])->name('reserverConvoit');
     Route::post('/evenementLoisir/reserver', [ServicesController::class,'registerService'])->name('reserverLoisir');
+
+    Route::get("/listeReservations",[ReservationsController::class,'getAllReservationByUser'])->name('getReservations');
 
 
 });
