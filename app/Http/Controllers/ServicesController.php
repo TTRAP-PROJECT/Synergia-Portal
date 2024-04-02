@@ -6,6 +6,7 @@ use App\Models\CINEMA;
 use App\Models\COVOITURAGE;
 use App\Models\ECHANGECOMPETENCE;
 use App\Models\EVENEMENTSPORTIF;
+use App\Models\LOISIR;
 use App\Models\Reservation;
 use App\Models\SERVICE;
 use DateTime;
@@ -21,13 +22,15 @@ class ServicesController extends Controller
         $evenementCinema = CINEMA::all();
         $covoiturages=Covoiturage::all();
         $echange_compets= EchangeCompetence::with('n_i_v_e_a_u')->get();
+        $loisirs = LOISIR::all();
 
         return view('services',
             array('services' => $services,
                 'evenementsSportif'=>$evenementsSportif,
                 'evenementCinema'=>$evenementCinema,
                 'covoiturages'=>$covoiturages,
-                'competences'=>$echange_compets
+                'competences'=>$echange_compets,
+                'loisirs'=>$loisirs
             ));
     }
 
@@ -64,34 +67,44 @@ class ServicesController extends Controller
 
         switch ($request->input('services')) {
             case '1':
-                //
+                $cinema = new CINEMA();
+                $cinema->IDSERVICE = $service->IDSERVICE;
+                $cinema->LIEUFILM = $request->input('lieu');
+                $cinema->NOMFILM = e($request->input('nom'));
+                $cinema->DATEHEUREFILM = $datePrevue;
+                $cinema->save();
                 break;
-            case '2':
+            case '2': // Covoiturage
                 $service->lieu_service = null;
                 $covoiturage = new COVOITURAGE();
-                $covoiturage->IDSERVICE = 4;
+                $covoiturage->IDSERVICE = $service->IDSERVICE;;
                 $covoiturage->LIEUDEPART = $request->input('lieuDepart');
                 $covoiturage->LIEUARRIVEE = $request->input('lieuArrivee');
                 $covoiturage->DATECOVOIT = $datePrevue;
                 $covoiturage->save();
                 break;
-            case '3':
-                break;
-
-            case '4':
+            case '3': // échange de compétences
                 $echangecompetence = new ECHANGECOMPETENCE();
-                $echangecompetence->idService = $service->IDSERVICE;
-                $echangecompetence->matiere = $request->input('nom');
-                $echangecompetence->idNiveau = $request->input('niveau');
+                $echangecompetence->IDSERVICE = $service->IDSERVICE;;
+                $echangecompetence->MATIERE = $request->input('nom');
+                $echangecompetence->IDNIVEAU = $request->input('niveau');
                 $echangecompetence->save();
                 break;
 
-            case '5':
+            case '4': // évenement sportif
                 $evenementsportif = new EVENEMENTSPORTIF();
-                $evenementsportif->idService = $service->IDSERVICE;
-                $evenementsportif->libelleSport = $request->input('sport');
-                $evenementsportif->dateEvent = $datePrevue;
+                $evenementsportif->IDSERVICE = $service->IDSERVICE;;
+                $evenementsportif->LIBELLESPORT = $request->input('nom');
+                $evenementsportif->LIEUEVENT = $request->input('lieu');
+                $evenementsportif->DATEEVENT = $datePrevue;
                 $evenementsportif->save();
+                break;
+
+            case '5': // Loisir
+                $loisir = new LOISIR();
+                $loisir->IDSERVICE = $service->IDSERVICE;;
+                $loisir->LIBELLELOISIR = $request->input('nom');
+                $loisir->save();
                 break;
             case '6':
                 break;
@@ -122,7 +135,7 @@ class ServicesController extends Controller
             $reserver->IDSERVICE = $service;
             $reserver->save();
             $success = true;
-            $message = "Vous avez réservé votre place pour :" . Service::find($service)->LIBELLESERVICE;
+            $message = "Vous avez réservé votre place pour : " . Service::find($service)->LIBELLESERVICE;
         } else {
             $message = "Ce service a déjà atteint le nombre maximum de participants";
         }

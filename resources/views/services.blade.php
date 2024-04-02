@@ -22,7 +22,7 @@
                     <Select class="formInput w-60 text-white" list="services" id="service" name="services" onchange="loadAdditionalFields()">
                         <option value="" selected disabled>Choisissez un service</option>
                         <option value="1">Cinéma</option>
-                        <option value="2">Covoiturage</option>
+                            <option value="2">Covoiturage</option>
                         <option value="3">Échange de compétence</option>
                         <option value="4">Évènement sportif</option>
                         <option value="5">Loisir</option>
@@ -130,7 +130,7 @@
                                         <div class="mt-4">
                                             <h2 class="text-lg font-bold text-white">Convoiturage</h2>
                                             <p class="text-gray-200">
-                                                {{ $covoituragesData->LIEUDEPART }}-{{ $covoituragesData->LIEUARRIVE }}</p>
+                                                {{ $covoituragesData->LIEUDEPART }}-{{ $covoituragesData->LIEUARRIVEE }}</p>
                                             <p class="text-gray-200">Le {{ $covoituragesData->DATECOVOIT }}</p>
                                             </div>
                                         <div class="absolute bottom-0 right-0">
@@ -178,6 +178,34 @@
                                     </div>
                                 </form>
                         @endforeach
+
+                            @foreach ($loisirs as $loisir)
+                                <form action="{{route('reserverLoisir')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ $loisir->IDSERVICE }}" name="idService"/>
+                                    <div class="bg-orange-400 rounded-lg shadow-md p-4 flex flex-col relative h-[250px]">
+                                        <div class="mt-4">
+                                            <h2 class="text-lg font-bold text-white">Loisir</h2>
+                                            <p class="text-gray-200">{{ $loisir->LIBELLELOISIR }}</p>
+                                            <!-- Ajoutez d'autres propriétés de compétence ici si nécessaire -->
+                                        </div>
+                                        <div class="absolute bottom-0 right-0">
+
+                                            <p class="text-gray-200 right-0">{{$loisir->getNumberOfReservationsAttribute()}}/{{ $loisir->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤</p>
+
+                                            <img src="/images/competence.png"
+                                                 class="w-[70px] h-[70px] rounded-full bg-orange-300 p-1">
+                                        </div>
+                                        @if($loisir->hasReservations(Auth::user()->IDUTILISATEUR))
+                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Vous avez déja réservé ce service" >🔒</button>
+                                        @elseif($loisir->getNumberOfReservationsAttribute()>=$loisir->s_e_r_v_i_c_e->NBPERSONNESMAX)
+                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Ce service n'est plus disponible" >🔒</button>
+                                        @else
+                                            <button type="submit" class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded">🛒</button>
+                                        @endif
+                                    </div>
+                                </form>
+                            @endforeach
                     </div>
                 </div>
             </div>

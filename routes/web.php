@@ -57,7 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/evenementSport/reserver', [ServicesController::class,'reserverSport'])->name('reserverSport');
     Route::post('/echangeCompet/reserver', [ServicesController::class,'reserverEchangeCompet'])->name('reserverEchangeCompet');
     Route::post('/evenementConvoit/reserver', [ServicesController::class,'reserverConvoit'])->name('reserverConvoit');
-    Route::post('/evenementLoisir/reserver', [ServicesController::class,'reserverLoisir'])->name('reserverLoisir');
+    Route::post('/evenementLoisir/reserver', [ServicesController::class,'registerService'])->name('reserverLoisir');
 
 
 });

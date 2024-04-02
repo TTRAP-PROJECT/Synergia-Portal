@@ -50,7 +50,7 @@ function verifLieu() {
 
 // Fonction de vérification du formulaire
 function verificationFormulaire() {
-    if (service.value == "Échange de compétence") {
+    if (service.value === '3') {
         // On vérifie que chaque champ est rempli
         if (nom.value != '' && niveau.value !=''&& description.value != '' && prix.value != '' && nbPersonne.value !='' && verifLieu()) {
             // Si c'est le cas, on supprime l'attribut disabled du bouton de validation
