@@ -23,9 +23,10 @@
         <!-- Page Heading -->
         <header class="bg-white dark:bg-white-800 shadow">
             <div class="flex justify-around py-6"> <!-- Ajout de l'espace en haut et en bas -->
-                <a href="" class="text-blue-900 font-bold text-xl">Annonces</a>
+
                 <a href="{{ route('services') }}" class="text-blue-900 font-bold text-xl">Services</a>
                 <a href="{{ route('espace_pro') }}" class="text-blue-900 font-bold text-xl">Espace Pro</a>
+                <a href="{{ route('getReservations') }}" class="text-blue-900 font-bold text-xl">Reservations</a>
                 <a href="{{ route('pageCookie') }}" class="text-blue-900 font-bold text-xl">Espace Cookie</a>
             </div>
         </header>

@@ -64,151 +64,224 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-{{--                    @php var_dump($services)@endphp--}}
-                    {{-- Afficher les événements --}}
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
                         @foreach ($evenementCinema as $evenementCinemaData)
-                                <form action="{{route('reserverCinema')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{ $evenementCinemaData->IDSERVICE }}" name="idService"/>
-                                    <div class="bg-red-500 rounded-lg shadow-md p-4 flex flex-col relative h-[250px]">
-                                        <div class="mt-4">
+                            <form action="{{ route('reserverCinema') }}" method="POST">
+                                @csrf
+                                <input type="hidden" value="{{ $evenementCinemaData->IDSERVICE }}" name="idService"/>
+                                <div class="relative">
+                                    <div class="card">
+                                        <img src="/images/cinema.png?auto=compress&cs=tinysrgb&w=1600&lazy=load" class="bg-blue-400 rounded  " />
+                                        <div class="text-container absolute top-0 left-0 p-4 w-full">
                                             <h2 class="text-lg font-bold text-white">{{ $evenementCinemaData->NOMFILM }}</h2>
                                             <p class="text-gray-200">{{ $evenementCinemaData->LIEUFILM }}</p>
                                             <p class="text-gray-200">Le {{ $evenementCinemaData->DATEHEUREFILM }}</p>
 
                                         </div>
-                                        <div class="absolute bottom-1 right-1">
-                                            <p class="text-gray-200 right-0">{{$evenementCinemaData->getNumberOfReservationsAttribute()}}/{{ $evenementCinemaData->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤</p>
-                                            <img src="/images/cinema.png" class="w-[70px] h-[70px] rounded bg-red-400 p-1">
+                                        <div class="button-grp absolute bottom-0 left-0 p-4 w-full">
+                                            @if($evenementCinemaData->hasReservations(Auth::user()->IDUTILISATEUR))
+                                                <button class="likes disabled"  title="Vous avez déja réserver ce service">🔒</button>
+                                            @elseif($evenementCinemaData->getNumberOfReservationsAttribute()>=$evenementCinemaData->s_e_r_v_i_c_e->NBPERSONNESMAX)
+                                                <button class="likes disabled" title="Ce service n'est plus disponible">🔒</button>
+                                            @else
+                                                <button class="likes">Reserver</button>
+                                            @endif
+                                            <button class="download disabled">
+                                                {{ $evenementCinemaData->getNumberOfReservationsAttribute() }}/{{ $evenementCinemaData->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤
+                                            </button>
                                         </div>
-                                        @if($evenementCinemaData->hasReservations(Auth::user()->IDUTILISATEUR))
-                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Vous avez déja réservé ce service" >🔒</button>
-                                        @elseif($evenementCinemaData->getNumberOfReservationsAttribute()>=$evenementCinemaData->s_e_r_v_i_c_e->NBPERSONNESMAX)
-                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Ce service n'est plus disponible" >🔒</button>
-                                        @else
-                                            <button type="submit" class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded">🛒</button>
-                                        @endif
                                     </div>
-
-                                </form>
+                                </div>
+                            </form>
                         @endforeach
+
                         @foreach ($evenementsSportif as $evenementsSportifData)
-                                <form action="{{route('reserverCinema')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{ $evenementsSportifData->IDSERVICE }}" name="idService"/>
-                                    <div class="bg-blue-400 rounded-lg shadow-md p-4 flex flex-col relative h-[250px]">
-                                        <div class="mt-4">
-                                            <h2 class="text-lg font-bold text-white">
-                                                {{ $evenementsSportifData->LIBELLESPORT }}</h2>
+                            <form action="{{route('reserverSport')}}" method="POST">
+                                @csrf
+                                <input type="hidden" value="{{ $evenementsSportifData->IDSERVICE }}" name="idService"/>
+                                <div class="relative">
+                                    <div class="card">
+                                        <img src="/images/des-sports.png?auto=compress&cs=tinysrgb&w=1600&lazy=load" class="bg-red-400 rounded " />
+                                        <div class="text-container absolute top-0 left-0 p-4 w-full">
+                                            <h2 class="text-lg font-bold text-white">{{ $evenementsSportifData->LIBELLESPORT }}</h2>
                                             <p class="text-gray-200">{{ $evenementsSportifData->LIEUEVENT }}</p>
                                             <p class="text-gray-200">Le {{ $evenementsSportifData->DATEEVENT }}</p>
 
                                         </div>
-                                        <div class="absolute bottom-1 right-1">
-                                            <p class="text-gray-200 right-0">{{$evenementsSportifData->getNumberOfReservationsAttribute()}}/{{ $evenementsSportifData->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤 </p>
-
-                                            <img src="/images/des-sports.png" class="w-[70px] h-[70px] rounded bg-blue-300 p-1">
-
+                                        <div class="button-grp absolute bottom-0 left-0 p-4 w-full">
+                                            @if($evenementsSportifData->hasReservations(Auth::user()->IDUTILISATEUR))
+                                                <button class="likes disabled"  title="Vous avez déja réserver ce service">🔒</button>
+                                            @elseif($evenementsSportifData->getNumberOfReservationsAttribute()>=$evenementsSportifData->s_e_r_v_i_c_e->NBPERSONNESMAX)
+                                                <button class="likes disabled" title="Ce service n'est plus disponible">🔒</button>
+                                            @else
+                                                <button class="likes">Reserver</button>
+                                            @endif
+                                            <button class="download disabled">
+                                                {{ $evenementCinemaData->getNumberOfReservationsAttribute() }}/{{ $evenementsSportifData->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤
+                                            </button>
                                         </div>
-                                        @if($evenementsSportifData->hasReservations(Auth::user()->IDUTILISATEUR))
-                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Vous avez déja réservé ce service" >🔒</button>
-                                        @elseif($evenementsSportifData->getNumberOfReservationsAttribute()>=$evenementsSportifData->s_e_r_v_i_c_e->NBPERSONNESMAX)
-                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Ce service n'est plus disponible" >🔒</button>
-                                        @else
-                                            <button type="submit" class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded">🛒</button>
-                                        @endif
                                     </div>
-                                </form>
+                                </div>
+                            </form>
                         @endforeach
 
                         @foreach ($covoiturages as $covoituragesData)
-                                <form action="{{route('reserverCinema')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{ $covoituragesData->IDSERVICE }}" name="idService"/>
-                                    <div class="bg-green-500 rounded-lg shadow-md p-4 flex flex-col relative h-[250px]">
-                                        <div class="mt-4">
+                            <form action="{{route('reserverConvoit')}}" method="POST">
+                                @csrf
+                                <input type="hidden" value="{{ $covoituragesData->IDSERVICE }}" name="idService"/>
+                                <div class="relative">
+                                    <div class="card">
+                                        <img src="/images/covoiturage2.png?auto=compress&cs=tinysrgb&w=1600&lazy=load" class="bg-green-400 rounded " />
+                                        <div class="text-container absolute top-0 left-0 p-4 w-full">
                                             <h2 class="text-lg font-bold text-white">Convoiturage</h2>
-                                            <p class="text-gray-200">
-                                                {{ $covoituragesData->LIEUDEPART }}-{{ $covoituragesData->LIEUARRIVEE }}</p>
+                                            <p class="text-gray-200">{{ $covoituragesData->LIEUDEPART }}-{{ $covoituragesData->LIEUARRIVEE }}</p>
                                             <p class="text-gray-200">Le {{ $covoituragesData->DATECOVOIT }}</p>
-                                            </div>
-                                        <div class="absolute bottom-1 right-1">
-                                            <p class="text-gray-200 right-0">{{$covoituragesData->getNumberOfReservationsAttribute()}}/{{ $covoituragesData->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤 </p>
 
-                                            <img src="/images/volant.png"
-                                                class="w-[70px] h-[70px] rounded bg-green-400 p-1">
                                         </div>
-                                        @if($covoituragesData->hasReservations(Auth::user()->IDUTILISATEUR))
-                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Vous avez déja réservé ce service" >🔒</button>
-                                        @elseif($covoituragesData->getNumberOfReservationsAttribute()>=$covoituragesData->s_e_r_v_i_c_e->NBPERSONNESMAX)
-                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Ce service n'est plus disponible" >🔒</button>
-                                        @else
-                                            <button type="submit" class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded">🛒</button>
-                                        @endif
+                                        <div class="button-grp absolute bottom-0 left-0 p-4 w-full">
+                                            @if($covoituragesData->hasReservations(Auth::user()->IDUTILISATEUR))
+                                                <button class="likes disabled"  title="Vous avez déja réserver ce service">🔒</button>
+                                            @elseif($covoituragesData->getNumberOfReservationsAttribute()>=$covoituragesData->s_e_r_v_i_c_e->NBPERSONNESMAX)
+                                                <button class="likes disabled" title="Ce service n'est plus disponible">🔒</button>
+                                            @else
+                                                <button class="likes">Reserver</button>
+                                            @endif
+                                            <button class="download disabled">
+                                                {{ $covoituragesData->getNumberOfReservationsAttribute() }}/{{ $covoituragesData->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤
+                                            </button>
+                                        </div>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
                         @endforeach
 
                         @foreach ($competences as $competence)
-                                <form action="{{route('reserverCinema')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{ $competence->IDSERVICE }}" name="idService"/>
-                                    <div class="bg-orange-400 rounded-lg shadow-md p-4 flex flex-col relative h-[250px]">
-                                        <div class="mt-4">
+                            <form action="{{route('reserverEchangeCompet')}}" method="POST">
+                                @csrf
+                                <input type="hidden" value="{{ $competence->IDSERVICE }}" name="idService"/>
+                                <div class="relative">
+                                    <div class="card">
+                                        <img src="/images/competence.png?auto=compress&cs=tinysrgb&w=1600&lazy=load" class="bg-orange-400 rounded " />
+                                        <div class="text-container absolute top-0 left-0 p-4 w-full">
                                             <h2 class="text-lg font-bold text-white">Echange de compétence</h2>
                                             <p class="text-gray-200">Matière: {{ $competence->MATIERE }}</p>
                                             <p class="text-gray-200">Niveau: {{ $competence->n_i_v_e_a_u->LIBELLENIVEAU }}</p>
-                                             <!-- Ajoutez d'autres propriétés de compétence ici si nécessaire -->
-                                        </div>
-                                        <div class="absolute bottom-1 right-1">
 
-                                            <p class="text-gray-200 right-0">{{$competence->getNumberOfReservationsAttribute()}}/{{ $competence->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤</p>
-
-                                            <img src="/images/competence.png"
-                                                class="w-[70px] h-[70px] rounded bg-orange-300 p-1">
                                         </div>
-                                        @if($competence->hasReservations(Auth::user()->IDUTILISATEUR))
-                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Vous avez déja réservé ce service" >🔒</button>
-                                        @elseif($competence->getNumberOfReservationsAttribute()>=$competence->s_e_r_v_i_c_e->NBPERSONNESMAX)
-                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Ce service n'est plus disponible" >🔒</button>
-                                        @else
-                                            <button type="submit" class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded">🛒</button>
-                                        @endif
+                                        <div class="button-grp absolute bottom-0 left-0 p-4 w-full">
+                                            @if($competence->hasReservations(Auth::user()->IDUTILISATEUR))
+                                                <button class="likes disabled"  title="Vous avez déja réserver ce service">🔒</button>
+                                            @elseif($competence->getNumberOfReservationsAttribute()>=$competence->s_e_r_v_i_c_e->NBPERSONNESMAX)
+                                                <button class="likes disabled" title="Ce service n'est plus disponible">🔒</button>
+                                            @else
+                                                <button class="likes">Reserver</button>
+                                            @endif
+                                            <button class="download disabled">
+                                                {{ $competence->getNumberOfReservationsAttribute() }}/{{ $competence->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤
+                                            </button>
+                                        </div>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
                         @endforeach
 
-                            @foreach ($loisirs as $loisir)
-                                <form action="{{route('reserverLoisir')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{ $loisir->IDSERVICE }}" name="idService"/>
-                                    <div class="bg-violet-400 rounded-lg shadow-md p-4 flex flex-col relative h-[250px]">
-                                        <div class="mt-4">
+                        @foreach ($loisirs as $loisir)
+                            <form action="{{route('reserverLoisir')}}" method="POST">
+                                @csrf
+                                <input type="hidden" value="{{ $loisir->IDSERVICE }}" name="idService"/>
+                                <div class="relative">
+                                    <div class="card">
+                                        <img src="/images/des-sports.png?auto=compress&cs=tinysrgb&w=1600&lazy=load" class="bg-violet-400 rounded " />
+                                        <div class="text-container absolute top-0 left-0 p-4 w-full">
                                             <h2 class="text-lg font-bold text-white">Loisir</h2>
                                             <p class="text-gray-200">{{ $loisir->LIBELLELOISIR }}</p>
-                                            <!-- Ajoutez d'autres propriétés de compétence ici si nécessaire -->
-                                        </div>
-                                        <div class="absolute bottom-1 right-1">
 
-                                            <p class="text-gray-200 right-0">{{$loisir->getNumberOfReservationsAttribute()}}/{{ $loisir->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤</p>
-
-                                            <img src="/images/competence.png"
-                                                 class="w-[70px] h-[70px] rounded bg-violet-300 p-1">
                                         </div>
-                                        @if($loisir->hasReservations(Auth::user()->IDUTILISATEUR))
-                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Vous avez déja réservé ce service" >🔒</button>
-                                        @elseif($loisir->getNumberOfReservationsAttribute()>=$loisir->s_e_r_v_i_c_e->NBPERSONNESMAX)
-                                            <button disabled class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded " title="Ce service n'est plus disponible" >🔒</button>
-                                        @else
-                                            <button type="submit" class="absolute bottom-1 left-1 bg-white w-[70px] h-[50px] rounded">🛒</button>
-                                        @endif
+                                        <div class="button-grp absolute bottom-0 left-0 p-4 w-full">
+                                            @if($competence->hasReservations(Auth::user()->IDUTILISATEUR))
+                                                <button class="likes disabled"  title="Vous avez déja réserver ce service">🔒</button>
+                                            @elseif($competence->getNumberOfReservationsAttribute()>=$competence->s_e_r_v_i_c_e->NBPERSONNESMAX)
+                                                <button class="likes disabled" title="Ce service n'est plus disponible">🔒</button>
+                                            @else
+                                                <button class="likes">Reserver</button>
+                                            @endif
+                                            <button class="download disabled">
+                                                {{ $competence->getNumberOfReservationsAttribute() }}/{{ $competence->s_e_r_v_i_c_e->NBPERSONNESMAX }}👤
+                                            </button>
+                                        </div>
                                     </div>
-                                </form>
-                            @endforeach
+                                </div>
+                            </form>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
+
+<style>
+    .card {
+        position: relative;
+        width: auto;
+        height: auto;
+    }
+
+    img {
+        width: inherit;
+        border-radius: 10px;
+
+        transition: opacity 0.5s ease;
+    }
+
+    img:hover
+    {
+        opacity:75%;
+    }
+
+
+    .download{
+        position:absolute;
+        bottom:8%;
+        right:7%;
+        padding:10px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10%;
+        display: none;
+    }
+
+    .likes{
+        position:absolute;
+        bottom:8%;
+        left:7%;
+        padding:10px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10%;
+        display: none;
+    }
+    button:hover {
+        background-color: rgb(206, 206, 206);
+        color: black;
+    }
+
+    .card:hover button {
+        display: block;
+
+
+    }
+
+    .card:hover .additional-info {
+        opacity: 1;
+    }
+
+
+    .card:hover .reservation {
+        display: block;
+    }
+    .disabled {
+        pointer-events: none;
+
+    }
+
+</style>
