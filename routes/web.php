@@ -54,14 +54,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/cookie/trade', [CookieController::class,'echangeCookieMonnaie'])->name('tradeCookie');
 
 
-    Route::post('/evenementCinema/reserver', [ServicesController::class,'registerService'])->name('reserverCinema');
-    Route::post('/evenementSport/reserver', [ServicesController::class,'registerService'])->name('reserverSport');
-    Route::post('/echangeCompet/reserver', [ServicesController::class,'registerService'])->name('reserverEchangeCompet');
-    Route::post('/evenementConvoit/reserver', [ServicesController::class,'registerService'])->name('reserverConvoit');
-    Route::post('/evenementLoisir/reserver', [ServicesController::class,'registerService'])->name('reserverLoisir');
+    Route::post('/evenementService/reserver', [ServicesController::class,'registerService'])->name('reserverService');
+
 
     Route::get("/listeReservations",[ReservationsController::class,'getAllReservationByUser'])->name('getReservations');
-
+    Route::post('/annulerReservation',[ReservationsController::class,'annulerReservation'])->name("annulerReservation");
 
 });
 

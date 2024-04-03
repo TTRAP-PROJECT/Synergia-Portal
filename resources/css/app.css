@@ -72,7 +72,7 @@
 }
 
 .formInput {
-    background-color: rgb(43, 57, 77);   
+    background-color: rgb(43, 57, 77);
     border: 3px solid rgb(40, 53, 72);
     border-radius: 10px;
     margin: 5px;
@@ -85,3 +85,4 @@
     transition: background-color 0.5s;
     color: white;
 }
+

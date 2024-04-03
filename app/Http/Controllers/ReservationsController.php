@@ -35,5 +35,31 @@ class ReservationsController extends Controller
         }
     }
 
+    public function annulerReservation(Request $request)
+    {
+
+        if (Auth::check()) {
+
+            $reservationId = $request->input('idService');
+
+            $reservation = Reservation::find($reservationId);
+
+            if ($reservation) {
+
+                if ($reservation->IDACHETEUR === Auth::user()->IDUTILISATEUR) {
+
+                    $reservation->delete();
+
+                    return redirect()->route('getReservations')->with('success', 'La réservation a été annulée avec succès.');
+                } else {
+                    return redirect()->route('services')->with('error', 'Vous n\'êtes pas autorisé à annuler cette réservation.');
+                }
+            } else {
+                  return redirect()->route('services')->with('error', 'La réservation à annuler n\'existe pas.');
+            }
+        } else {
+               return redirect()->route('login')->with('error', 'Vous devez être connecté pour annuler une réservation.');
+        }
+    }
 
 }
