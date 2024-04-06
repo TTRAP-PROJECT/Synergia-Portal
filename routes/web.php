@@ -57,6 +57,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/evenementService/reserver', [ServicesController::class,'registerService'])->name('reserverService');
 
 
+    Route::get("/ValidationServices/{idService}",[ServicesController::class,'getInfoPourValidation'])->name("infoValidation");
+
+
     Route::get("/listeReservations",[ReservationsController::class,'getAllReservationByUser'])->name('getReservations');
     Route::post('/annulerReservation',[ReservationsController::class,'annulerReservation'])->name("annulerReservation");
 

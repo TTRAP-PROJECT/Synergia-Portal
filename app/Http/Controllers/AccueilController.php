@@ -83,17 +83,15 @@ class AccueilController extends Controller
     public function voteContre(Request $request, int $idSondage)
     {
         try {
-            // Vérifier si l'utilisateur est authentifié
+
             if (Auth::check()) {
-                // Récupérer l'ID de l'utilisateur authentifié
+
                 $userId = Auth::user()->getKey(); // Obtient l'ID de l'utilisateur
 
-                // Vérifier si l'utilisateur a déjà voté pour ce sondage
                 $voteExist = AvoteSondage::where('IDSONDAGE', $idSondage)
                     ->where('IDUTILISATEUR', $userId)
                     ->exists();
 
-                // Si l'utilisateur a déjà voté, renvoyer à la page précédente avec un message d'erreur
                 if ($voteExist) {
                     return redirect()->back()->withErrors(['error' => 'Vous avez déjà voté pour ce sondage.', 'idSondage' => $idSondage]);
                 }

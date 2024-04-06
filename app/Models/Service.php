@@ -92,6 +92,16 @@ class SERVICE extends Model
         return $this->belongsTo(Utilisateur::class, 'IDVENDEUR');
     }
 
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'IDSERVICE');
+    }
+
+    public function getNumberOfReservationsAttribute()
+    {
+        return $this->reservations()->count();
+    }
+
 
 
 }

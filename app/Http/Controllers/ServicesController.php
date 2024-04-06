@@ -146,4 +146,13 @@ class ServicesController extends Controller
     }
 
 
+    public function getInfoPourValidation($idService)
+    {
+        // Récupérer les données du service
+        $service = Service::find($idService);
+        // Retourner la vue validationService avec les données du service
+        return view('validationService', compact('service'));
+    }
+
+
 }
