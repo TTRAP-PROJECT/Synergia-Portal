@@ -62,4 +62,22 @@ class ReservationsController extends Controller
         }
     }
 
+
+    public function getInfoReservation($idReservation)
+    {
+        if (Auth::check()) {
+            $reservation = Reservation::find($idReservation);
+            if ($reservation) {
+                // If a reservation is found
+                return view('infoAjaxReservation', compact('reservation'));
+            } else {
+                // If no reservation is found
+                return "No reservation found with ID: " . $idReservation;
+            }
+        } else {
+            return redirect()->route('login')->with('error', 'Vous devez être connecté pour annuler une réservation.');
+        }
+    }
+
+
 }

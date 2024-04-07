@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get("/ValidationServices/{idService}",[ServicesController::class,'getInfoPourValidation'])->name("infoValidation");
 
-
+    Route::get("/informationReservation/{idReservation}",[ReservationsController::class,'getInfoReservation'])->name("infoReservation");
     Route::get("/listeReservations",[ReservationsController::class,'getAllReservationByUser'])->name('getReservations');
     Route::post('/annulerReservation',[ReservationsController::class,'annulerReservation'])->name("annulerReservation");
 
