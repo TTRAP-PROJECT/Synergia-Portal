@@ -48,6 +48,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/vote/pour/{idSondage}', [AccueilController::class, 'votePour'])->name('vote.pour');
     Route::post('/vote/contre/{idSondage}', [AccueilController::class, 'voteContre'])->name('vote.contre');
+    Route::get("/creerSondage",[AccueilController::class,'createSondageVue'])->name('create-sondage');
+    Route::get("/create-sondage",[AccueilController::class,'createSondage'])->name('create-sondageBDD');
+
 
     Route::get('/cookie', [CookieController::class,'index'])->name('pageCookie');
     Route::post('/cookie/click', [CookieController::class,'click'])->name('addCookie');

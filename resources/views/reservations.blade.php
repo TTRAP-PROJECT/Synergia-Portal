@@ -1,9 +1,9 @@
 <x-app-layout>
     <!-- component -->
 
-    <div class="flex flex-row">
+    <div class="flex flex-row ">
 
-        <section class="bg-white py-24 px-4 lg:px-16">
+        <section class="bg-gradient-to-tr from-slate-300 to-zinc-300 py-24 px-4 lg:px-16 ">
 
             <div class="container mx-auto px-[12px] md:px-24 xl:px-12 max-w-[1300px] nanum2 ">
                 <h1 class="text-3xl font-bold mb-10">Liste de vos réservations</h1>
@@ -14,7 +14,7 @@
                     @foreach($reservations as $reservation)
                         <div  data-reservation-id="{{ $reservation->IDRESERVATION }}" id="reservation" class="relative group h-48 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                             <div class="h-28">
-                                <div class="absolute -top-20 lg:top-[-10%] left-[5%] z-40 group-hover:top-[-60%] group-hover:opacity-[0.9] duration-300 w-[90%] h-48 bg-gradient-to-br from-orange-200 to-cyan-200 rounded-xl justify-items-center align-middle">
+                                <div class="absolute -top-20 lg:top-[-10%] left-[5%] z-40 group-hover:top-[-50%] group-hover:opacity-[0.9] duration-300 w-[90%] h-48 bg-gradient-to-br from-orange-200 to-cyan-200 rounded-xl justify-items-center align-middle">
                                     @if($reservation->service->typeService==1)
                                         <img src="/images/des-sports.png" class="w-36 h-36 mt-6 m-auto" alt="Automotive" title="Automotive" loading="lazy" width="200" height="200">
                                     @elseif($reservation->service->typeService==2)
@@ -47,7 +47,7 @@
             </div>
 
         </section>
-        <div id="maDiv" class=" mt-5 right-0">
+        <div id="maDiv" class=" mt-5 right-0 rounded">
             Cliquer sur votre réservation pour en afficher les détails !
         </div>
     </div>

@@ -17,7 +17,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-white-100 dark:bg-white-900">
+    <div class="min-h-screen bg-gradient-to-tr from-slate-300 to-zinc-300 dark:bg-white-900">
         @include('layouts.navigation')
 
         <!-- Page Heading -->

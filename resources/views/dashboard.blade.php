@@ -7,9 +7,18 @@
                     <div class="flex flex-row">
                         <div class="flex flex-col w-5/12">
                             <div class="border p-4">
-                                <h2 class="text-xl font-bold mb-4">Sondages</h2>
-@php
-if (count($sondages)==0){ echo "Aucun sondage en cours";}
+                                <form action="{{ route('create-sondage') }}" method="GET">
+                                    <div class="flex flex-row justify-between">
+                                        <h2 class="text-xl font-bold mb-4">Sondages</h2>
+                                        <button>
+                                            <svg class="h-8 w-8 text-white rounded bg-gray-300"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </form>
+                                @php
+                                if (count($sondages)==0){ echo "Aucun sondage en cours";}
                                 @endphp
                                 {{-- Affiche les sondages --}}
                                 @foreach ($sondages as $sondage)
