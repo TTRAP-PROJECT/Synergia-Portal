@@ -102,6 +102,11 @@ class SERVICE extends Model
         return $this->reservations()->count();
     }
 
+    public function hasReservations($userID)
+    {
+        return $this->reservations()->where('IDACHETEUR', $userID)->exists();
+    }
+
 
 
 }

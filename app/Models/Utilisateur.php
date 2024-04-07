@@ -111,4 +111,9 @@ class UTILISATEUR extends Authenticatable
 
         return $url;
     }
+
+    public function hasReservation($idService)
+    {
+        return $this->reservations()->where('IDACHETEUR', auth()->user()->IDUTILISATEUR)->exists();
+    }
 }
