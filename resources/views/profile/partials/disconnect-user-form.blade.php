@@ -3,7 +3,7 @@
     @method('post')
 
     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-        {{ __('Are you sure you want to log out ?') }}
+        {{ __('Etes-vous sur de vouloir vous déconnecter ?') }}
     </h2>
 
         <x-danger-button class="ms-3">
