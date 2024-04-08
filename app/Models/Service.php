@@ -34,6 +34,7 @@ class SERVICE extends Model
 	protected $table = 'SERVICES';
 	protected $primaryKey = 'IDSERVICE';
 	public $timestamps = false;
+    protected $idStatut = 'IDSTATUT';
 
     // cast : Type
 	protected $casts = [

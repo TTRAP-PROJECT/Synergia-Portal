@@ -31,20 +31,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="flex flex-row bg-gray-100 dark:bg-gray-700 px-2 mt-1 py-1 rounded-md text-gray-800 dark:text-gray-300">
-                    <!-- BARRE DE RECHERCHE -->
-                    <input type="text" placeholder="ne fonctionne pas encore"
-                           class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-md text-gray-800 dark:text-gray-300" />
-                    <a href="search">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-gray-300 pt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M15 11a4 4 0 11-8 0 4 4 0 018 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M21 21l-4.35-4.35" />
-                        </svg>
-                    </a>
-                </div>
             </div>
 
             <!-- Settings Dropdown -->

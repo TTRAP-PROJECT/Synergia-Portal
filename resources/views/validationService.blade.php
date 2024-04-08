@@ -33,8 +33,8 @@
                             @php
                                 $date = new DateTimeImmutable($service->DATEPREVUE)
                             @endphp
-                            <p class="mt-2">Le <strong>{{$date->format('d-m-Y')}}</strong></p>
-                            <p class="mt-2">A <strong>{{$date->format('H:i:s')}}</strong></p>
+                            <p class="mt-2">Le : <strong>{{$date->format('d-m-Y')}}</strong></p>
+                            <p class="mt-2">À : <strong>{{$date->format('H:i:s')}}</strong></p>
                         </div>
                     </div>
                     <dl class="mt-5 grid grid-cols-2 gap-8 border-t border-gray-900/10 pt-10 sm:grid-cols-2">
