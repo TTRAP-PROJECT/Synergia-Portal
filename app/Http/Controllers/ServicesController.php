@@ -9,6 +9,7 @@ use App\Models\EVENEMENTSPORTIF;
 use App\Models\LOISIR;
 use App\Models\Reservation;
 use App\Models\SERVICE;
+use App\Models\UTILISATEUR;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -121,28 +122,44 @@ class ServicesController extends Controller
 
     public function registerService(Request $request)
     {
+        $user = new UTILISATEUR();
         $service = $request->input('idService');
 
         $nbMaxPersService = Service::find($service)->NBPERSONNESMAX;
         $nbActuelPersService = Reservation::where('IDSERVICE', $service)->count();
 
         $message = "";
+        $erreur = false;
         $success = false;
 
-        if ($nbActuelPersService < $nbMaxPersService) {
-            $idUser = Auth::user()->IDUTILISATEUR;
-
-            $reserver = new Reservation;
-            $reserver->IDACHETEUR = $idUser;
-            $reserver->IDSERVICE = $service;
-            $reserver->save();
-            $success = true;
-            $message = "Vous avez réservé votre place pour : " . Service::find($service)->LIBELLESERVICE;
-        } else {
-            $message = "Ce service a déjà atteint le nombre maximum de participants";
+        if(auth()->user()->SOLDE < Service::find($service)->prix)
+        {
+            $message = "Vous n'avez pas assez de solde pour réserver ce service";
+            $erreur = true;
         }
+        if(Service::find($service)->hasReservations(Auth::user()->IDUTILISATEUR)) {
+            $message = "Vous avez déjà réservé ce service";
+            $erreur = true;
+        }
+        if(Service::find($service)->IDVENDEUR == Auth::user()->IDUTILISATEUR) {
+            $message = "Vous ne pouvez pas réserver votre propre service";
+            $erreur = true;
+        }
+        if (!$erreur){
+            if ($nbActuelPersService < $nbMaxPersService) {
+                $idUser = Auth::user()->IDUTILISATEUR;
 
-        return redirect()->route('services')->with(compact('success', 'message'));
+                $reserver = new Reservation;
+                $reserver->IDACHETEUR = $idUser;
+                $reserver->IDSERVICE = $service;
+                $reserver->save();
+                $success = true;
+                $message = "Vous avez réservé votre place pour : " . Service::find($service)->LIBELLESERVICE;
+            } else {
+                $message = "Ce service a déjà atteint le nombre maximum de participants";
+            }
+        }
+            return redirect()->route('services')->with(compact('success', 'message'));
     }
 
 
