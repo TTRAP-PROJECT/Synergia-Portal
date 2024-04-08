@@ -8,7 +8,9 @@
             <div class="container mx-auto px-[12px] md:px-24 xl:px-12 max-w-[1300px] nanum2 ">
                 <h1 class="text-3xl font-bold mb-10">Liste de vos réservations</h1>
                 <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-28 lg:gap-y-16">
-
+                    @if($reservations->isEmpty())
+                        <div class="text-center text-2xl font-bold text-gray-700">Ici apparaîtront vos réservations.</div>
+                    @endif
                     @foreach($reservations as $reservation)
                         <div  data-reservation-id="{{ $reservation->IDRESERVATION }}" id="reservation" class="relative group h-48 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                             <div class="h-28">
