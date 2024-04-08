@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Sondage extends Model
 {
@@ -19,5 +20,15 @@ class Sondage extends Model
     public function votes()
     {
         return $this->hasMany(AvoteSondage::class, 'IDSONDAGE', 'IDSONDAGE');
+    }
+
+    // Scope pour récupérer uniquement les sondages actifs
+    public function scopeActif($query)
+    {
+        // Date actuelle
+        $now = Carbon::now()->toDateString();
+
+        return $query->where('DATEDEBUT', '<=', $now)
+            ->where('DATEFIN', '>=', $now);
     }
 }

@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class EVENEMENTSPORTIF
  *
  * @property int $IDSERVICE
- * @property int $IDSPORT
+ * @property string $LIBELLESPORT
  * @property Carbon $DATEEVENT
  *
  * @property SERVICE $s_e_r_v_i_c_e
@@ -30,12 +30,12 @@ class EVENEMENTSPORTIF extends Model
 
 	protected $casts = [
 		'IDSERVICE' => 'int',
-		'IDSPORT' => 'int',
+		'SPORT' => 'string',
 		'DATEEVENT' => 'datetime'
 	];
 
 	protected $fillable = [
-		'IDSPORT',
+		'LIBELLESPORT',
 		'DATEEVENT'
 	];
 
@@ -46,11 +46,25 @@ class EVENEMENTSPORTIF extends Model
 
 	public function s_p_o_r_t()
 	{
-		return $this->belongsTo(SPORT::class, 'IDSPORT');
+		return $this->belongsTo(SPORT::class, 'LIBELLESPORT');
 	}
 
     public function sport()
     {
-        return $this->belongsTo(SPORT::class, 'IDSPORT', 'IDSPORT');
+        return $this->belongsTo(SPORT::class, 'LIBELLESPORT', 'LIBELLESPORT');
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'IDSERVICE');
+    }
+
+    public function getNumberOfReservationsAttribute()
+    {
+        return $this->reservations()->count();
+    }
+    public function hasReservations($userID)
+    {
+        return $this->reservations()->where('IDACHETEUR', $userID)->exists();
     }
 }

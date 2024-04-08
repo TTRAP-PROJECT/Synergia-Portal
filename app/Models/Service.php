@@ -11,11 +11,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SERVICE
- * 
+ *
  * @property int $IDSERVICE
  * @property int $IDSTATUT
  * @property string $LIBELLESERVICE
- * 
+ * @property int $typeService
+ * @property int $prix
+ * @property string $description
+ *
  * @property STATUTSERVICE $s_t_a_t_u_t_s_e_r_v_i_c_e
  * @property Collection|ANNONCE[] $a_n_n_o_n_c_e_s
  * @property CINEMA $c_i_n_e_m_a
@@ -31,14 +34,23 @@ class SERVICE extends Model
 	protected $table = 'SERVICES';
 	protected $primaryKey = 'IDSERVICE';
 	public $timestamps = false;
+    protected $idStatut = 'IDSTATUT';
 
+    // cast : Type
 	protected $casts = [
-		'IDSTATUT' => 'int'
+		'IDSTATUT' => 'int',
+        'typeService' => 'int',
+        'prix' => 'int',
+        'description' => 'string'
 	];
 
+    // fillable : remplissable
 	protected $fillable = [
 		'IDSTATUT',
-		'LIBELLESERVICE'
+		'LIBELLESERVICE',
+        'typeService',
+        'prix',
+        'description'
 	];
 
 	public function s_t_a_t_u_t_s_e_r_v_i_c_e()
@@ -75,4 +87,27 @@ class SERVICE extends Model
 	{
 		return $this->hasOne(LOISIR::class, 'IDSERVICE');
 	}
+
+    public function vendeur()
+    {
+        return $this->belongsTo(Utilisateur::class, 'IDVENDEUR');
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'IDSERVICE');
+    }
+
+    public function getNumberOfReservationsAttribute()
+    {
+        return $this->reservations()->count();
+    }
+
+    public function hasReservations($userID)
+    {
+        return $this->reservations()->where('IDACHETEUR', $userID)->exists();
+    }
+
+
+
 }

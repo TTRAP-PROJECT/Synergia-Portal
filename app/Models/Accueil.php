@@ -51,6 +51,7 @@ class ACCUEIL extends Model
             }
             if($sondages==null){
                 $sondages=[];
+
             }
 
             // Maintenant, vous pouvez utiliser $donnees pour afficher les données dans votre écran Laravel
@@ -60,7 +61,6 @@ class ACCUEIL extends Model
             // Exemple : return view('erreur_vue');
             return view('error', array('message' => 'Erreur lors de la récupération des données'));
         }
-
         return view('dashboard', compact('donnees','sondages'));
     }
 }

@@ -17,18 +17,20 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-white-100 dark:bg-white-900">
+    <div class="min-h-screen bg-gradient-to-tr from-slate-300 to-zinc-300 dark:bg-white-900">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
         <header class="bg-white dark:bg-white-800 shadow">
-            <div class="flex justify-around">
-                <a href="{{ route('cours') }}" class="text-blue-900 font-bold">Cours</a>
-                <a href="{{ route('covoiturage') }}" class="text-blue-900 font-bold">Covoiturage</a>
-                <a href="{{ route('evenements') }}" class="text-blue-900 font-bold">Evenements</a>
-                <a href="{{ route('espace_pro') }}" class="text-blue-900 font-bold">Espace Pro</a>
+            <div class="flex justify-around py-6"> <!-- Ajout de l'espace en haut et en bas -->
+
+                <a href="{{ route('services') }}" class="text-blue-900 font-bold text-xl">Services</a>
+                <a href="{{ route('espace_pro') }}" class="text-blue-900 font-bold text-xl">Espace Pro</a>
+                <a href="{{ route('getReservations') }}" class="text-blue-900 font-bold text-xl">Reservations</a>
+                <a href="{{ route('pageCookie') }}" class="text-blue-900 font-bold text-xl">Espace Cookie</a>
             </div>
         </header>
+
 
         <!-- Page Content -->
         <main>

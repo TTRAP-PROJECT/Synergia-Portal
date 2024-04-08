@@ -1,0 +1,63 @@
+
+.card {
+    position: relative;
+    width: auto;
+    height: auto;
+}
+
+img {
+    width: inherit;
+    border-radius: 10px;
+
+    transition: opacity 0.5s ease;
+}
+
+img:hover
+{
+    opacity:75%;
+}
+
+
+.download{
+    position:absolute;
+    bottom:8%;
+    right:7%;
+    padding:10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10%;
+    display: none;
+}
+
+.likes{
+    position:absolute;
+    bottom:8%;
+    left:7%;
+    padding:10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10%;
+    display: none;
+}
+button:hover {
+    background-color: rgb(206, 206, 206);
+    color: black;
+}
+
+.card:hover button {
+    display: block;
+
+
+}
+
+.card:hover .additional-info {
+    opacity: 1;
+}
+
+
+.card:hover .reservation {
+    display: block;
+}
+.disabled {
+    pointer-events: none;
+
+}
+

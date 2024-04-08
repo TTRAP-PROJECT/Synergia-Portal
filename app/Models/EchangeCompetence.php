@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class ECHANGECOMPETENCE
- * 
+ *
  * @property int $IDSERVICE
- * @property int $IDMATIERE
+ * @property string $MATIERE
  * @property int $IDNIVEAU
- * 
+ *
  * @property COUR $c_o_u_r
  * @property NIVEAU $n_i_v_e_a_u
  * @property SERVICE $s_e_r_v_i_c_e
@@ -30,27 +30,42 @@ class ECHANGECOMPETENCE extends Model
 
 	protected $casts = [
 		'IDSERVICE' => 'int',
-		'IDMATIERE' => 'int',
+		'MATIERE' => 'string',
 		'IDNIVEAU' => 'int'
 	];
 
 	protected $fillable = [
-		'IDMATIERE',
+		'MATIERE',
 		'IDNIVEAU'
 	];
 
 	public function c_o_u_r()
 	{
-		return $this->belongsTo(COUR::class, 'IDMATIERE');
+		return $this->belongsTo(Cour::class, 'MATIERE');
 	}
 
 	public function n_i_v_e_a_u()
 	{
-		return $this->belongsTo(NIVEAU::class, 'IDNIVEAU');
+		return $this->belongsTo(Niveau::class, 'IDNIVEAU');
 	}
 
 	public function s_e_r_v_i_c_e()
 	{
-		return $this->belongsTo(SERVICE::class, 'IDSERVICE');
+		return $this->belongsTo(Service::class, 'IDSERVICE');
 	}
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'IDSERVICE');
+    }
+
+    public function getNumberOfReservationsAttribute()
+    {
+        return $this->reservations()->count();
+    }
+    public function hasReservations($userID)
+    {
+        return $this->reservations()->where('IDACHETEUR', $userID)->exists();
+    }
+
 }
