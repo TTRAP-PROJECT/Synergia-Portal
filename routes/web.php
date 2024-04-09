@@ -7,9 +7,9 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\ServicesController;
-use App\Models\ACCUEIL;
-use App\Models\COUR;
-use App\Models\ECHANGECOMPETENCE;
+use App\Models\Accueil;
+use App\Models\Cour;
+use App\Models\EchangeCompetence;
 use Illuminate\Support\Facades\Route;
 
 /*
