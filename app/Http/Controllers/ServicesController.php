@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CINEMA;
-use App\Models\COVOITURAGE;
-use App\Models\ECHANGECOMPETENCE;
-use App\Models\EVENEMENTSPORTIF;
-use App\Models\LOISIR;
+use App\Models\Cinema;
+use App\Models\Covoiturage;
+use App\Models\EchangeCompetence;
+use App\Models\EvenementSportif;
+use App\Models\Loisir;
 use App\Models\Reservation;
-use App\Models\SERVICE;
-use App\Models\UTILISATEUR;
+use App\Models\Service;
+use App\Models\Utilisateur;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
