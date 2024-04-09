@@ -46,12 +46,12 @@ class EVENEMENTSPORTIF extends Model
 
 	public function s_p_o_r_t()
 	{
-		return $this->belongsTo(SPORT::class, 'LIBELLESPORT');
+		return $this->belongsTo(Sport::class, 'LIBELLESPORT');
 	}
 
     public function sport()
     {
-        return $this->belongsTo(SPORT::class, 'LIBELLESPORT', 'LIBELLESPORT');
+        return $this->belongsTo(Sport::class, 'LIBELLESPORT', 'LIBELLESPORT');
     }
 
     public function reservations()
