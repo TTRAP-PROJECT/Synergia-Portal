@@ -4,12 +4,14 @@ use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\CookieController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ModerationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\ServicesController;
 use App\Models\Accueil;
 use App\Models\Cour;
 use App\Models\EchangeCompetence;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,6 +68,14 @@ Route::middleware('auth')->group(function () {
     Route::get("/listeReservations",[ReservationsController::class,'getAllReservationByUser'])->name('getReservations');
     Route::post('/annulerReservation',[ReservationsController::class,'annulerReservation'])->name("annulerReservation");
 
+
+
+    Route::get("/moderation",[ModerationController::class,"index"])->name("moderation");
+    Route::post("/desactiverService",[ModerationController::class,"desactiverService"])->name("desactiverService");
+
 });
+
+
+
 
 require __DIR__.'/auth.php';

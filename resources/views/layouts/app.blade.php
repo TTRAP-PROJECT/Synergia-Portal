@@ -11,7 +11,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -25,7 +25,10 @@
             <div class="flex justify-around py-6"> <!-- Ajout de l'espace en haut et en bas -->
 
                 <a href="{{ route('services') }}" class="text-blue-900 font-bold text-xl">Services</a>
-                <a href="{{ route('espace_pro') }}" class="text-blue-900 font-bold text-xl">Espace Pro</a>
+
+                    @if (auth()->user()->hasPermission(1))
+                        <a href="{{ route('moderation') }}" class="text-blue-900 font-bold text-xl">Modération</a>
+                @endif
                 <a href="{{ route('getReservations') }}" class="text-blue-900 font-bold text-xl">Reservations</a>
                 <a href="{{ route('pageCookie') }}" class="text-blue-900 font-bold text-xl">Espace Cookie</a>
             </div>

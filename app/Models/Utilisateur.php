@@ -116,4 +116,9 @@ class UTILISATEUR extends Authenticatable
     {
         return $this->reservations()->where('IDACHETEUR', auth()->user()->IDUTILISATEUR)->exists();
     }
+
+    public function hasPermission($IDPERMISSION)
+    {
+        return $this->a_u_t_o_r_i_s_e_r_s()->where('IDPERMISSION', $IDPERMISSION)->exists();
+    }
 }
