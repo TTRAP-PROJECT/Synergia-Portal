@@ -32,7 +32,7 @@ class ModerationController extends Controller
         $nbReserv30 = Reservation::where('DATETRANSACTION', '>=', $maintenant->subMonth())->count();
 
         $services = SERVICE::orderBy('DATEPUBLICATION', 'desc')->paginate(10);
-        $logs = LogsPayement::orderBy('DATEPAYEMENT', 'desc')->get();
+        $logs = LogsPayement::orderBy('DATEPAYEMENT', 'desc')->paginate(20);
 
         return view('moderation.moderationPage',
             compact('services', 'allServices', 'logs',
@@ -42,18 +42,41 @@ class ModerationController extends Controller
 
 
 
-    public function desactiverService(Request $request)
+    public function changerStatutService(Request $request)
     {
-        $service=SERVICE::find($request->input('idService'));
-        if (empty($service))
-        {
-            return redirect()->route('moderation')->with("error', 'Le service spécifié n'existe pas");
-        }
-        else
-        {
-            $service->IDSTATUT=4;
+        // Récupérer l'ID du service et le nouveau statut depuis la requête
+        $idService = $request->input('idService');
+        $nouveauStatut = $request->input('nouveauStatut');
+
+        // Rechercher le service correspondant dans la base de données
+        $service = Service::find($idService);
+
+        // Vérifier si le service existe
+        if (empty($service)) {
+            // Rediriger avec un message d'erreur si le service n'existe pas
+            return redirect()->route('moderation')->with("error", "Le service spécifié n'existe pas");
+        } else {
+            // Mettre à jour le statut du service
+            $service->IDSTATUT = $nouveauStatut;
             $service->save();
-            return redirect()->route('moderation')->with("sucess', 'Le service a été désactiver");
+
+            // Déterminer le message en fonction du nouveau statut
+            switch ($nouveauStatut) {
+                case 1:
+                    $message = "Le service a été activé";
+                    break;
+                case 3:
+                    $message = "Le service a été mis en attente";
+                    break;
+                case 4:
+                    $message = "Le service a été désactivé";
+                    break;
+                default:
+                    $message = "Statut invalide";
+            }
+
+            // Rediriger avec un message de succès
+            return redirect()->route('moderation')->with("success", $message);
         }
     }
 }

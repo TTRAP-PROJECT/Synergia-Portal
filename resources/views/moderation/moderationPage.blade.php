@@ -36,19 +36,19 @@
             <!-- Barra lateral de navegación (oculta en dispositivos pequeños) -->
             <div class="p-2 bg-white w-full md:w-60 flex flex-col md:flex hidden" id="sideNav">
                 <nav>
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#">
+                    <!-- Liens avec ancres pour la navigation sur la même page -->
+                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white " href="#graphiques">
                         <i class="fas fa-home mr-2"></i>Graphiques des réservations
                     </a>
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#">
+                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#nombre-reservations">
                         <i class="fas fa-home mr-2"></i>Nombre de réservations
                     </a>
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#">
+                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#services-utilisateurs">
                         <i class="fas fa-file-alt mr-2"></i>Services des utilisateurs
                     </a>
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#">
+                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#transactions">
                         <i class="fas fa-users mr-2"></i>Transaction
                     </a>
-
                 </nav>
 
                 <!-- Ítem de Cerrar Sesión -->
@@ -67,7 +67,7 @@
 
                 <div class="mt-2 flex flex-wrap space-x-0 space-y-2 md:space-x-4 md:space-y-0">
 
-                    <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
+                    <div id="graphiques" class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
                         <h2 class="text-gray-500 text-lg font-semibold pb-1">Graphiques des services</h2>
                         <div class="my-1"></div>
                         <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
@@ -77,7 +77,7 @@
                         </div>
                     </div>
 
-                    <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
+                    <div id="nombre-reservations" class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
                         <h2 class="text-gray-500 text-lg font-semibold pb-1">Nombre de réservations</h2>
                         <div class="my-1"></div> <!-- Espacio de separación -->
                         <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
@@ -94,13 +94,14 @@
 
                 <!-- Tercer contenedor debajo de los dos anteriores -->
                 <!-- Sección 3 - Tabla de Autorizaciones Pendientes -->
-                <div class="mt-8 bg-white p-4 shadow rounded-lg">
+                <div id="services-utilisateurs" class="mt-8 bg-white p-4 shadow rounded-lg">
                     <h2 class="text-gray-500 text-lg font-semibold pb-4">Services des utilisateurs</h2>
                     <div class="my-1"></div> <!-- Espacio de separación -->
                     <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
                     <table class="w-full table-auto text-sm">
                         <thead>
                         <tr class="text-sm leading-normal">
+                            <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Info</th>
                             <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Icone</th>
                             <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Vendeur</th>
                             <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Service</th>
@@ -110,14 +111,15 @@
                         </thead>
                         <tbody >
                             @foreach ($services as $service)
-                                <form action="{{ route('desactiverService') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{ $service->IDSERVICE }}" name="idService"/>
+
                                     @if($service->IDSTATUT==4)
-                                        <tr class="hover:bg-grey-lighter bg-red-300">
-                                    @else
-                                        <tr class="hover:bg-grey-lighter">
+                                        <tr class="hover:bg-grey-lighter bg-red-200">
+                                    @elseif($service->IDSTATUT==3)
+                                        <tr class="hover:bg-grey-lighter bg-orange-200">
                                     @endif
+                                        <td>
+                                            <button class="ml-5 item-center middle none center flex justify-center rounded-lg bg-gray-200 p-3 font-sans text-xs font-bold uppercase text-black shadow-md transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none expand-button" data-ripple-light="true" style="position: relative; overflow: hidden;">…</button>
+                                        </td>
                                         <td class="py-2 px-4 border-b border-grey-light">
                                             <img src="{{ $service->vendeur->gravatar(200) }}" alt="Gravatar" width="40" height="40">
                                         </td>
@@ -129,8 +131,31 @@
                                             $date = new DateTimeImmutable($service->DATEPUBLICATION )
                                         @endphp
                                         <td class="py-2 px-4 border-b border-grey-light">Le {{ $date->format('d-m-Y')." à ".$date->format('H')."h".$date->format('m') }}  </td>
-                                        <td><div class="item-center middle none center flex justify-center rounded-lg bg-gray-500 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none expand-button" data-ripple-light="true" style="position: relative; overflow: hidden;">…</div></td>
-                                        <td><button class="item-center middle none center flex justify-center rounded-lg bg-red-500 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true" style="position: relative; overflow: hidden;">X</button></td>
+                                            <td class="py-2 px-4 border-b border-grey-light">
+                                                    <div class="flex flex-row">
+                                                    <!-- Formulaire pour mettre l'IDSTATUT à 1 -->
+                                                    <form action="{{ route('changerStatutService', ['idService' => $service->IDSERVICE, 'nouveauStatut' => 1]) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="bg-gray-300 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-1">
+                                                            ✔️
+                                                        </button>
+                                                    </form>
+                                                    <!-- Formulaire pour mettre l'IDSTATUT à 3 -->
+                                                    <form action="{{ route('changerStatutService', ['idService' => $service->IDSERVICE, 'nouveauStatut' => 3]) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="bg-gray-400 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mr-1">
+                                                            🤝
+                                                        </button>
+                                                    </form>
+                                                    <!-- Formulaire pour mettre l'IDSTATUT à 4 -->
+                                                    <form action="{{ route('changerStatutService', ['idService' => $service->IDSERVICE, 'nouveauStatut' => 4]) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="bg-gray-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                                            ❌
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
                                     </tr>
                                     <tr class="hidden ">
                                         <td colspan="6" class="border-b border-grey-light"> <!-- Ajoutez une cellule vide avec colspan="6" pour aligner les données supplémentaires -->
@@ -149,7 +174,6 @@
 
                                         </td>
                                     </tr>
-                                </form>
                             @endforeach
                         </tbody>
                     </table>
@@ -164,7 +188,7 @@
 
                 <!-- Cuarto contenedor -->
                 <!-- Sección 4 - Tabla de Transacciones -->
-                <div class="mt-8 bg-white p-4 shadow rounded-lg">
+                <div id="transactions" class="mt-8 bg-white p-4 shadow rounded-lg">
                     <div class="bg-white p-4 rounded-md mt-4">
                         <h2 class="text-gray-500 text-lg font-semibold pb-4">Transaction</h2>
                         <div class="my-1"></div> <!-- Espacio de separación -->
@@ -191,6 +215,10 @@
                             </tbody>
                         </table>
 
+                        <div class="mt-4">
+                            {{ $logs->links() }}
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -210,6 +238,9 @@
         background-color: #4a4a4a; /* Couleur de fond au survol */
         color: #ffffff; /* Couleur de texte au survol */
     }
+
+
+
 </style>
     <!-- Script para las gráficas -->
     <script>

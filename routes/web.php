@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get("/moderation",[ModerationController::class,"index"])->name("moderation");
-    Route::post("/desactiverService",[ModerationController::class,"desactiverService"])->name("desactiverService");
+    Route::post("/changerStatutService",[ModerationController::class,"changerStatutService"])->name("changerStatutService");
 
 });
 
