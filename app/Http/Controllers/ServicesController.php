@@ -56,8 +56,8 @@ class ServicesController extends Controller
 
         $service = new SERVICE();
         $service->IDSTATUT = 1;
-        $service->LIBELLESERVICE = $libelleService;
-        $service->description = $request->input('description');
+        $service->LIBELLESERVICE = e($request->input('nom'));
+        $service->description = $request->input('description'); 
         $service->prix = $request->input('prix');
         $service->lieu_service = $request->input('lieu');
         $service->IDVENDEUR = $idVendeur;
@@ -114,11 +114,9 @@ class ServicesController extends Controller
             default:
                 break;
         }
-
-        // Service : IDSERVICE, IDSTATUT, LIBELLESERVICE, typeService, description, lieu_service, prix, idVendeur, idModerateur, datePublication, datePrevue, nbPersonneMax
-
-        return redirect()->route('services');
-    }
+        $success = true;
+        $message = "Votre service a bien été ajouté";
+        return redirect()->route('services')->with(compact('success', 'message'));    }
 
     public function registerService(Request $request)
     {

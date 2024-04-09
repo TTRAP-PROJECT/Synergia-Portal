@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="style_service.css">
+<script src="service.js"></script>
 <x-app-layout>
     @if(session('success') !== null)
         @if(session('success')==true)
@@ -12,21 +13,59 @@
         @endif
     @endif
     <div class="grid grid-cols-3 gap-4">
-        <div
-            class="flex flex-row bg-gray-100 dark:bg-gray-700 px-2 mt-1 py-1 rounded-md text-gray-800 dark:text-gray-300">
-            <!-- BARRE DE RECHERCHE -->
-            <input type="text" placeholder="ne fonctionne pas encore"
-                   class="bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-md text-gray-800 dark:text-gray-300"/>
-            <a href="search">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-gray-300 pt-1"
-                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M15 11a4 4 0 11-8 0 4 4 0 018 0z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M21 21l-4.35-4.35"/>
-                </svg>
-            </a>
+        <div>
+            <div class='mx-5 mt-10 w-1/2'>
+                <div class="relative flex items-center w-50 h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+                    <div class="grid place-items-center h-full w-12 text-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+
+                    <input
+                        class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+                        type="text"
+                        id="searchbar"
+                        placeholder="Recherche..." />
+                </div>
+            </div>
+            <div>
+                <form action="">
+                    <div class="form-group flex flex-col m-5">
+                        <label for="services">Type de service</label>
+                        <div>
+                            <input type="checkbox" name="services" value="all" id="services0" onload="all()">
+                            <label for="services0">Tout afficher</label><br>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="services" value="cinema" id="services1">
+                            <label for="services1">Cinéma</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="services" value="covoiturage" id="services2">
+                            <label for="services2">Covoiturage</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="services" value="competence" id="services3">
+                            <label for="services3">Échange de compétence</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="services" value="sport" id="services4">
+                            <label for="services4">Évènement sportif</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="services" value="loisir" id="services5">
+                            <label for="services5">Loisir</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="services" value="autre" id="services6">
+                            <label for="services6">Autre</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
+
         <div
             class="form p-6 py-12 w-full max-w-7xl my-5 mx-auto sm:px-6 lg:px-8 bg-gray-400 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg text-gray-900 dark:text-gray-100">
 
@@ -267,7 +306,8 @@
             @if($evenementCinemaData->s_e_r_v_i_c_e->IDSTATUT == 1)
                 {{--                                        <form action="{{ route('reserverService') }}" method="POST">--}}
                 @csrf
-                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-blue-500 rounded-lg max-w-xs shadow-lg">
+                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-blue-500 rounded-lg max-w-xs shadow-lg cinema"
+                     name="cinema">
                     <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
                          style="transform: scale(1.5); opacity: 0.1;">
                         <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
@@ -315,7 +355,8 @@
                 {{--                                        <form action="{{ route('reserverService') }}" method="POST">--}}
                 @csrf
 
-                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-red-500 rounded-lg max-w-xs shadow-lg">
+                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-red-500 rounded-lg max-w-xs shadow-lg sport"
+                     name="sport">
                     <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
                          style="transform: scale(1.5); opacity: 0.1;">
                         <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
@@ -361,7 +402,8 @@
             @if($covoituragesData->s_e_r_v_i_c_e->IDSTATUT == 1)
                 {{--                                        <form action="{{ route('reserverService') }}" method="POST">--}}
                 @csrf
-                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-green-500 rounded-lg max-w-xs shadow-lg">
+                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-green-500 rounded-lg max-w-xs shadow-lg covoiturage"
+                     name="covoiturage">
                     <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
                          style="transform: scale(1.5); opacity: 0.1;">
                         <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
@@ -402,7 +444,8 @@
             @if($competence->s_e_r_v_i_c_e->IDSTATUT == 1)
                 {{--                                        <form action="{{ route('reserverService') }}" method="POST">--}}
                 @csrf
-                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-orange-500 rounded-lg max-w-xs shadow-lg">
+                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-orange-500 rounded-lg max-w-xs shadow-lg competence"
+                     name="competence">
                     <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
                          style="transform: scale(1.5); opacity: 0.1;">
                         <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
@@ -443,7 +486,8 @@
             @if($loisir->s_e_r_v_i_c_e->IDSTATUT == 1)
                 {{--                                        <form action="{{ route('reserverService') }}" method="POST">--}}
                 @csrf
-                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-purple-500 rounded-lg max-w-xs shadow-lg">
+                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-purple-500 rounded-lg max-w-xs shadow-lg loisir"
+                     name="loisir">
                     <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
                          style="transform: scale(1.5); opacity: 0.1;">
                         <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
