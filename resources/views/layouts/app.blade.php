@@ -37,23 +37,6 @@
     </main>
 </div>
 
-<script>
-    // JavaScript code for dynamic background gradient
-    function updateBackground() {
-        var colors = ["#slate-300", "#zinc-300", "#white-900"]; // List of colors to cycle through
-        var currentIndex = 0; // Current index of the color array
-        var interval = 5000; // Interval in milliseconds
-
-        setInterval(function() {
-            // Update the background gradient colors
-            document.getElementById("dynamic-bg").style.background = "linear-gradient(to top right, " + colors[currentIndex] + ")";
-            currentIndex = (currentIndex + 1) % colors.length; // Increment index and loop back to the beginning if necessary
-        }, interval);
-    }
-
-    // Call the function to start updating the background gradient
-    updateBackground();
-</script>
 </body>
 
 
