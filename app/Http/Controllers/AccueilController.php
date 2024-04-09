@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Annonce;
 use App\Models\AvoteSondage;
-use App\Models\CINEMA;
-use App\Models\EVENEMENTSPORTIF;
+
 use App\Models\POSTER_SONDAGE;
+use App\Models\Cinema;
+use App\Models\EvenementSportif;
 use App\Models\Sondage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CINEMA;
-use App\Models\EVENEMENTSPORTIF;
+use App\Models\Cinema;
+use App\Models\EvenementSportif;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
