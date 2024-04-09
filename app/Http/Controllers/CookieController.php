@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Importez la facade Auth
-use App\Models\UTILISATEUR; // Assurez-vous d'importer le modèle User
+use App\Models\Utilisateur; // Assurez-vous d'importer le modèle User
 
 class CookieController extends Controller
 {
