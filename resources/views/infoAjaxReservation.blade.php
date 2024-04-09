@@ -36,13 +36,13 @@
             <!-- Example Received Message -->
             <div class="flex">
                 <div class="bg-gray-300 text-black p-2 rounded-lg max-w-xs">
-                    Bonjour,{{Auth::user()->PRENOMUTILISATEUR}} ! Qu'est ce que vous souhaitez ?
+                    Bonjour,<strong>{{Auth::user()->PRENOMUTILISATEUR}}</strong> ! Qu'est ce que vous souhaitez ?
                 </div>
             </div>
             <!-- Example Message -->
             <div class="flex justify-end">
                 <div class="bg-blue-200 text-black p-2 rounded-lg max-w-xs">
-                    J'aimerai réserver "{{$reservation->service->LIBELLESERVICE}}" !
+                    J'aimerai réserver "<strong>{{$reservation->service->LIBELLESERVICE}}</strong>" !
                 </div>
             </div>
             @php
@@ -51,7 +51,7 @@
             <!-- Example Received Message -->
             <div class="flex">
                 <div class="bg-gray-300 text-black p-2 rounded-lg max-w-xs">
-                    Bien sur, cela se déroulera le {{ $date->format('d-m-Y')}} à {{$date->format('H:i:s')}}.
+                    Bien sur, cela se déroulera le <strong>{{ $date->format('d-m-Y')}}</strong> à <strong>{{$date->format('H:i:s')}}</strong>.
                 </div>
             </div>
             <!-- Example Message -->
@@ -64,7 +64,7 @@
             <!-- Example Received Message -->
             <div class="flex">
                 <div class="bg-gray-300 text-black p-2 rounded-lg max-w-xs">
-                    {{$reservation->service->prix}}💰 TTC. Mais faites vite il y a du monde qui souhaitent venir !
+                    <strong>{{$reservation->service->prix}}💰</strong> TTC. Mais faites vite il y a du monde qui souhaitent venir !
                 </div>
             </div>
             <!-- Example Message -->
@@ -77,13 +77,13 @@
             <!-- Example Received Message -->
             <div class="flex">
                 <div class="bg-gray-300 text-black p-2 rounded-lg max-w-xs">
-                    {{ $reservation->service->getNumberOfReservationsAttribute() }}/{{ $reservation->service->NBPERSONNESMAX }}👤.
+                    <strong>{{ $reservation->service->getNumberOfReservationsAttribute() }}/{{ $reservation->service->NBPERSONNESMAX }}👤</strong>.
                 </div>
             </div>
             <!-- Example Message -->
             <div class="flex justify-end">
                 <div class="bg-blue-200 text-black p-2 rounded-lg max-w-xs">
-                    Oula ! On se donne vite rendez-vous à {{$reservation->service->LIEU_SERVICE}} alors !
+                    Oula ! On se donne vite rendez-vous à <strong>{{$reservation->service->LIEU_SERVICE}}</strong> alors !
                 </div>
             </div>
 

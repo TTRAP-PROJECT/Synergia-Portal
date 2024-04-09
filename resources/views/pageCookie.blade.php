@@ -97,7 +97,7 @@
             document.getElementById('transactionButton1000').addEventListener('mouseleave', resetTransactionText);
 
             document.getElementById('transactionButton1000').addEventListener('mouseover', function() {
-                document.getElementById('transactionText1000').innerText = '1000🍪 ⮕ 1💰';
+                document.getElementById('transactionText1000').innerText = '1000🍪 ⮕ 10💰';
             });
             document.getElementById('transactionButton1000').addEventListener('mouseleave', function() {
                 document.getElementById('transactionText1000').innerText = 'Echanger 1.000🍪';
@@ -108,7 +108,7 @@
             });
 
             document.getElementById('transactionButton10000').addEventListener('mouseover', function() {
-                document.getElementById('transactionText10000').innerText = '10000🍪 ⮕ 10💰';
+                document.getElementById('transactionText10000').innerText = '10000🍪 ⮕ 100💰';
             });
 
 

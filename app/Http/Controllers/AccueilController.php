@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Annonce;
 use App\Models\AvoteSondage;
+
+use App\Models\POSTER_SONDAGE;
 use App\Models\Cinema;
 use App\Models\EvenementSportif;
 use App\Models\Sondage;
@@ -65,7 +67,7 @@ class AccueilController extends Controller
                     'IDUTILISATEUR' => $userId,
                     'AVIS' => 'POUR' // Ou 'CONTRE' selon le cas
                 ]);
-
+                Auth::user()->increment('SOLDE', 10);
                 // Redirection vers le tableau de bord avec un message de succès
                 return redirect()->route('dashboard')->with('success', 'Votre vote a été enregistré avec succès.')->with('idSondage', $idSondage);
             } else {
@@ -103,6 +105,7 @@ class AccueilController extends Controller
                     'AVIS' => 'CONTRE' // Ou 'CONTRE' selon le cas
                 ]);
 
+                Auth::user()->increment('SOLDE', 10);
                 // Redirection vers le tableau de bord avec un message de succès
                 return redirect()->route('dashboard')->with('success', 'Votre vote a été enregistré avec succès.')->with('idSondage', $idSondage);
             } else {
@@ -127,30 +130,34 @@ class AccueilController extends Controller
     }
     public function createSondage(Request $request)
     {
-        try {
 
             if (Auth::check()) {
-
                 $userId = Auth::user()->IDUTILISATEUR;
 
-                // Insérer le vote dans la table A_VOTE_SONDAGE
-                Sondage::create([
-                    'NOMSONDAGE' => "",
-                    'DATEDEBUT' => "",
-                    'DATEFIN' => ""
-                ]);
 
-                // Redirection vers le tableau de bord avec un message de succès
-                return redirect()->route('dashboard')->with('success', 'Votre sondage à bien été posté.');
+                $dateDebut = now();
+
+                $dateFin = now()->addDays($request->number);
+
+                Sondage::create([
+                    'NOMSONDAGE' => $request->nomSondage,
+                    'IDUTILISATEUR'=>$userId,
+                    'DATEDEBUT' => $dateDebut,
+                    'DATEFIN' => $dateFin
+                ]);
+                $message='Votre sondage a bien été posté.';
+
+//                    var_dump($request->nomSondage." ".$userId." ".$dateDebut." ".$dateFin);
+//die();
+
+                return redirect()->route('dashboard')->with('success', 'message');
             } else {
                 // Redirection vers le tableau de bord avec un message d'erreur
                 return redirect()->route('dashboard')->withErrors(['error' => 'Vous devez être connecté pour voter.']);
             }
-        } catch (\Exception $e) {
-            // Redirection vers le tableau de bord avec un message d'erreur
-            return redirect()->route('dashboard')->withErrors(['error' => 'Une erreur est survenue lors de la création de votre sondage.']);
-        }
+
     }
+
 
 
 }
