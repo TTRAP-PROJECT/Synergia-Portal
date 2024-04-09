@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\COUR;
+use App\Models\Cour;
 use Illuminate\Http\Request;
 
 class CoursController extends Controller
