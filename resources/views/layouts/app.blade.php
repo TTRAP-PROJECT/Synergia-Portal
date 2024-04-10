@@ -25,7 +25,7 @@
 
                 <a href="{{ route('services') }}" class="text-blue-900 font-bold text-xl">Services</a>
 
-                    @if (auth()->user()->hasPermission(1))
+                    @if (auth()->user()->hasPermission(1))  ;
                         <a href="{{ route('moderation') }}" class="text-blue-900 font-bold text-xl">Modération</a>
                 @endif
                 <a href="{{ route('getReservations') }}" class="text-blue-900 font-bold text-xl">Reservations</a>

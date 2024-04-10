@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LogsPayement;
 use App\Models\Reservation;
-use App\Models\SERVICE;
+use App\Models\Service;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -20,18 +20,18 @@ class ModerationController extends Controller
         }
 
         // Pour les statistiques
-        $nbStatut4 = SERVICE::where('IDSTATUT', 4)->count();
-        $nbStatut3 = SERVICE::where('IDSTATUT', 3)->count();
-        $nbStatutReste = SERVICE::whereNotIn('IDSTATUT', [3, 4])->count();
+        $nbStatut4 = Service::where('IDSTATUT', 4)->count();
+        $nbStatut3 = Service::where('IDSTATUT', 3)->count();
+        $nbStatutReste = Service::whereNotIn('IDSTATUT', [3, 4])->count();
 
-        $allServices = SERVICE::all();
+        $allServices = Service::all();
 
 
         $nbReserv2 = Reservation::where('DATETRANSACTION', '>=', $maintenant->subDays(2))->count();
         $nbReserv7 = Reservation::where('DATETRANSACTION', '>=', $maintenant->subDays(7))->count();
         $nbReserv30 = Reservation::where('DATETRANSACTION', '>=', $maintenant->subMonth())->count();
 
-        $services = SERVICE::orderBy('DATEPUBLICATION', 'desc')->paginate(10);
+        $services = Service::orderBy('DATEPUBLICATION', 'desc')->paginate(10);
         $logs = LogsPayement::orderBy('DATEPAYEMENT', 'desc')->paginate(20);
 
         return view('moderation.moderationPage',
