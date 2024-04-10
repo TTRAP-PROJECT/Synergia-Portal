@@ -3,7 +3,7 @@
 
     <div>
 
-        <section class="bg-gradient-to-tr from-slate-300 to-zinc-300 py-24 px-4 lg:px-16 flex flex-row ">
+        <section class="bg-gradient-to-tr from-slate-300 to-zinc-300 py-12 px-4 lg:px-16 flex flex-row ">
 
             <div class="container mx-auto px-[12px] md:px-24 xl:px-12 max-w-[1000px] nanum2 ">
                 <h1 class="text-3xl font-bold mb-10">Liste de vos réservations</h1>
