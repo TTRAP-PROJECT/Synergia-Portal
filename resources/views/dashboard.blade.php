@@ -1,5 +1,19 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <x-app-layout>
+    @if(session('success') !== null)
+        @if(session('success')==true)
+            <div class="alert bg-green-500 font-bold rounded alert-success text-center py-3">
+                {{ session('message') }}
+            </div>
+        @endif
+    @endif
+    @if(session('error') !== null)
+        @if(session('error')==true)
+            <div class="alert bg-red-500 rounded font-bold alert-danger text-center py-3">
+                {{ session('error') }}
+            </div>
+        @endif
+    @endif
     <section>
         <div class="py-16">
             <div class="mx-auto px-6 max-w-6xl text-gray-500">
