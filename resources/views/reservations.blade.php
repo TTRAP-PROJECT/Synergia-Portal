@@ -1,11 +1,11 @@
 <x-app-layout>
     <!-- component -->
 
-    <div class="flex flex-row ">
+    <div>
 
-        <section class="bg-gradient-to-tr from-slate-300 to-zinc-300 py-24 px-4 lg:px-16 ">
+        <section class="bg-gradient-to-tr from-slate-300 to-zinc-300 py-24 px-4 lg:px-16 flex flex-row ">
 
-            <div class="container mx-auto px-[12px] md:px-24 xl:px-12 max-w-[1300px] nanum2 ">
+            <div class="container mx-auto px-[12px] md:px-24 xl:px-12 max-w-[1000px] nanum2 ">
                 <h1 class="text-3xl font-bold mb-10">Liste de vos réservations</h1>
                 <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-28 lg:gap-y-16">
                     @if($reservations->isEmpty())
@@ -45,11 +45,11 @@
 
                 </div>
             </div>
-
+            <div id="maDiv" class=" mt-5 right-0 rounded width-auto">
+                Cliquer sur votre réservation pour en afficher les détails !
+            </div>
         </section>
-        <div id="maDiv" class=" mt-5 right-0 rounded">
-            Cliquer sur votre réservation pour en afficher les détails !
-        </div>
+
     </div>
 </x-app-layout>
 

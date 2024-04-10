@@ -1,3 +1,6 @@
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <x-app-layout>
     @if(session('success') !== null)
         @if(session('success')==true)
@@ -16,20 +19,6 @@
 
     <div class="flex flex-col h-screen bg-gray-100">
 
-        <!-- Barra de navegación superior -->
-        <div class="bg-white text-white shadow w-full p-2 flex items-center justify-between">
-
-            <!-- Ícono de Notificación y Perfil -->
-            <div class="space-x-5">
-                <button>
-                    <i class="fas fa-bell text-gray-500 text-lg"></i>
-                </button>
-                <!-- Botón de Perfil -->
-                <button>
-                    <i class="fas fa-user text-gray-500 text-lg"></i>
-                </button>
-            </div>
-        </div>
 
         <!-- Contenido principal -->
         <div class="flex-1 flex flex-wrap border-2">
@@ -57,8 +46,6 @@
                         <i class="fas fa-sign-out-alt mr-2"></i>Se déconnecter
                     </button>
                 </form>
-
-
             </div>
 
             <!-- Área de contenido principal -->
@@ -300,13 +287,6 @@
             });
         });
 
-        // Agregar lógica para mostrar/ocultar la navegación lateral al hacer clic en el ícono de menú
-        const menuBtn = document.getElementById('menuBtn');
-        const sideNav = document.getElementById('sideNav');
-
-        menuBtn.addEventListener('click', () => {
-            sideNav.classList.toggle('hidden'); // Agrega o quita la clase 'hidden' para mostrar u ocultar la navegación lateral
-        });
 
 
     </script>
