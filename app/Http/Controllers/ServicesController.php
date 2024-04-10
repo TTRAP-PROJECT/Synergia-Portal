@@ -57,7 +57,7 @@ class ServicesController extends Controller
         $service = new SERVICE();
         $service->IDSTATUT = 1;
         $service->LIBELLESERVICE = e($request->input('nom'));
-        $service->description = $request->input('description'); 
+        $service->description = $request->input('description');
         $service->prix = $request->input('prix');
         $service->lieu_service = $request->input('lieu');
         $service->IDVENDEUR = $idVendeur;
