@@ -4,6 +4,7 @@
         @if(session('success')==true)
             <div class="alert bg-green-500 font-bold rounded alert-success text-center py-3">
                 {{ session('message') }}
+                {{ session('success') }}
             </div>
         @endif
     @endif
