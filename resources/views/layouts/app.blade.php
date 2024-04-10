@@ -18,18 +18,15 @@
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gradient-to-tr from-slate-300 to-zinc-300 dark:bg-white-900">
         @include('layouts.navigation')
-
         <!-- Page Heading -->
         <header class="bg-white dark:bg-white-800 shadow">
             <div class="flex justify-around py-6"> <!-- Ajout de l'espace en haut et en bas -->
-
                 <a href="{{ route('services') }}" class="text-blue-900 font-bold text-xl">Services</a>
-
-                    @if (auth()->user()->hasPermission(1))
-                        <a href="{{ route('moderation') }}" class="text-blue-900 font-bold text-xl">Modération</a>
-                @endif
-                <a href="{{ route('getReservations') }}" class="text-blue-900 font-bold text-xl">Reservations</a>
+                <a href="{{ route('getReservations') }}" class="text-blue-900 font-bold text-xl">Réservations</a>
                 <a href="{{ route('pageCookie') }}" class="text-blue-900 font-bold text-xl">Espace Cookie</a>
+                @if (auth()->user()->hasPermission(1))
+                    <a href="{{ route('moderation') }}" class="text-blue-900 font-bold text-xl">Modération</a>
+                @endif
             </div>
         </header>
         <!-- Page Content -->

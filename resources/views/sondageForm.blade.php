@@ -49,7 +49,7 @@
                           focus:border-sky-500
                           focus:ring-1
                           focus:ring-sky-500
-                          focus:invalid:border-red-500 focus:invalid:ring-red-500" type="text" name="nomSondage" placeholder="Faut t-il éteindre l'incendit tous enflammé ?">
+                          focus:invalid:border-red-500 focus:invalid:ring-red-500" type="text" name="nomSondage" placeholder="L'oeuf est il arrivé avant la poule ?">
 
                     <button class="px-4 py-1.5 rounded-md shadow-lg bg-gray-500 font-medium text-gray-100 block transition duration-300" type="submit">
                         <span id="login_process_state" class="hidden">Envoi</span>

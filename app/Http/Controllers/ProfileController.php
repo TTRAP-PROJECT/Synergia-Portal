@@ -40,6 +40,10 @@ class ProfileController extends Controller
     public function nouveauMdp(Request $request)
     {
         if ($request->password === $request->repassword) {
+            $password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
+            if (preg_match($password_regex, $request->password) == 0) {
+                return Redirect::back()->with('error', 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial');
+            }
 
             auth()->user()->MOTDEPASSE = bcrypt($request->password);
             auth()->user()->mdpAModifier = 0;
@@ -88,6 +92,16 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/')->with('success', 'Vous avez été déconnecté avec succès.');
+    }
+
+    public function updatePassword()
+    {
+        auth()->user()->mdpAModifier = 1;
+
+        auth()->user()->save();
+
+        // appelle la route changeMdp
+        return Redirect::to('/changer-mot-de-passe');
     }
 
     public function changeMdp()

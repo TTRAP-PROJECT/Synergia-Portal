@@ -13,17 +13,13 @@ class PasswordController extends Controller
     /**
      * Update the user's password.
      */
-    public function update(Request $request): RedirectResponse
+    public function update()
     {
-        $validated = $request->validateWithBag('updatePassword', [
-            'current_password' => ['required', 'current_password'],
-            'password' => ['required', Password::defaults(), 'confirmed'],
-        ]);
+        auth()->user()->mdpAModifier = 1;
 
-        $request->user()->update([
-            'password' => Hash::make($validated['password']),
-        ]);
+        auth()->user()->save();
 
-        return back()->with('status', 'password-updated');
+        // appelle la route changeMdp
+        return Redirect::to('/changer-mot-de-passe');
     }
 }

@@ -21,12 +21,12 @@
                 <div class="relative">
                     <div class="relative z-10 grid gap-3 grid-cols-6">
                         <div
-                            class="col-span-full lg:col-span-6 overflow-hidden flex flex-col relative p-8 rounded-xl bg-white border border-gray-200 dark:border-gray-800 dark:bg-gray-900">
-                            <div class="flex flex-row items-center justify-between mb-4">
+                            class="col-span-full lg:col-span-6 overflow-hidden flex flex-col relative p-6 rounded-xl bg-white border border-gray-200 dark:border-gray-800 dark:bg-gray-900">
+                            <div class="flex flex-row items-center justify-between">
                                 <h2 class="text-xl font-bold">Annonces</h2>
                             </div>
                             @foreach ($annonces as $annonce)
-                                <div class="flex flex-col items-center border-b py-2">
+                                <div class="flex flex-col items-start border-b">
                                     <div class="flex flex-row items-center py-2">
                                         <div class="flex-grow text-l font-bold">
                                             <a href="#" class="annonce-titre text-gray-600 dark:text-white"

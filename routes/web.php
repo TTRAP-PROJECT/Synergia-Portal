@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile',[ProfileController::class, 'logout'])->name('profile.logout');
+    Route::post('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
     Route::get('/changer-mot-de-passe', [ProfileController::class, 'changeMdp'])->name('changeMdp');
     Route::post('/changer-mot-de-passe', [ProfileController::class, 'nouveauMdp'])->name('nouveauMdp');
 
