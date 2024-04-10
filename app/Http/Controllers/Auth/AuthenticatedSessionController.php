@@ -28,8 +28,13 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if(Auth::user()->mdpAModifier == 1){
+            // appelle la route changeMdp du router web.php
+            return redirect()->route('changeMdp');
+        }
+        else{
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
     }
 
     /**
@@ -44,5 +49,11 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function edit()
+    {
+        dd('ok2');
+        return view('auth.change-password');
     }
 }

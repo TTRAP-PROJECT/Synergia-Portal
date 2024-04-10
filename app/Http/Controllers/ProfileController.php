@@ -37,6 +37,24 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    public function nouveauMdp(Request $request)
+    {
+        if ($request->password === $request->repassword) {
+
+            auth()->user()->MOTDEPASSE = bcrypt($request->password);
+            auth()->user()->mdpAModifier = 0;
+
+            auth()->user()->save();
+
+            // Rediriger l'utilisateur vers la page dashboard
+            return Redirect::to('/dashboard')->with('success', 'Votre mot de passe a été modifié avec succès.');
+        }
+        else{
+            return Redirect::back()->with('error', 'Les mots de passe ne correspondent pas.');
+        }
+    }
+
+
     /**
      * Delete the user's account.
      */
@@ -70,5 +88,10 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/')->with('success', 'Vous avez été déconnecté avec succès.');
+    }
+
+    public function changeMdp()
+    {
+        return view('changeMdp');
     }
 }
