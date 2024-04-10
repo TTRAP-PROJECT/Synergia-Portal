@@ -55,27 +55,27 @@ class UTILISATEUR extends Authenticatable
 
 	public function a_d_m_i_n_i_s_t_r_a_t_i_o_n()
 	{
-		return $this->hasOne(ADMINISTRATION::class, 'IDUTILISATEUR');
+		return $this->hasOne(Administration::class, 'IDUTILISATEUR');
 	}
 
 	public function a_u_t_o_r_i_s_e_r_s()
 	{
-		return $this->hasMany(AUTORISER::class, 'IDUTILISATEUR');
+		return $this->hasMany(Autoriser::class, 'IDUTILISATEUR');
 	}
 
 	public function e_t_u_d_i_a_n_t()
 	{
-		return $this->hasOne(ETUDIANT::class, 'IDUTILISATEUR');
+		return $this->hasOne(Etudiant::class, 'IDUTILISATEUR');
 	}
 
 	public function m_o_d_e_r_a_t_e_u_r()
 	{
-		return $this->hasOne(MODERATEUR::class, 'IDUTILISATEUR');
+		return $this->hasOne(Moderateur::class, 'IDUTILISATEUR');
 	}
 
 	public function p_r_o_f_e_s_s_e_u_r_s()
 	{
-		return $this->hasMany(PROFESSEUR::class, 'IDUTILISATEUR');
+		return $this->hasMany(Professeur::class, 'IDUTILISATEUR');
 	}
 
 	    /**
