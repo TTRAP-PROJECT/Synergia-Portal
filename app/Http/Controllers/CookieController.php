@@ -55,7 +55,7 @@ class CookieController extends Controller
             else
             {
                 // Si la transaction est de 10000 cookies
-                $user->increment('SOLDE', 10);
+                $user->increment('SOLDE', 100);
                 $user->decrement('NBCOOKIES', 10000);
                 $message = "Transaction de 10000 cookies effectuée avec succès.";
             }

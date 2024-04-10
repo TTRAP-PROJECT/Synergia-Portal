@@ -15,7 +15,6 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gradient-to-tr from-slate-300 to-zinc-300 dark:bg-white-900">
         @include('layouts.navigation')
@@ -33,13 +32,10 @@
                 <a href="{{ route('pageCookie') }}" class="text-blue-900 font-bold text-xl">Espace Cookie</a>
             </div>
         </header>
-
-
         <!-- Page Content -->
         <main>
             {{ $slot }}
         </main>
     </div>
 </body>
-
 </html>

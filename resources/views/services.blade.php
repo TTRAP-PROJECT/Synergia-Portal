@@ -13,9 +13,9 @@
         @endif
     @endif
     <div class="grid grid-cols-3 gap-4">
-        <div>
-            <div class='mx-5 mt-10 w-1/2'>
-                <div class="relative flex items-center w-50 h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+        <div class="w-3/5 m-5 px-5 overflow-hidden relative rounded-xl bg-gray-400 dark:bg-gray-800 bg-white border border-gray-200 h-min">
+            <div class='mx-5 mt-10 w-full'>
+                <div class="relative flex items-center mr-10 h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
                     <div class="grid place-items-center h-full w-12 text-gray-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -31,7 +31,7 @@
             </div>
             <div>
                 <form action="">
-                    <div class="form-group flex flex-col m-5">
+                    <div class="form-group flex flex-col m-5 text-white">
                         <label for="services">Type de service</label>
                         <div>
                             <input type="checkbox" name="services" value="all" id="services0" onload="all()">
@@ -116,8 +116,6 @@
             </script>
         </div>
     </div>
-
-
     <div class="p-24 flex flex-wrap items-center justify-center">
         @foreach ($evenementCinema as $evenementCinemaData)
             @if($evenementCinemaData->s_e_r_v_i_c_e->IDSTATUT == 1)

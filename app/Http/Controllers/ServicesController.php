@@ -51,13 +51,13 @@ class ServicesController extends Controller
         // Convertir la date complète en objet DateTime
         $datePrevue = new DateTime($dateComplete);
         $idVendeur = Auth::user()->IDUTILISATEUR;
-        $tableServices = [1 => 'Cinéma', 2 => 'Covoiturage', 3 => 'Loisir', 4 => 'Échange de compétences', 5 => 'Évènement sportif', 6 => 'Autre'];
+        $tableServices = [1 => 'Cinéma', 2 => 'Covoiturage', 5 => 'Loisir', 3 => 'Échange de compétences', 4 => 'Évènement sportif', 6 => 'Autre'];
         $libelleService = $tableServices[$request->input('services')];
 
         $service = new SERVICE();
         $service->IDSTATUT = 1;
         $service->LIBELLESERVICE = e($request->input('nom'));
-        $service->description = $request->input('description'); 
+        $service->description = $request->input('description');
         $service->prix = $request->input('prix');
         $service->lieu_service = $request->input('lieu');
         $service->IDVENDEUR = $idVendeur;
