@@ -23,7 +23,7 @@
         <!-- Contenido principal -->
         <div class="flex-1 flex flex-wrap border-2">
             <!-- Barra lateral de navegación (oculta en dispositivos pequeños) -->
-            <div class="p-2 bg-white w-full md:w-60 flex flex-col md:flex hidden" id="sideNav">
+            <div class="p-2 bg-white w-full md:w-60 flex flex-col md:flex " id="sideNav">
                 <nav>
                     <!-- Liens avec ancres pour la navigation sur la même page -->
                     <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-500 hover:text-white " href="#graphiques">
@@ -101,9 +101,9 @@
                             @foreach ($services as $service)
 
                                     @if($service->IDSTATUT==4)
-                                        <tr class="hover:bg-grey-lighter bg-red-200">
+                                        <tr class="bg-red-200">
                                     @elseif($service->IDSTATUT==3)
-                                        <tr class="hover:bg-grey-lighter bg-orange-200">
+                                        <tr class="bg-orange-200">
                                     @endif
                                         <td>
                                             <button class="ml-5 item-center middle none center flex justify-center rounded-lg bg-gray-200 p-3 font-sans text-xs font-bold uppercase text-black shadow-md transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none expand-button" data-ripple-light="true" style="position: relative; overflow: hidden;">…</button>
