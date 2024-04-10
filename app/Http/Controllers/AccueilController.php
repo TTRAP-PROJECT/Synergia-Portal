@@ -9,6 +9,7 @@ use App\Models\POSTER_SONDAGE;
 use App\Models\Cinema;
 use App\Models\EvenementSportif;
 use App\Models\Sondage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,7 @@ class AccueilController extends Controller
 
     public function get_donnees_accueil(Request $request)
     {
-
+        $aujourdhui = Carbon::now();
         $sondages = Sondage::actif()->get();
 
         foreach ($sondages as $sondage) {
@@ -29,8 +30,21 @@ class AccueilController extends Controller
 
 
         $annonces=Annonce::all();
-        $sports = EVENEMENTSPORTIF::all();
-        $cinemas = CINEMA::all();
+
+
+        $sports = EvenementSportif::whereHas('s_e_r_v_i_c_e', function ($query) use ($aujourdhui) {
+            $query->where('DATEPREVUE', '>', $aujourdhui)
+                ->where('IDSTATUT', '=', 1);
+        })->get();
+
+        $cinemas = Cinema::where('DATEHEUREFILM', '>', $aujourdhui)
+            ->whereHas('s_e_r_v_i_c_e', function ($query) {
+                $query->where('IDSTATUT', '=', 1);
+            })
+            ->get();
+
+
+
 
         $events = $sports->merge($cinemas)->sortByDesc(function ($event) {
             return $event instanceof \App\Models\CINEMA ? $event->DATEHEUREFILM : $event->DATEEVENT;

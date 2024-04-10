@@ -37,25 +37,26 @@
             <div class="p-2 bg-white w-full md:w-60 flex flex-col md:flex hidden" id="sideNav">
                 <nav>
                     <!-- Liens avec ancres pour la navigation sur la même page -->
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white " href="#graphiques">
+                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-500 hover:text-white " href="#graphiques">
                         <i class="fas fa-home mr-2"></i>Graphiques des réservations
                     </a>
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#nombre-reservations">
+                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-600 hover:text-white" href="#nombre-reservations">
                         <i class="fas fa-home mr-2"></i>Nombre de réservations
                     </a>
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#services-utilisateurs">
+                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-700 hover:to-blue-700 hover:text-white" href="#services-utilisateurs">
                         <i class="fas fa-file-alt mr-2"></i>Services des utilisateurs
                     </a>
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#transactions">
+                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-800 hover:text-white" href="#transactions">
                         <i class="fas fa-users mr-2"></i>Transaction
                     </a>
                 </nav>
 
-                <!-- Ítem de Cerrar Sesión -->
-                <a class="block text-gray-500 py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white mt-auto" href="#">
-                    <i class="fas fa-sign-out-alt mr-2"></i>Cerrar sesión
-                </a>
-
+                <form action="{{ route('profile.logout') }}" method="POST">
+                    @csrf
+                    <button class="block text-gray-500 py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-500 hover:text-white mt-auto" >
+                        <i class="fas fa-sign-out-alt mr-2"></i>Se déconnecter
+                    </button>
+                </form>
 
 
             </div>
@@ -306,6 +307,8 @@
         menuBtn.addEventListener('click', () => {
             sideNav.classList.toggle('hidden'); // Agrega o quita la clase 'hidden' para mostrar u ocultar la navegación lateral
         });
+
+
     </script>
 </x-app-layout>
 

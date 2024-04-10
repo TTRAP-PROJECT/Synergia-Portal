@@ -29,13 +29,13 @@
                                 <div class="flex flex-col items-center border-b py-2">
                                     <div class="flex flex-row items-center py-2">
                                         <div class="flex-grow text-l font-bold">
-                                            <a href="#" class="annonce-titre text-white"
+                                            <a href="#" class="annonce-titre text-gray-600 dark:text-white"
                                                data-description-id="{{ 'description_' . $annonce->ID_ANNONCE }}">⇥ {{ $annonce->TITRE_ANNONCE }}
                                                 Le {{ $annonce->DATE_PUBLICATION }}</a>
                                         </div>
                                     </div>
                                     <div id="{{ 'description_' . $annonce->ID_ANNONCE }}"
-                                         class="annonce-description hidden text-white">
+                                         class="annonce-description hidden text-gray-600 dark:text-white">
                                         {{ $annonce->DESCRIPTION_ANNONCE }}
                                     </div>
                                 </div>
@@ -128,23 +128,83 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div
-                            class="col-span-full lg:col-span-3 overflow-hidden relative p-8 rounded-xl bg-white border border-gray-200 dark:border-gray-800 dark:bg-gray-900">
-                            <div>
-                                <h2 class="text-xl font-bold mb-4">Evenements</h2>
-                                @foreach ($events as $event)
-                                    <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                        <div class="col-span-full lg:col-span-3 overflow-hidden relative p-8 rounded-xl bg-white border border-gray-200 dark:border-gray-800 dark:bg-gray-900">
+                            <h2 class="text-xl font-bold mb-4">Evenements</h2>
+                            <div class="flex flex-wrap -mx-4">
+                                @foreach ($events as $index => $event)
+                                    <div class="w-1/2 px-4 mb-8">
+                                        <!-- Your event card code here -->
                                         @if ($event instanceof \App\Models\CINEMA)
-                                            <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-2">{{ $event->NOMFILM }}</h3>
-                                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">{{ $event->LIEUFILM }}</p>
-                                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">{{ $event->DATEHEUREFILM }}</p>
+
+                                            <div class="flex-shrink-0 m-6 relative overflow-hidden bg-blue-500 rounded-lg max-w-xs shadow-lg cinema"
+                                                 name="cinema">
+                                                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
+                                                     style="transform: scale(1.5); opacity: 0.1;">
+                                                    <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
+                                                          fill="white"/>
+                                                    <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"/>
+                                                </svg>
+                                                <div class="relative pt-10 px-10 flex items-center justify-center">
+                                                    <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
+                                                         style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                                                    <img class="relative w-40" src="/images/cinema.png" alt="" >
+                                                </div>
+                                                <div class="relative text-white px-6 pb-6 mt-6">
+                                                    @php
+                                                        $date = new DateTimeImmutable($event->DATEHEUREFILM);
+                                                        $nom = Illuminate\Support\Str::limit($event->NOMFILM, 20);
+                                                    @endphp
+
+
+                                                    <span class="block opacity-75 -mb-1">Le {{ $date->format('d-m-Y') }}</span>
+
+                                                    <div class="flex justify-between mt-2">
+
+                                                        <span
+                                                            class="block bg-white rounded-full text-blue-500 text-xs font-bold px-3 py-2 leading-none flex items-center">
+                                                            {{ $event->s_e_r_v_i_c_e->prix }}💰
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @else
-                                            <h3 class="text-lg font-bold mb-2">{{ $event->LIBELLESPORT }}</h3>
-                                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">{{ $event->LIEUEVENT }}</p>
-                                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                                                Le {{ $event->DATEEVENT }}</p>
+                                            <div class="flex-shrink-0 m-6 relative overflow-hidden bg-red-500 rounded-lg max-w-xs shadow-lg sport"
+                                                 name="sport">
+                                                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
+                                                     style="transform: scale(1.5); opacity: 0.1;">
+                                                    <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
+                                                          fill="white"/>
+                                                    <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"/>
+                                                </svg>
+                                                <div class="relative pt-10 px-10 flex items-center justify-center">
+                                                    <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
+                                                         style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                                                    <img class="relative w-40" src="/images/des-sports.png" alt="">
+                                                </div>
+                                                <div class="relative text-white px-6 pb-6 mt-6">
+                                                    @php
+                                                        $date = new DateTimeImmutable($event->DATEEVENT )
+                                                    @endphp
+
+                                                    <span class="block opacity-75 -mb-1 font-bold">{{$event->LIBELLESPORT}}</span>
+
+                                                    <span class="block opacity-75 -mb-1">Le {{ $date->format('d-m-Y') }}</span>
+
+                                                    <div class="flex justify-between mt-2">
+
+                                                    <span
+                                                        class="block bg-white rounded-full text-red-500 text-xs font-bold px-3 py-2 leading-none flex items-center">
+                                                                                                    {{ $event->s_e_r_v_i_c_e->prix }}💰
+                                                    </span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endif
                                     </div>
+
+                                    @if (($index + 1) % 2 == 0)
+                                    </div><div class="flex flex-wrap -mx-4">
+                                        @endif
                                 @endforeach
                             </div>
                         </div>
@@ -154,3 +214,4 @@
         </div>
     </section>
 </x-app-layout>
+

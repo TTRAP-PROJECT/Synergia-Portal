@@ -73,6 +73,8 @@ Route::middleware('auth')->group(function () {
     Route::get("/moderation",[ModerationController::class,"index"])->name("moderation");
     Route::post("/changerStatutService",[ModerationController::class,"changerStatutService"])->name("changerStatutService");
 
+    Route::get('/search-services', 'ModerationController@searchServices')->name('search.services');
+
 });
 
 

@@ -83,4 +83,21 @@ class ModerationController extends Controller
             return redirect()->route('moderation')->with("success", $message);
         }
     }
+
+    public function searchServices(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        // Effectuez votre recherche de services basée sur le mot-clé
+
+        $services = Service::where('LIBELLESERVICE', 'like', '%' . $keyword . '%')
+            ->orderBy('DATEPUBLICATION', 'desc')
+            ->paginate(10);
+
+        // Retournez les résultats de la recherche sous forme de vue partielle ou de JSON
+        return view('moderation.services_partial', compact('services'));
+    }
+
+
+
 }
