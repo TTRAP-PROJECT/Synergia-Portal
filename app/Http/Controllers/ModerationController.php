@@ -44,6 +44,10 @@ class ModerationController extends Controller
 
     public function changerStatutService(Request $request)
     {
+        if (!auth()->user()->hasPermission(1)) {
+            return redirect()->route('dashboard')->with('error', 'Vous n\'avez pas la permission d\'accéder à cette page.');
+        }
+
         // Récupérer l'ID du service et le nouveau statut depuis la requête
         $idService = $request->input('idService');
         $nouveauStatut = $request->input('nouveauStatut');

@@ -10,6 +10,7 @@ use App\Models\Loisir;
 use App\Models\Reservation;
 use App\Models\Service;
 use App\Models\Utilisateur;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,12 +19,36 @@ class ServicesController extends Controller
 {
     public function services()
     {
+
+        $aujourdhui = Carbon::now();
         $services = SERVICE::all();
-        $evenementsSportif = EvenementSportif::with('sport')->get();
-        $evenementCinema = CINEMA::all();
-        $covoiturages=Covoiturage::all();
-        $echange_compets= EchangeCompetence::with('n_i_v_e_a_u')->get();
-        $loisirs = LOISIR::all();
+
+
+        $evenementsSportif = EvenementSportif::whereHas('s_e_r_v_i_c_e', function ($query) use ($aujourdhui) {
+            $query->where('DATEPREVUE', '>', $aujourdhui)
+                ->where('IDSTATUT', '=', 1);
+        })->get();
+
+        $evenementCinema = Cinema::where('DATEHEUREFILM', '>', $aujourdhui)
+            ->whereHas('s_e_r_v_i_c_e', function ($query) {
+                $query->where('IDSTATUT', '=', 1);
+            })
+            ->get();
+        $covoiturages = Covoiturage::where('DATECOVOIT', '>', $aujourdhui)
+            ->whereHas('s_e_r_v_i_c_e', function ($query) {
+                $query->where('IDSTATUT', '=', 1);
+            })
+            ->get();
+        $echange_compets = EchangeCompetence::whereHas('s_e_r_v_i_c_e', function ($query) use ($aujourdhui) {
+            $query->where('DATEPREVUE', '>', $aujourdhui)
+                ->where('IDSTATUT', '=', 1);
+        })->get();
+        $loisirs = Loisir::whereHas('s_e_r_v_i_c_e', function ($query) use ($aujourdhui) {
+            $query->where('DATEPREVUE', '>', $aujourdhui)
+                ->where('IDSTATUT', '=', 1);
+        })->get();
+
+
 
 
 

@@ -13,7 +13,7 @@
         @endif
     @endif
     <div class="grid grid-cols-3 gap-4">
-        <div class="w-3/5 m-5 px-5 overflow-hidden relative rounded-xl bg-gray-400 dark:bg-gray-800 bg-white border border-gray-200 h-min">
+        <div class="w-3/5 m-5 px-5 overflow-hidden relative rounded-xl bg-gray-400 dark:bg-gray-800 border border-gray-200 h-min">
             <div class='mx-5 mt-10 w-full'>
                 <div class="relative flex items-center mr-10 h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
                     <div class="grid place-items-center h-full w-12 text-gray-300">
