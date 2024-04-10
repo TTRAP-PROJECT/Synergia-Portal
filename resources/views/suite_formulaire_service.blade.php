@@ -96,6 +96,12 @@ switch ($selectedService) {
     <label for="competenceLocation">Lieu de l'échange :</label>
     <input class="formInput w-64" type="text" id="inputLieu" name="lieu">
 
+    <label for="competenceDate">Date de l'échange :</label>
+    <input class="formInput w-36" type="date" id="inputDate" name="date">
+
+    <label for="competenceTime">Heure de l'échange :</label>
+    <input class="formInput w-28" type="time" id="inputHeure" name="heure">
+
     <div class="flex flex-row">
         <div>
             <label for="prix">Prix de l'échange :</label>

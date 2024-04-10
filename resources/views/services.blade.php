@@ -116,7 +116,7 @@
             </script>
         </div>
     </div>
-    <div class="p-24 flex flex-wrap items-center justify-center">
+    <div class="p-24 pt-0 flex flex-wrap items-center justify-center">
         @foreach ($evenementCinema as $evenementCinemaData)
             @if($evenementCinemaData->s_e_r_v_i_c_e->IDSTATUT == 1)
                 {{--                                        <form action="{{ route('reserverService') }}" method="POST">--}}
