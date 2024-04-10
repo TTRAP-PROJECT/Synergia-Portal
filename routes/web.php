@@ -43,9 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/changer-mot-de-passe', [ProfileController::class, 'nouveauMdp'])->name('nouveauMdp');
 
 
-    Route::get('/cours', [CoursController::class, 'get_data_cours'])->name('cours');
-    Route::get('/covoiturage', [ProfileController::class, 'covoiturage'])->name('covoiturage');
-    Route::get('/evenements', [EventController::class, 'get_evenement'])->name('evenements');
     Route::get('/services', [ServicesController::class, 'services'])->name('services');
     Route::post('/services', [ServicesController::class, 'new'])->name('services.new');
     Route::get('/services_ajax', [ServicesController::class, 'dataList'])->name('services.datalist');
