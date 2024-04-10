@@ -21,21 +21,21 @@
 
 
         <!-- Contenido principal -->
-        <div class="flex-1 flex flex-wrap border-2">
+        <div class="flex-1 flex flex-row border-2">
             <!-- Barra lateral de navegación (oculta en dispositivos pequeños) -->
-            <div class="p-2 bg-white w-full md:w-60 flex flex-col md:flex " id="sideNav">
+            <div class="p-2 bg-white w-auto md:w-60 flex flex-col md:flex " id="sideNav">
                 <nav>
                     <!-- Liens avec ancres pour la navigation sur la même page -->
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-500 hover:text-white " href="#graphiques">
+                    <a class="block text-gray-500 py-2.5 px-4 my-10 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-500 hover:text-white " href="#graphiques">
                         <i class="fas fa-home mr-2"></i>Graphiques des réservations
                     </a>
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-600 hover:text-white" href="#nombre-reservations">
+                    <a class="block text-gray-500 py-2.5 px-4 my-10 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-600 hover:text-white" href="#nombre-reservations">
                         <i class="fas fa-home mr-2"></i>Nombre de réservations
                     </a>
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-700 hover:to-blue-700 hover:text-white" href="#services-utilisateurs">
+                    <a class="block text-gray-500 py-2.5 px-4 my-10 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-700 hover:to-blue-700 hover:text-white" href="#services-utilisateurs">
                         <i class="fas fa-file-alt mr-2"></i>Services des utilisateurs
                     </a>
-                    <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-800 hover:text-white" href="#transactions">
+                    <a class="block text-gray-500 py-2.5 px-4 my-10 rounded transition duration-200 hover:bg-gradient-to-r hover:from-blue-800 hover:to-blue-800 hover:text-white" href="#transactions">
                         <i class="fas fa-users mr-2"></i>Transaction
                     </a>
                 </nav>
