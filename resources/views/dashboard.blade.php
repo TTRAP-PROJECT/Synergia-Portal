@@ -25,21 +25,23 @@
                             <div class="flex flex-row items-center justify-between">
                                 <h2 class="text-xl font-bold">Annonces</h2>
                             </div>
-                            @foreach ($annonces as $annonce)
-                                <div class="flex flex-col items-start border-b">
-                                    <div class="flex flex-row items-center py-2">
-                                        <div class="flex-grow text-l font-bold">
-                                            <a href="#" class="annonce-titre text-gray-600 dark:text-white"
-                                               data-description-id="{{ 'description_' . $annonce->ID_ANNONCE }}">⇥ {{ $annonce->TITRE_ANNONCE }}
-                                                Le {{ $annonce->DATE_PUBLICATION }}</a>
+                            <div class="flex flex-col-reverse">
+                                @foreach ($annonces as $annonce)
+                                    <div class="flex flex-col items-start border-b">
+                                        <div class="flex flex-row items-center py-2">
+                                            <div class="flex-grow text-l font-bold">
+                                                <a href="#" class="annonce-titre text-gray-600 dark:text-white"
+                                                   data-description-id="{{ 'description_' . $annonce->ID_ANNONCE }}">⇥ {{ $annonce->TITRE_ANNONCE }}
+                                                    — Le {{ $annonce->DATE_PUBLICATION }}</a>
+                                            </div>
+                                        </div>
+                                        <div id="{{ 'description_' . $annonce->ID_ANNONCE }}"
+                                             class="annonce-description hidden text-gray-600 dark:text-white">
+                                            {{ $annonce->DESCRIPTION_ANNONCE }}
                                         </div>
                                     </div>
-                                    <div id="{{ 'description_' . $annonce->ID_ANNONCE }}"
-                                         class="annonce-description hidden text-gray-600 dark:text-white">
-                                        {{ $annonce->DESCRIPTION_ANNONCE }}
-                                    </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                         <div
                             class="col-span-full lg:col-span-3 overflow-hidden relative p-8 rounded-xl bg-white border border-gray-200 dark:border-gray-800 dark:bg-gray-900">
@@ -128,7 +130,8 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="col-span-full lg:col-span-3 overflow-hidden relative p-8 rounded-xl bg-white border border-gray-200 dark:border-gray-800 dark:bg-gray-900">
+                        <div
+                            class="col-span-full lg:col-span-3 overflow-hidden relative p-8 rounded-xl bg-white border border-gray-200 dark:border-gray-800 dark:bg-gray-900">
                             <h2 class="text-xl font-bold mb-4">Evenements</h2>
                             <div class="flex flex-wrap -mx-4">
                                 @foreach ($events as $index => $event)
@@ -136,18 +139,22 @@
                                         <!-- Your event card code here -->
                                         @if ($event instanceof \App\Models\CINEMA)
 
-                                            <div class="flex-shrink-0 m-6 relative overflow-hidden bg-blue-500 rounded-lg max-w-xs shadow-lg cinema"
-                                                 name="cinema">
-                                                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
+                                            <div
+                                                class="flex-shrink-0 m-6 relative overflow-hidden bg-blue-500 rounded-lg max-w-xs shadow-lg cinema"
+                                                name="cinema">
+                                                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283"
+                                                     fill="none"
                                                      style="transform: scale(1.5); opacity: 0.1;">
-                                                    <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
+                                                    <rect x="159.52" y="175" width="152" height="152" rx="8"
+                                                          transform="rotate(-45 159.52 175)"
                                                           fill="white"/>
-                                                    <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"/>
+                                                    <rect y="107.48" width="152" height="152" rx="8"
+                                                          transform="rotate(-45 0 107.48)" fill="white"/>
                                                 </svg>
                                                 <div class="relative pt-10 px-10 flex items-center justify-center">
                                                     <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
                                                          style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-                                                    <img class="relative w-40" src="/images/cinema.png" alt="" >
+                                                    <img class="relative w-40" src="/images/cinema.png" alt="">
                                                 </div>
                                                 <div class="relative text-white px-6 pb-6 mt-6">
                                                     @php
@@ -156,7 +163,8 @@
                                                     @endphp
 
 
-                                                    <span class="block opacity-75 -mb-1">Le {{ $date->format('d-m-Y') }}</span>
+                                                    <span
+                                                        class="block opacity-75 -mb-1">Le {{ $date->format('d-m-Y') }}</span>
 
                                                     <div class="flex justify-between mt-2">
 
@@ -168,13 +176,17 @@
                                                 </div>
                                             </div>
                                         @else
-                                            <div class="flex-shrink-0 m-6 relative overflow-hidden bg-red-500 rounded-lg max-w-xs shadow-lg sport"
-                                                 name="sport">
-                                                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
+                                            <div
+                                                class="flex-shrink-0 m-6 relative overflow-hidden bg-red-500 rounded-lg max-w-xs shadow-lg sport"
+                                                name="sport">
+                                                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283"
+                                                     fill="none"
                                                      style="transform: scale(1.5); opacity: 0.1;">
-                                                    <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
+                                                    <rect x="159.52" y="175" width="152" height="152" rx="8"
+                                                          transform="rotate(-45 159.52 175)"
                                                           fill="white"/>
-                                                    <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"/>
+                                                    <rect y="107.48" width="152" height="152" rx="8"
+                                                          transform="rotate(-45 0 107.48)" fill="white"/>
                                                 </svg>
                                                 <div class="relative pt-10 px-10 flex items-center justify-center">
                                                     <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
@@ -186,9 +198,11 @@
                                                         $date = new DateTimeImmutable($event->DATEEVENT )
                                                     @endphp
 
-                                                    <span class="block opacity-75 -mb-1 font-bold">{{$event->LIBELLESPORT}}</span>
+                                                    <span
+                                                        class="block opacity-75 -mb-1 font-bold">{{$event->LIBELLESPORT}}</span>
 
-                                                    <span class="block opacity-75 -mb-1">Le {{ $date->format('d-m-Y') }}</span>
+                                                    <span
+                                                        class="block opacity-75 -mb-1">Le {{ $date->format('d-m-Y') }}</span>
 
                                                     <div class="flex justify-between mt-2">
 
@@ -203,8 +217,9 @@
                                     </div>
 
                                     @if (($index + 1) % 2 == 0)
-                                    </div><div class="flex flex-wrap -mx-4">
-                                        @endif
+                            </div>
+                            <div class="flex flex-wrap -mx-4">
+                                @endif
                                 @endforeach
                             </div>
                         </div>

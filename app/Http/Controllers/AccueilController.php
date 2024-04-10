@@ -31,6 +31,8 @@ class AccueilController extends Controller
 
         $annonces=Annonce::all();
 
+        $annonces = $annonces->sortByDesc('DATEANNONCE')->take(4);
+
 
         $sports = EvenementSportif::whereHas('s_e_r_v_i_c_e', function ($query) use ($aujourdhui) {
             $query->where('DATEPREVUE', '>', $aujourdhui)
