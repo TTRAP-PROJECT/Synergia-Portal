@@ -28,13 +28,13 @@
                                 <div class="flex flex-col items-center border-b py-2">
                                     <div class="flex flex-row items-center py-2">
                                         <div class="flex-grow text-l font-bold">
-                                            <a href="#" class="annonce-titre"
+                                            <a href="#" class="annonce-titre text-white"
                                                data-description-id="{{ 'description_' . $annonce->ID_ANNONCE }}">⇥ {{ $annonce->TITRE_ANNONCE }}
                                                 Le {{ $annonce->DATE_PUBLICATION }}</a>
                                         </div>
                                     </div>
                                     <div id="{{ 'description_' . $annonce->ID_ANNONCE }}"
-                                         class="annonce-description hidden">
+                                         class="annonce-description hidden text-white">
                                         {{ $annonce->DESCRIPTION_ANNONCE }}
                                     </div>
                                 </div>
