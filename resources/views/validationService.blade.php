@@ -29,7 +29,10 @@
                     <div class="text-base leading-7 text-gray-700 lg:max-w-lg">
                         <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{$service->LIBELLESERVICE}}</h1>
                         <div class="max-w-xl">
-                            <p class="mt-2">Ce service se déroulera à <strong>{{$service->LIEU_SERVICE}} !</strong><p>
+
+                            @if($service->LIEU_SERVICE!="null")
+                                <p class="mt-2">Ce service se déroulera à <strong>{{$service->LIEU_SERVICE}} !</strong><p>
+                            @endif
                             @php
                                 $date = new DateTimeImmutable($service->DATEPREVUE)
                             @endphp

@@ -80,17 +80,26 @@
                     <strong>{{ $reservation->service->getNumberOfReservationsAttribute() }}/{{ $reservation->service->NBPERSONNESMAX }}👤</strong>.
                 </div>
             </div>
-            <!-- Example Message -->
+
             <div class="flex justify-end">
                 <div class="bg-blue-200 text-black p-2 rounded-lg max-w-xs">
-                    Et bien ! On se donne vite rendez-vous à <strong>{{$reservation->service->LIEU_SERVICE}}</strong> alors !
+                    @if($reservation->service->LIEU_SERVICE!="null")
+                        Et bien ! On se donne vite rendez-vous à <strong>{{$reservation->service->LIEU_SERVICE}}</strong> alors !
+                    @else
+                        Et bien ! On se donne vite rendez-vous au plus vite alors !
+                    @endif
                 </div>
             </div>
 
             <!-- Example Received Message -->
             <div class="flex">
                 <div class="bg-gray-300 text-black p-2 rounded-lg max-w-xs">
-                    Avec plaisir, on se retrouve la bas !
+
+                    @if($reservation->service->LIEU_SERVICE!="null")
+                        Avec plaisir, on se retrouve la bas !
+                    @else
+                        Avec plaisir, tien moi au courant !
+                    @endif
                 </div>
             </div>
 

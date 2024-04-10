@@ -40,12 +40,6 @@
                     </a>
                 </nav>
 
-                <form action="{{ route('profile.logout') }}" method="POST">
-                    @csrf
-                    <button class="block text-gray-500 py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-500 hover:text-white mt-auto" >
-                        <i class="fas fa-sign-out-alt mr-2"></i>Se déconnecter
-                    </button>
-                </form>
             </div>
 
             <!-- Área de contenido principal -->
@@ -90,6 +84,7 @@
                         <thead>
                         <tr class="text-sm leading-normal">
                             <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Info</th>
+                            <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Statut</th>
                             <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Icone</th>
                             <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Vendeur</th>
                             <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Service</th>
@@ -100,13 +95,18 @@
                         <tbody >
                             @foreach ($services as $service)
 
-                                    @if($service->IDSTATUT==4)
-                                        <tr class="bg-red-200">
-                                    @elseif($service->IDSTATUT==3)
-                                        <tr class="bg-orange-200">
-                                    @endif
+                                            @if($service->IDSTATUT==4)
+                                    <tr class="bg-red-200">
+                                        <td class="py-2 px-4 border-b border-grey-light">❌</td>
+                                            @elseif($service->IDSTATUT==3)
+                                    <tr class="bg-orange-200">
+                                        <td class="py-2 px-4 border-b border-grey-light">🤝</td>
+                                            @elseif($service->IDSTATUT==1)
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-grey-light">✔️</td>
+                                            @endif
                                         <td>
-                                            <button class="ml-5 item-center middle none center flex justify-center rounded-lg bg-gray-200 p-3 font-sans text-xs font-bold uppercase text-black shadow-md transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none expand-button" data-ripple-light="true" style="position: relative; overflow: hidden;">…</button>
+                                            <button class="ml-5 item-center middle none center flex justify-center rounded-lg bg-gray-200 p-3 font-sans text-xs font-bold uppercase text-black shadow-md transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none expand-button w-10 h-5" data-ripple-light="true" style="position: relative; overflow: hidden;">…</button>
                                         </td>
                                         <td class="py-2 px-4 border-b border-grey-light">
                                             <img src="{{ $service->vendeur->gravatar(200) }}" alt="Gravatar" width="40" height="40">
