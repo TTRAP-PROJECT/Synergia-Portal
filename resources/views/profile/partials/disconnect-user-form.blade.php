@@ -1,4 +1,4 @@
-<form method="post" action="{{ route('logout') }}" class="p-6">
+<form method="post" action="{{ route('logout') }}" class="py-6">
     @csrf
     @method('post')
 
