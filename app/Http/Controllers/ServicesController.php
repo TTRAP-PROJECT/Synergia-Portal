@@ -56,7 +56,16 @@ class ServicesController extends Controller
 
         $service = new SERVICE();
         $service->IDSTATUT = 1;
-        $service->LIBELLESERVICE = e($request->input('nom'));
+        if($request->input('services')==2){
+
+            $depart = $request->input('lieuDepart');
+            $arrivee = $request->input('lieuArrivee');
+            $libelle = "Covoiturage de ".$depart." à ".$arrivee;
+            $service->LIBELLESERVICE = e($libelle);
+        }
+        else{
+            $service->LIBELLESERVICE = e($request->input('nom'));
+        }
         $service->description = $request->input('description');
         $service->prix = $request->input('prix');
         $service->lieu_service = $request->input('lieu');
