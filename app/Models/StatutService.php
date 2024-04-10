@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class STATUTSERVICE
- * 
+ *
  * @property int $IDSTATUT
  * @property string $LIBELLESTATUT
- * 
+ *
  * @property Collection|SERVICE[] $s_e_r_v_i_c_e_s
  *
  * @package App\Models
@@ -31,6 +31,6 @@ class STATUTSERVICE extends Model
 
 	public function s_e_r_v_i_c_e_s()
 	{
-		return $this->hasMany(SERVICE::class, 'IDSTATUT');
+		return $this->hasMany(Service::class, 'IDSTATUT');
 	}
 }

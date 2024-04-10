@@ -21,7 +21,7 @@ class ServicesController extends Controller
     {
 
         $aujourdhui = Carbon::now();
-        $services = SERVICE::all();
+        $services = Service::all();
 
 
         $evenementsSportif = EvenementSportif::whereHas('s_e_r_v_i_c_e', function ($query) use ($aujourdhui) {
