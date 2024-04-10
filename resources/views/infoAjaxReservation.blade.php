@@ -36,7 +36,7 @@
             <!-- Example Received Message -->
             <div class="flex">
                 <div class="bg-gray-300 text-black p-2 rounded-lg max-w-xs">
-                    Bonjour,<strong>{{Auth::user()->PRENOMUTILISATEUR}}</strong> ! Qu'est ce que vous souhaitez ?
+                    Bonjour <strong>{{Auth::user()->PRENOMUTILISATEUR}}</strong> ! Qu'est ce que vous souhaitez ?
                 </div>
             </div>
             <!-- Example Message -->
@@ -51,26 +51,26 @@
             <!-- Example Received Message -->
             <div class="flex">
                 <div class="bg-gray-300 text-black p-2 rounded-lg max-w-xs">
-                    Bien sur, cela se déroulera le <strong>{{ $date->format('d-m-Y')}}</strong> à <strong>{{$date->format('H:i:s')}}</strong>.
+                    Bien sûr, cela se déroulera le <strong>{{ $date->format('d-m-Y')}}</strong> à <strong>{{$date->format('H:i:s')}}</strong>.
                 </div>
             </div>
             <!-- Example Message -->
             <div class="flex justify-end">
                 <div class="bg-blue-200 text-black p-2 rounded-lg max-w-xs">
-                    Combien ca coûte ?
+                    Quel est le prix ?
                 </div>
             </div>
 
             <!-- Example Received Message -->
             <div class="flex">
                 <div class="bg-gray-300 text-black p-2 rounded-lg max-w-xs">
-                    <strong>{{$reservation->service->prix}}💰</strong> TTC. Mais faites vite il y a du monde qui souhaitent venir !
+                    <strong>{{$reservation->service->prix}}💰</strong>, mais faites vite il y a de la demande !
                 </div>
             </div>
             <!-- Example Message -->
             <div class="flex justify-end">
                 <div class="bg-blue-200 text-black p-2 rounded-lg max-w-xs">
-                    A bon ? Combien de gens y participe ?
+                    Ah bon ? Combien de places sont disponible ?
                 </div>
             </div>
 
@@ -83,7 +83,7 @@
             <!-- Example Message -->
             <div class="flex justify-end">
                 <div class="bg-blue-200 text-black p-2 rounded-lg max-w-xs">
-                    Oula ! On se donne vite rendez-vous à <strong>{{$reservation->service->LIEU_SERVICE}}</strong> alors !
+                    Et bien ! On se donne vite rendez-vous à <strong>{{$reservation->service->LIEU_SERVICE}}</strong> alors !
                 </div>
             </div>
 
